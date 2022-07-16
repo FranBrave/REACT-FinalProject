@@ -1,10 +1,8 @@
 import axios from "axios";
 import { environment } from "../../../environment/environment";
 
-export const getUserDetail = async (userDataLogged) => {
-    const response = await axios.get(
-        `${environment.API_URL}/user/${userDataLogged.id}`
-    );
+export const getUserDetail = async (userId) => {
+    const response = await axios.get(`${environment.API_URL}/user/${userId}`);
 
     return response;
 };
