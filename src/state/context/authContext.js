@@ -7,10 +7,10 @@ const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
     const { userAuth, dispatch } = useReducer(authReducer, INITIAL_STATE);
-    const [userDetailLogged, setUserDataLogged] = useState();
+    const [userDetailLogged, setUserDetailLogged] = useState();
 
     useEffect(() => {
-        setUserDataLogged(getUserDetail(userAuth.id));
+        setUserDetailLogged(getUserDetail(userAuth.id));
     }, [userAuth]);
 
     return (
