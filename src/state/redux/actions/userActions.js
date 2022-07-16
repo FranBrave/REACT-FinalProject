@@ -1,8 +1,8 @@
 import { getUserDetail } from "../../context/services/authContext.services";
 import { getUsersList } from "../services/userServices";
 
-export const USER_DETAIL = "GET_USER_DETAIL";
-export const USERS_LIST = "GET_USERS_LIST";
+export const USER_DETAIL = "USER_DETAIL";
+export const USERS_LIST = "USERS_LIST";
 export const ERROR = "ERROR";
 
 const actionUserDetail = (userDetail) => ({
