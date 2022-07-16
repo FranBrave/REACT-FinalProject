@@ -54,6 +54,6 @@ export const authReducer = (state = INITIAL_STATE, action) => {
                 error: "",
             };
         default:
-            break;
+            return state;
     }
 };
