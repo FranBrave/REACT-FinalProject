@@ -1,12 +1,14 @@
 export const MODAL_OPEN = "MODAL_OPEN";
 export const MODAL_CLOSED = "MODAL_CLOSED";
 
-const actionModalOpen = () => ({
+const actionModalOpen = (value) => ({
     type: MODAL_OPEN,
+    payload: !value,
 });
 
-const actionModalClosed = () => ({
+const actionModalClosed = (value) => ({
     type: MODAL_CLOSED,
+    payload: !value,
 });
 
 /**
@@ -15,5 +17,8 @@ const actionModalClosed = () => ({
  * @param {*} dispatch
  */
 export const toggleAuthModal = (value, dispatch) => {
-    value ? dispatch(actionModalClosed()) : dispatch(actionModalOpen());
+    console.log(value);
+    value
+        ? dispatch(actionModalClosed(value))
+        : dispatch(actionModalOpen(value));
 };

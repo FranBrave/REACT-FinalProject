@@ -1,4 +1,8 @@
-import { loginUser, registerUser } from "../services/authContext.services";
+import {
+    loginUser,
+    logoutUser,
+    registerUser,
+} from "../services/authContext.services";
 
 export const AUTH_LOADING = "AUTH_LOADING";
 export const AUTH_ERROR = "AUTH_ERROR";

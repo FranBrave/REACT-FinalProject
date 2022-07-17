@@ -12,11 +12,13 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 travelDetail: action.payload,
+                error: "",
             };
         case actions.TRAVELS_LIST:
             return {
                 ...state,
                 travelsList: action.payload,
+                error: "",
             };
         case actions.TRAVEL_ERROR:
             return {
