@@ -8,7 +8,7 @@ const Header = () => {
     const { modalState, modalDispatch } = useContext(AuthContext);
 
     const handleAuthModal = () => {
-        modalDispatch(toggleAuthModal(modalState.open, modalDispatch));
+        toggleAuthModal(modalState.open, modalDispatch);
     };
 
     console.log(modalState);

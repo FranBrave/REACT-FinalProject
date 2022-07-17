@@ -17,7 +17,6 @@ const actionModalClosed = (value) => ({
  * @param {*} dispatch
  */
 export const toggleAuthModal = (value, dispatch) => {
-    console.log(value);
     value
         ? dispatch(actionModalClosed(value))
         : dispatch(actionModalOpen(value));
