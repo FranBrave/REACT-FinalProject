@@ -6,7 +6,7 @@ import { setReduxTravelsList } from "../../../../../../state/redux/actions/trave
 const TravelsContainer = () => {
     const { travelsList, error } = useSelector((state) => state.travel);
     const dispatch = useDispatch();
-
+    console.log(travelsList);
     useEffect(() => {
         dispatch(setReduxTravelsList());
     }, []);

@@ -7,8 +7,7 @@ import Home from "./pages/Home/Home";
 import { AuthProvider } from "./state/context/authContext";
 import { store } from "./state/redux/reduxStore";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Travel from "./pages/Travel/Travel";
-import User from "./pages/User/User";
+import TravelsUsersContainer from "./pages/Home/components/TravelsUsersContainer/TravelsUsersContainer";
 import TravelDetail from "./pages/TravelDetail/TravelDetail";
 import UserDetail from "./pages/UserDetail/UserDetail";
 
@@ -23,14 +22,12 @@ const App = () => {
                 <main>
             <Routes>
             <Route path="/" element = {<Home/>}/>
-            <Route path="/User" element = {<User/>}/>
-            <Route path="/Travel/:id" element = {<UserDetail/>}/>
-            <Route path="/Travel" element={<Travel/>}/>
+            <Route path="/User/:id" element = {<UserDetail/>}/>
             <Route path="/Travel/:id" element ={<TravelDetail/>}/>
         </Routes>
-                </main>
-            </AuthProvider>
+            </main>
             
+            </AuthProvider>
         </Provider> 
     </Router>
     );

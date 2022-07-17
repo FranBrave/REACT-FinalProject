@@ -6,7 +6,7 @@ import { setReduxUsersList } from "../../../../../../state/redux/actions/userAct
 const UsersContainer = () => {
     const { userList, error } = useSelector((state) => state.user);
     const dispatch = useDispatch();
-
+    console.log(userList);
     useEffect(() => {
         dispatch(setReduxUsersList());
     }, []);

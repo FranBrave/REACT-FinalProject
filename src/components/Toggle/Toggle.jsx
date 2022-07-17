@@ -2,7 +2,15 @@ import React  from 'react'
 import { Box, Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const Toggle = () => {
+const Toggle = ({toggleDisplay}) => {
+
+    const travelDisplay = () => {
+        toggleDisplay(true);
+    }
+
+    const userDisplay = () => {
+        toggleDisplay(false);
+    }
 
     return (
     <Box sx={{
@@ -10,16 +18,12 @@ const Toggle = () => {
         ml: { sm: '50px'}     }}
         position='relative' p='20px'
         >
-    <Link to = "/Travel">
-    <Button variant='contained'>
+    <Button variant='contained' onClick={travelDisplay }>
         <Typography >Travels</Typography>
     </Button>
-    </Link>
-    <Link to ="/User">
-    <Button variant='contained'>
+    <Button variant='contained' onClick = {userDisplay}>
         <Typography>Users</Typography>
     </Button>
-    </Link>
     </Box>
   )
 }
