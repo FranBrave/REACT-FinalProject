@@ -3,22 +3,21 @@ import React, { useContext } from "react";
 import { logoutUserProvider } from "../../state/context/actions/authActions";
 import { toggleAuthModal } from "../../state/context/actions/modalActions";
 import { AuthContext } from "../../state/context/authContext";
+import { Link } from "react-router-dom";
+import { useUserLoggedDetail } from "../../customHook/useUserLoggedDetail";
 
 const Header = () => {
-    const {
-        modalState,
-        modalDispatch,
-        userAuth,
-        userDetailLogged,
-        authDispatch,
-    } = useContext(AuthContext);
+    const { modalState, modalDispatch, userAuth, authDispatch } = useContext(
+        AuthContext
+    );
+    const userLogged = useUserLoggedDetail();
 
     const handleAuthModal = () => {
         toggleAuthModal(modalState.open, modalDispatch);
     };
 
     const handleLogout = () => {
-        authDispatch(logoutUserProvider(authDispatch));
+        logoutUserProvider(authDispatch);
     };
 
     return (
@@ -31,8 +30,10 @@ const Header = () => {
             gap="1rem"
         >
             <Typography>HeaderLogo</Typography>
-            {userAuth.userId && (
-                <Typography>{userDetailLogged.username}</Typography>
+            {userAuth.userId && userLogged && (
+                <Link to={`/User/${userLogged.username}`}>
+                    <Typography>{userLogged.username}</Typography>
+                </Link>
             )}
             {!userAuth.userId ? (
                 <Button onClick={handleAuthModal}>LogIn</Button>

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import {
     authReducer,
     INITIAL_STATE as authStateContext,
@@ -7,7 +7,6 @@ import {
     modalReducer,
     INITIAL_STATE as modalStateContext,
 } from "./reducer/modalReducer";
-import { getUserDetail } from "./services/authContext.services";
 
 export const AuthContext = React.createContext();
 
@@ -23,17 +22,6 @@ export const AuthProvider = ({ children }) => {
         modalReducer,
         modalStateContext
     );
-    /**
-     * Set the detail info of the user logged, such as name, age, username etc.
-     */
-    const [userDetailLogged, setUserDetailLogged] = useState();
-
-    useEffect(() => {
-        userAuth.userId &&
-            getUserDetail(userAuth.userId).then((res) => {
-                setUserDetailLogged(res);
-            });
-    }, [userAuth]);
 
     return (
         <AuthContext.Provider
@@ -42,7 +30,6 @@ export const AuthProvider = ({ children }) => {
                 authDispatch,
                 modalState,
                 modalDispatch,
-                userDetailLogged,
             }}
         >
             {children}

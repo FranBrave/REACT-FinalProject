@@ -70,8 +70,10 @@ export const logoutUserProvider = async (dispatch) => {
         await logoutUser().then(() => {
             dispatch(actionLogoutDone());
             localStorage.clear();
+            return;
         });
     } catch (error) {
         dispatch(actionAuthError(error));
+        return;
     }
 };

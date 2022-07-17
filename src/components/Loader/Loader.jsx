@@ -1,13 +1,18 @@
-import React from 'react';
-import { Stack } from '@mui/material';
-import { TailSpin } from 'react-loader-spinner';
+import React from "react";
+import { Stack } from "@mui/material";
+// import { TailSpin } from "react-loader-spinner";
 
 const Loader = () => {
-  return (
-    <Stack direction='row' justifyContent='center' alignItems='center' width='100%'>
-        <TailSpin className='spinner' color='gray' />
-    </Stack>
-  )
-}
+    return (
+        <Stack
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            width="100%"
+        >
+            {/* <TailSpin className="spinner" color="gray" /> */}
+        </Stack>
+    );
+};
 
-export default Loader
+export default Loader;

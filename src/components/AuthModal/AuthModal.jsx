@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../state/context/authContext";
-import { Modal, Typography, Button, Fade } from "@mui/material";
+import { Modal, Button, Fade } from "@mui/material";
 import { Box } from "@mui/system";
 import { toggleAuthModal } from "../../state/context/actions/modalActions";
 import { useStyles } from "./styles/styles";

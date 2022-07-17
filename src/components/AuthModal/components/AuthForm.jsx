@@ -81,7 +81,9 @@ const AuthForm = () => {
                     fontSize: 18,
                 }}
             />
-            <Button onClick={submitUserForm}>Sign up</Button>
+            <Button onClick={submitUserForm}>
+                {loginDisplay ? "Log in" : "Sign up"}
+            </Button>
             <Typography
                 onClick={toggleForm}
                 fontSize="18px"
