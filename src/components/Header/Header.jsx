@@ -2,7 +2,7 @@ import { Button, Grid, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { toggleAuthModal } from "../../state/context/actions/modalActions";
 import { AuthContext } from "../../state/context/authContext";
-import { Grid, Button } from "@mui/material";
+
 
 const Header = () => {
     const { modalState, modalDispatch } = useContext(AuthContext);
