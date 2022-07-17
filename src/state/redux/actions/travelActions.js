@@ -2,7 +2,7 @@ import { getTravelDetail, getTravelsList } from "../services/travelServices";
 
 export const TRAVEL_DETAIL = "TRAVEL_DETAIL";
 export const TRAVELS_LIST = "TRAVELS_LIST";
-export const ERROR = "ERROR";
+export const TRAVEL_ERROR = "TRAVEL_ERROR";
 
 const actionTravelDetail = (travelDetail) => ({
     type: TRAVEL_DETAIL,
@@ -15,7 +15,7 @@ const actionTravelsList = (travelsList) => ({
 });
 
 const actionTravelError = (error) => ({
-    type: ERROR,
+    type: TRAVEL_ERROR,
     payload: error,
 });
 

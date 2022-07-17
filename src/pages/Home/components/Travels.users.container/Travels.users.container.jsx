@@ -1,44 +1,36 @@
-import React, {  useContext } from 'react'
-import { Typography } from '@mui/material';
-import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
-
-import RightArrowIcon from '../../../../assets/icons/right-arrow.png';
-import LeftArrowIcon from '../../../../assets/icons/left-arrow.png';
-import TravelsContainer from './components/Travels.container/Travels.container';
-
-
-
-
+import React, { useContext } from "react";
+import { Typography } from "@mui/material";
+import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
+import RightArrowIcon from "../../../../assets/icons/right-arrow.png";
+import LeftArrowIcon from "../../../../assets/icons/left-arrow.png";
+import TravelsContainer from "./components/Travels.container/Travels.container";
 
 const LeftArrow = () => {
-  const { scrollPrev } = useContext(VisibilityContext);
+    const { scrollPrev } = useContext(VisibilityContext);
 
-  return (
-    <Typography onClick={() => scrollPrev()} className="right-arrow">
-      <img src={LeftArrowIcon} alt="left-arrow" />
-    </Typography>
-  );
+    return (
+        <Typography onClick={() => scrollPrev()} className="right-arrow">
+            <img src={LeftArrowIcon} alt="left-arrow" />
+        </Typography>
+    );
 };
 
 const RightArrow = () => {
-  const { scrollNext } = useContext(VisibilityContext);
+    const { scrollNext } = useContext(VisibilityContext);
 
-  return (
-    <Typography onClick={() => scrollNext()} className="left-arrow">
-      <img src={RightArrowIcon} alt="right-arrow" />
-    </Typography>
-  );
+    return (
+        <Typography onClick={() => scrollNext()} className="left-arrow">
+            <img src={RightArrowIcon} alt="right-arrow" />
+        </Typography>
+    );
 };
-
 
 const TravelsUsersContainer = () => {
-
-    <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-     <TravelsContainer />
-  </ScrollMenu>
-
+    return (
+        <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+            <TravelsContainer />
+        </ScrollMenu>
+    );
 };
 
-export default TravelsUsersContainer
-
-
+export default TravelsUsersContainer;
