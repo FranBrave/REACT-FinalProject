@@ -1,13 +1,24 @@
 import { Button, Grid, Typography } from "@mui/material";
 import React, { useContext } from "react";
+import { logoutUserProvider } from "../../state/context/actions/authActions";
 import { toggleAuthModal } from "../../state/context/actions/modalActions";
 import { AuthContext } from "../../state/context/authContext";
 
 const Header = () => {
-    const { modalState, modalDispatch } = useContext(AuthContext);
+    const {
+        modalState,
+        modalDispatch,
+        userAuth,
+        userDetailLogged,
+        authDispatch,
+    } = useContext(AuthContext);
 
     const handleAuthModal = () => {
         toggleAuthModal(modalState.open, modalDispatch);
+    };
+
+    const handleLogout = () => {
+        authDispatch(logoutUserProvider(authDispatch));
     };
 
     return (
@@ -20,7 +31,14 @@ const Header = () => {
             gap="1rem"
         >
             <Typography>HeaderLogo</Typography>
-            <Button onClick={handleAuthModal}>Open modal</Button>
+            {userAuth.userId && (
+                <Typography>{userDetailLogged.username}</Typography>
+            )}
+            {!userAuth.userId ? (
+                <Button onClick={handleAuthModal}>LogIn</Button>
+            ) : (
+                <Button onClick={handleLogout}>Log Out</Button>
+            )}
         </Grid>
     );
 };

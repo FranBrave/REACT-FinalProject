@@ -7,7 +7,6 @@ import Home from "./pages/Home/Home";
 import { AuthProvider } from "./state/context/authContext";
 import { store } from "./state/redux/reduxStore";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TravelsUsersContainer from "./pages/Home/components/TravelsUsersContainer/TravelsUsersContainer";
 import TravelDetail from "./pages/TravelDetail/TravelDetail";
 import UserDetail from "./pages/UserDetail/UserDetail";
 

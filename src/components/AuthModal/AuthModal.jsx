@@ -4,6 +4,7 @@ import { Modal, Typography, Button, Fade } from "@mui/material";
 import { Box } from "@mui/system";
 import { toggleAuthModal } from "../../state/context/actions/modalActions";
 import { useStyles } from "./styles/styles";
+import AuthForm from "./components/AuthForm";
 
 const AuthModal = () => {
     const classes = useStyles();
@@ -18,14 +19,8 @@ const AuthModal = () => {
         <Modal open={modalState.open} sx={classes.backdrop}>
             <Fade in={modalState.open}>
                 <Box sx={classes.modal}>
-                    <Button onClick={handleCloseModal}>Close modal</Button>
-                    <Typography variant="h6" component="h2">
-                        Text in a modal
-                    </Typography>
-                    <Typography sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor
-                        ligula.
-                    </Typography>
+                    <Button onClick={handleCloseModal}>Close</Button>
+                    <AuthForm />
                 </Box>
             </Fade>
         </Modal>

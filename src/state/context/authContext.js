@@ -11,7 +11,6 @@ import { getUserDetail } from "./services/authContext.services";
 
 export const AuthContext = React.createContext();
 
-
 export const AuthProvider = ({ children }) => {
     /**
      * Return the userId and jwt
@@ -30,7 +29,10 @@ export const AuthProvider = ({ children }) => {
     const [userDetailLogged, setUserDetailLogged] = useState();
 
     useEffect(() => {
-        userAuth.userId && setUserDetailLogged(getUserDetail(userAuth.userId));
+        userAuth.userId &&
+            getUserDetail(userAuth.userId).then((res) => {
+                setUserDetailLogged(res);
+            });
     }, [userAuth]);
 
     return (

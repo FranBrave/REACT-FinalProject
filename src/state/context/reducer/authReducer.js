@@ -47,8 +47,8 @@ export const authReducer = (state = INITIAL_STATE, action) => {
             };
         case actions.LOGOUT_DONE:
             return {
-                userId: "",
-                userToken: "",
+                userId: null,
+                userToken: null,
                 loading: false,
                 done: true,
                 error: "",

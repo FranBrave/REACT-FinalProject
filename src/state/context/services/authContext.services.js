@@ -4,25 +4,25 @@ import { environment } from "../../../environment/environment";
 export const getUserDetail = async (userId) => {
     const response = await axios.get(`${environment.API_URL}/user/${userId}`);
 
-    return response;
+    return response.data;
 };
 
-export const loginUser = async (requestBody) => {
+export const loginUser = async (body) => {
     const response = await axios.post(
         `${environment.API_URL}/auth/login`,
-        requestBody
+        body
     );
 
-    return response;
+    return response.data.data;
 };
 
-export const registerUser = async (requestBody) => {
+export const registerUser = async (body) => {
     const response = await axios.post(
         `${environment.API_URL}/auth/register`,
-        requestBody
+        body
     );
 
-    return response;
+    return response.data.data;
 };
 
 export const logoutUser = async () => {
