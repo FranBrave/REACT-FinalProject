@@ -25,24 +25,32 @@ const actionUserError = (error) => ({
  * @param {*} userId
  * @returns Dispatch the action to redux store in order to set the user detail
  */
-export const setReduxUserDetail = async (userId) => {
-    try {
-        const userDetail = await getUserDetail(userId);
-        return (dispatch) => dispatch(actionUserDetail(userDetail));
-    } catch (error) {
-        return (dispatch) => dispatch(actionUserError(error));
-    }
-};
+ export const setReduxUserDetail = () => {
+    return (dispatch) => {
+        try {
+            return getUserDetail().then((res) =>
+                dispatch(actionUserDetail(res))
+            );
+        } catch (error) {
+            dispatch(actionUserError());
+        }
+    };
+ }
+
+
 
 /**
  * Function to set the redux state with a list of users
  * @returns Dispatch the action to redux store in order to set the list of users coming from the api
  */
-export const setReduxUsersList = async () => {
-    try {
-        const usersList = await getUsersList();
-        return (dispatch) => dispatch(actionUsersList(usersList));
-    } catch (error) {
-        return (dispatch) => dispatch(actionUserError(error));
-    }
+ export const setReduxUsersList = () => {
+    return (dispatch) => {
+        try {
+            return getUsersList().then((res) =>
+                dispatch(actionUsersList(res))
+            );
+        } catch (error) {
+            dispatch(actionUserError());
+        }
+    };
 };
