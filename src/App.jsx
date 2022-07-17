@@ -10,12 +10,10 @@ const App = () => {
             <Header />
             <AuthModal />
             <main>
-                <h1>Proyecto final</h1>
                 <Home />
             </main>
         </AuthProvider>
     );
 };
-
 
 export default App;
