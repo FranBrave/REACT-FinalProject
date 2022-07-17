@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { Box } '@mui/material';
+import React from "react";
+import { Box } from '@mui/material';
 
 const Travel = () => {
 
     return (
         <Box>
-            
+            <div>Travel</div>
         </Box>
     )
 };
