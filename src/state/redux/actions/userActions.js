@@ -3,7 +3,7 @@ import { getUsersList } from "../services/userServices";
 
 export const USER_DETAIL = "USER_DETAIL";
 export const USERS_LIST = "USERS_LIST";
-export const ERROR = "ERROR";
+export const USER_ERROR = "USER_ERROR";
 
 const actionUserDetail = (userDetail) => ({
     type: USER_DETAIL,
@@ -16,7 +16,7 @@ const actionUsersList = (usersList) => ({
 });
 
 const actionUserError = (error) => ({
-    type: ERROR,
+    type: USER_ERROR,
     payload: error,
 });
 
