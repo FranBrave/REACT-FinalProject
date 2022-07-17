@@ -20,6 +20,11 @@ const actionUserError = (error) => ({
     payload: error,
 });
 
+/**
+ * Function to set the redux state of the user detail
+ * @param {*} userId
+ * @returns Dispatch the action to redux store in order to set the user detail
+ */
 export const setReduxUserDetail = async (userId) => {
     try {
         const userDetail = await getUserDetail(userId);
@@ -29,6 +34,10 @@ export const setReduxUserDetail = async (userId) => {
     }
 };
 
+/**
+ * Function to set the redux state with a list of users
+ * @returns Dispatch the action to redux store in order to set the list of users coming from the api
+ */
 export const setReduxUsersList = async () => {
     try {
         const usersList = await getUsersList();

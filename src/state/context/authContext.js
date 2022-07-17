@@ -1,12 +1,22 @@
 import { useEffect, useReducer, useState } from "react";
-import { INITIAL_STATE } from "./reducer/authReducer";
+import { authReducer, INITIAL_STATE } from "./reducer/authReducer";
+import { modalReducer } from "./reducer/modalReducer";
 import { getUserDetail } from "./services/authContext.services";
 
-// Create Context
 const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
-    const { userAuth, dispatch } = useReducer(authReducer, INITIAL_STATE);
+    /**
+     * Return the userId and jwt
+     */
+    const { userAuth, authDispatch } = useReducer(authReducer, INITIAL_STATE);
+    /**
+     * Return the state of the auth modal (open/closed)
+     */
+    const {modalState, modalDispatch} = useReducer(modalReducer)
+    /**
+     * Set the detail info of the user logged, such as name, age, username etc.
+     */
     const [userDetailLogged, setUserDetailLogged] = useState();
 
     useEffect(() => {
@@ -14,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     }, [userAuth]);
 
     return (
-        <AuthContext.Provider value={(userAuth, dispatch, userDetailLogged)}>
+        <AuthContext.Provider value={(userAuth, authDispatch, modalState, modalDispatch, userDetailLogged)}>
             {children}
         </AuthContext.Provider>
     );

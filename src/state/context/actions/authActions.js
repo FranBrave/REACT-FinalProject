@@ -29,6 +29,11 @@ const actionLogoutDone = () => ({
     type: LOGOUT_DONE,
 });
 
+/**
+ * With the body parameter coming from the auth login form, use the register function or login function depending on the username value exist or not.
+ * @param {*} body {username?, password, email}
+ * @param {*} dispatch
+ */
 export const authUserProvider = async (body, dispatch) => {
     const requestBody = {
         method: "POST",

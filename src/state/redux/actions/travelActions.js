@@ -19,6 +19,11 @@ const actionTravelError = (error) => ({
     payload: error,
 });
 
+/**
+ * Function to set the redux state of the travel detail
+ * @param {*} travelId The id of the travel that is needed to get the detail info
+ * @returns Dispatch the action to redux store in order to set the detail travel info
+ */
 export const setReduxTravelDetail = async (travelId) => {
     try {
         const travelDetail = await getTravelDetail(travelId);
@@ -28,6 +33,10 @@ export const setReduxTravelDetail = async (travelId) => {
     }
 };
 
+/**
+ * Function to set the redux state with a list of travels
+ * @returns Dispatch the action to redux store in order to set the list of travels coming from the api
+ */
 export const setReduxTravelsList = async () => {
     try {
         const travelsList = await getTravelsList();
