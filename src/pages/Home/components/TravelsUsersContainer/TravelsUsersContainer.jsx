@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import { Typography } from "@mui/material";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import RightArrowIcon from "../../../../assets/icons/right-arrow.png";
@@ -27,10 +27,12 @@ const RightArrow = () => {
 };
 
 const TravelsUsersContainer = () => {
+    
+    
     return (
         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-            <TravelsContainer />
-            {/* <UsersContainer /> */}
+           <TravelsContainer  />
+         <UsersContainer />
         </ScrollMenu>
     );
 };
