@@ -13,6 +13,12 @@ export const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 userDetail: action.payload,
             };
+
+        case actions.USERS_LIST:
+            return {
+                ...state,
+                userList: action.payload,
+            };
         case actions.ERROR:
             return {
                 ...state,

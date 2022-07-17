@@ -1,10 +1,7 @@
-import React from 'react'
-import Toggle from '../../components/Toggle/Toggle'
+import React from "react";
 
 const Home = () => {
-  return (
-    <Toggle />
-  )
-}
+    return <div>Home</div>;
+};
 
-export default Home
+export default Home;
