@@ -1,25 +1,17 @@
 import { Link, Stack, Typography } from '@mui/material'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { setReduxTravelDetail } from '../../../../../../state/redux/actions/travelActions'
 
 
 const TravelsContainer = () => {
 
-    const { travelDetail, error } = useSelector((state) => state.travel);
+    const { travelsList, error } = useSelector((state) => state.travel);
 
-    const dispatch = useDispatch();
-
-    const { travelId } = useParams();
-
-    useEffect(() => {
-        dispatch(setReduxTravelDetail(travelId));
-    }, [travelId]);
+    // const dispatch = useDispatch();
 
 
   return (
-    <Stack direction="row">  {travelDetail.map(travel => (
+    <Stack direction="row">  {travelsList.map(travel => (
         <Link className="travel-card" sx={{
           width: 300,
           height: 300,
