@@ -1,5 +1,7 @@
-import { getUserDetail } from "../../context/services/authContext.services";
-import { getUsersList } from "../services/userServices";
+import {
+    getUsersList,
+    getUserDetailByUsername,
+} from "../services/userServices";
 
 export const USER_DETAIL = "USER_DETAIL";
 export const USERS_LIST = "USERS_LIST";
@@ -25,30 +27,26 @@ const actionUserError = (error) => ({
  * @param {*} userId
  * @returns Dispatch the action to redux store in order to set the user detail
  */
- export const setReduxUserDetail = () => {
+export const setReduxUserDetail = (username) => {
     return (dispatch) => {
         try {
-            return getUserDetail().then((res) =>
+            return getUserDetailByUsername(username).then((res) =>
                 dispatch(actionUserDetail(res))
             );
         } catch (error) {
             dispatch(actionUserError());
         }
     };
- }
-
-
+};
 
 /**
  * Function to set the redux state with a list of users
  * @returns Dispatch the action to redux store in order to set the list of users coming from the api
  */
- export const setReduxUsersList = () => {
+export const setReduxUsersList = () => {
     return (dispatch) => {
         try {
-            return getUsersList().then((res) =>
-                dispatch(actionUsersList(res))
-            );
+            return getUsersList().then((res) => dispatch(actionUsersList(res)));
         } catch (error) {
             dispatch(actionUserError());
         }
