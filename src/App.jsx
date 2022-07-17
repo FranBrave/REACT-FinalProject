@@ -1,4 +1,4 @@
-import  { Provider } from "react-redux";
+import { Provider } from "react-redux";
 import React from "react";
 import "./App.css";
 import AuthModal from "./components/AuthModal/AuthModal";
@@ -11,25 +11,26 @@ import TravelsUsersContainer from "./pages/Home/components/TravelsUsersContainer
 import TravelDetail from "./pages/TravelDetail/TravelDetail";
 import UserDetail from "./pages/UserDetail/UserDetail";
 
-
 const App = () => {
     return (
-    <Router>
-        <Provider store={store}>
-            <AuthProvider>
-                <Header />
-                <AuthModal />
-                <main>
-            <Routes>
-            <Route path="/" element = {<Home/>}/>
-            <Route path="/User/:id" element = {<UserDetail/>}/>
-            <Route path="/Travel/:id" element ={<TravelDetail/>}/>
-        </Routes>
-            </main>
-            
-            </AuthProvider>
-        </Provider> 
-    </Router>
+        <Router>
+            <Provider store={store}>
+                <AuthProvider>
+                    <Header />
+                    <AuthModal />
+                    <main>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/User/:id" element={<UserDetail />} />
+                            <Route
+                                path="/Travel/:id"
+                                element={<TravelDetail />}
+                            />
+                        </Routes>
+                    </main>
+                </AuthProvider>
+            </Provider>
+        </Router>
     );
 };
 
