@@ -21,7 +21,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
                 userList: action.payload,
                 error: "",
             };
-        case actions.ERROR:
+        case actions.USER_ERROR:
             return {
                 ...state,
                 error: action.payload,

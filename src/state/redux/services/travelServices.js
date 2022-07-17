@@ -6,11 +6,11 @@ export const getTravelDetail = async (travelId) => {
         `${environment.API_URL}/travel/detail/${travelId}`
     );
 
-    return response;
+    return response.data;
 };
 
 export const getTravelsList = async () => {
     const response = await axios.get(`${environment.API_URL}/home/travels`);
 
-    return response;
+    return response.data;
 };

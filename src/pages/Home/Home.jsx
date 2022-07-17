@@ -1,17 +1,7 @@
-
-import React from 'react'
-import Toggle from '../../components/Toggle/Toggle'
-import { Box } from '@mui/material';
-import TravelsUsersContainer from './components/Travels.users.container/Travels.users.container';
-
+import React from "react";
 
 const Home = () => {
-  return (
-    <Box>
-    <Toggle />
-    <TravelsUsersContainer />
-    </Box>
-  )
-}
+    return <div>Home</div>;
+};
 
 export default Home;

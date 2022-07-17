@@ -3,15 +3,12 @@ import React, { useContext } from "react";
 import { toggleAuthModal } from "../../state/context/actions/modalActions";
 import { AuthContext } from "../../state/context/authContext";
 
-
 const Header = () => {
     const { modalState, modalDispatch } = useContext(AuthContext);
 
     const handleAuthModal = () => {
         toggleAuthModal(modalState.open, modalDispatch);
     };
-
-    console.log(modalState);
 
     return (
         <Grid
