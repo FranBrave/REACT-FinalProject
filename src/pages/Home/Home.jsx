@@ -1,14 +1,15 @@
 
 import React from 'react'
 import Toggle from '../../components/Toggle/Toggle'
-import TravelContainer from '../../components/TravelContainer/TravelContainer'
 import { Box } from '@mui/material';
+import TravelsUsersContainer from './components/Travels.users.container/Travels.users.container';
+
 
 const Home = () => {
   return (
     <Box>
     <Toggle />
-    <TravelContainer />
+    <TravelsUsersContainer />
     </Box>
   )
 }

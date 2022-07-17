@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { toggleAuthModal } from "../../state/context/actions/modalActions";
 import { AuthContext } from "../../state/context/authContext";
