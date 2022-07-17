@@ -1,6 +1,7 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { travelReducer } from "./reducers/travelReducer";
 import { userReducer } from "./reducers/userReducer";
 
 const rootReducer = combineReducers({
