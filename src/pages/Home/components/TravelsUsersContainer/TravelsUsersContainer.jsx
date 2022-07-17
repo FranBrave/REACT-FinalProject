@@ -26,8 +26,7 @@ const RightArrow = () => {
     );
 };
 
-const TravelsUsersContainer = ({travelDisplay}) => {
-    console.log(travelDisplay);
+const TravelsUsersContainer = ({ travelDisplay }) => {
     return (
         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
             {travelDisplay ? <TravelsContainer /> : <UsersContainer />}

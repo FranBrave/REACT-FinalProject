@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setReduxTravelsList } from "../../../../../../state/redux/actions/travelActions";
 
 const TravelsContainer = () => {
-    const { travelsList, error } = useSelector((state) => state.travel);
+    const { travelsList } = useSelector((state) => state.travel);
     const dispatch = useDispatch();
-    console.log(travelsList);
+
     useEffect(() => {
         dispatch(setReduxTravelsList());
     }, []);
