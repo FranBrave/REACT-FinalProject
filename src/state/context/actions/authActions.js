@@ -39,32 +39,27 @@ const actionLogoutDone = () => ({
  * @param {*} dispatch
  */
 export const authUserProvider = async (body, dispatch) => {
-    const requestBody = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-    };
-
     dispatch(actionAuthLoading());
 
     try {
         if (!body.username) {
-            const response = await loginUser(requestBody);
+            const response = await loginUser(body);
 
-            const userId = response.data.userId;
-            const userToken = response.data.token;
+            const userId = response.userId;
+            const userToken = response.token;
 
             localStorage.setItem("userId", userId);
             localStorage.setItem("token", userToken);
 
-            dispatch(actionLoginDone(response.data));
+            dispatch(actionLoginDone(response));
+            return;
         }
 
-        await registerUser(requestBody).then(() =>
-            dispatch(actionRegisterDone())
-        );
+        await registerUser(body).then(() => dispatch(actionRegisterDone()));
+        return;
     } catch (error) {
-        dispatch(actionAuthError(error));
+        dispatch(actionAuthError(error.response.data));
+        return;
     }
 };
 
@@ -74,8 +69,11 @@ export const logoutUserProvider = async (dispatch) => {
     try {
         await logoutUser().then(() => {
             dispatch(actionLogoutDone());
+            localStorage.clear();
+            return;
         });
     } catch (error) {
         dispatch(actionAuthError(error));
+        return;
     }
 };

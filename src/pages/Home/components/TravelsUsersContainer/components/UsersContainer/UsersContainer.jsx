@@ -24,6 +24,7 @@ const UsersContainer = () => {
                         border: "1px solid grey",
                     }}
                     key={user.id}
+                    href={`/User/${user.username}`}
                 >
                     <Typography
                         ml="21px"
