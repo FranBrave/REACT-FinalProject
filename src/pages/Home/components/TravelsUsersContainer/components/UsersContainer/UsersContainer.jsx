@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setReduxUsersList } from "../../../../../../state/redux/actions/userActions";
 
 const UsersContainer = () => {
-    const { userList, error } = useSelector((state) => state.user);
+    const { userList } = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(setReduxUsersList());
     }, []);
+
+    useEffect(() => {}, [userList]);
 
     return (
         <Stack direction="row">
@@ -43,7 +45,18 @@ const UsersContainer = () => {
                         pb="10px"
                         textTransform="capitalize"
                     >
-                        {user.travelsCreated}
+                        {user.location}
+                    </Typography>
+                    <Typography
+                        ml="21px"
+                        color="#1d3557"
+                        fontWeight="bold"
+                        sx={{ fontSize: { lg: "24px", xs: "20px" } }}
+                        mt="11px"
+                        pb="10px"
+                        textTransform="capitalize"
+                    >
+                        {user.bio}
                     </Typography>
                 </Link>
             ))}

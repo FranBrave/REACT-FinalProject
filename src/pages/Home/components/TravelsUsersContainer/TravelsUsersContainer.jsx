@@ -26,13 +26,10 @@ const RightArrow = () => {
     );
 };
 
-const TravelsUsersContainer = () => {
-    
-    
+const TravelsUsersContainer = ({ travelDisplay }) => {
     return (
         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-           <TravelsContainer  />
-         <UsersContainer />
+            {travelDisplay ? <TravelsContainer /> : <UsersContainer />}
         </ScrollMenu>
     );
 };
