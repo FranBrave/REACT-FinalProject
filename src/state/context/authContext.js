@@ -1,9 +1,9 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState, createContext } from "react";
 import { authReducer, INITIAL_STATE } from "./reducer/authReducer";
 import { modalReducer } from "./reducer/modalReducer";
 import { getUserDetail } from "./services/authContext.services";
 
-const AuthContext = React.createContext();
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     /**

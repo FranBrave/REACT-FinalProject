@@ -1,12 +1,11 @@
-import React, { useEffect, useContext } from 'react'
+import React, {  useContext } from 'react'
 import { Typography } from '@mui/material';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 
-import RightArrowIcon from '../../assets/icons/right-arrow.png';
-import LeftArrowIcon from '../../assets/icons/left-arrow.png';
+import RightArrowIcon from '../../../../assets/icons/right-arrow.png';
+import LeftArrowIcon from '../../../../assets/icons/left-arrow.png';
 import TravelsContainer from './components/Travels.container/Travels.container';
-import { TRAVEL_DETAIL } from '../../../../state/redux/actions/travelActions';
-import Loader from '../../../../components/Loader/Loader';
+
 
 
 
@@ -33,7 +32,6 @@ const RightArrow = () => {
 
 
 const TravelsUsersContainer = () => {
-  if (!TRAVEL_DETAIL.length) return <Loader />;
 
     <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
      <TravelsContainer />
