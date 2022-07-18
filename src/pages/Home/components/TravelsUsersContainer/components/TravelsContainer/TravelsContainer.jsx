@@ -13,6 +13,7 @@ const TravelsContainer = () => {
     }, []);
 
     return (
+        
         <Stack direction="row">
             {travelsList.map((travel) => (
                 <Link
@@ -67,7 +68,7 @@ const TravelsContainer = () => {
                         sx={{ fontSize: { lg: "18px", xs: "15px" } }}
                         mt="11px"
                         pb="10px"
-                        textTransform="capitalize"
+                        textTransform="none"
                     >
                         Creado por {travel.userOwnerId}
                     </Typography>
