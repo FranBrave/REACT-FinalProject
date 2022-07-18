@@ -1,11 +1,12 @@
 import { Link, Stack, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useUserDetailById } from "../../../../../../customHook/useUserDetailById";
 import { setReduxTravelsList } from "../../../../../../state/redux/actions/travelActions";
 
 const TravelsContainer = () => {
     const { travelsList } = useSelector((state) => state.travel);
+    const [ownerList, setOwnerList] = useState();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -55,7 +56,7 @@ const TravelsContainer = () => {
                         pb="10px"
                         textTransform="capitalize"
                     >
-                        {useUserDetailById(travel.userOwnerId).username}
+                        {"hola"}
                     </Typography>
                 </Link>
             ))}
