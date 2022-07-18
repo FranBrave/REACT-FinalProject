@@ -12,7 +12,6 @@
 
 }
 
-.travel-card {
-    background-color: rgb(133, 99, 99);
-
+.travel-card__image {
+ background-size: 20%;
 }

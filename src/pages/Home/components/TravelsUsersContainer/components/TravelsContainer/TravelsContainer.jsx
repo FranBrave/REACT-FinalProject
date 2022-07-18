@@ -1,4 +1,4 @@
-import { Link, Stack, Typography } from "@mui/material";
+import { ImageListItem, Link, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useUserDetailById } from "../../../../../../customHook/useUserDetailById";
@@ -71,7 +71,7 @@ const TravelsContainer = () => {
                         pb="10px"
                         textTransform="none"
                     >
-                        Creado por {travel.userOwnerId}
+                        {/* Creado por {useUserDetailById(travel.userOwnerId).username} */}
                     </Typography>
 
                     <Typography
@@ -83,6 +83,20 @@ const TravelsContainer = () => {
                     >
                         {travel.budget}€
                     </Typography>
+
+                    <ImageListItem
+                        
+                        key={travel.images[0]}
+                        className='travel-card__image'
+                        class=''
+                        style={{background: `url(${travel.images[0]})`, backgroundSize: "cover",
+                        height: "50vh",
+                        }}
+                        alt={travel.title}
+                        loading="lazy"
+                        
+                    />
+
                     <Typography
                     className="travel-card__data"
                         ml="21px"
@@ -97,21 +111,12 @@ const TravelsContainer = () => {
                     >
                         Desde {travel.dataFrom} hasta {travel.dataTo} 
                     </Typography>
-                    <Typography
-                        ml="21px"
-                        color="#1d3557"
-                        fontWeight="bold"
-                        sx={{ fontSize: { lg: "24px", xs: "20px" } }}
-                        mt="11px"
-                        pb="10px"
-                        textTransform="capitalize"
-                    >
-                        {useUserDetailById(travel.userOwnerId).username}
-                    </Typography>
                 </Link>
             ))}
         </Stack>
+        
     );
+
 };
 
 export default TravelsContainer;
