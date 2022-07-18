@@ -2,6 +2,7 @@ import { Link, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setReduxTravelsList } from "../../../../../../state/redux/actions/travelActions";
+import './TravelsContainer.css';
 
 const TravelsContainer = () => {
     const { travelsList } = useSelector((state) => state.travel);
@@ -16,12 +17,15 @@ const TravelsContainer = () => {
             {travelsList.map((travel) => (
                 <Link
                     className="travel-card"
-                    sx={{
-                        width: 300,
-                        height: 300,
+                    sx={{  
+                        width:  { lg: '900px', xs: '300px'  },
+                        height: { lg: '800px', xs: '750px'  },
                         border: "1px solid grey",
+                        borderRadius: '30px',
+                        m: '10px'
                     }}
                     key={travel.id}
+                    href={`/travel/${travel.title}`}
                 >
                     <Typography
                         ml="21px"
@@ -43,7 +47,53 @@ const TravelsContainer = () => {
                         pb="10px"
                         textTransform="capitalize"
                     >
-                        {travel.cityName}
+                        Destino {travel.cityName}   
+                    </Typography>
+                    <Typography
+                        ml="21px"
+                        color="#1d3557"
+                        fontWeight="bold"
+                        sx={{ fontSize: { lg: "20px", xs: "17px" } }}
+                        mt="11px"
+                        pb="10px"
+                        textTransform="capitalize"
+                    >
+                        {travel.description}
+                    </Typography>
+                    <Typography
+                        ml="21px"
+                        color="#1d3557"
+                        fontWeight="bold"
+                        sx={{ fontSize: { lg: "18px", xs: "15px" } }}
+                        mt="11px"
+                        pb="10px"
+                        textTransform="capitalize"
+                    >
+                        Creado por {travel.userOwnerId}
+                    </Typography>
+
+                    <Typography
+                        className="travel-card__budget"
+                        color="#1d3557"
+                        fontWeight="bold"
+                        sx={{ fontSize: { lg: "15px", xs: "13px" } }}
+                        textTransform="capitalize"
+                    >
+                        {travel.budget}€
+                    </Typography>
+                    <Typography
+                    className="travel-card__data"
+                        ml="21px"
+                        mr='0px'
+                        p='0px'
+                        color="#1d3557"
+                        fontWeight="bold"
+                        sx={{ fontSize: { lg: "15px", xs: "13px" } }}
+                        mt="11px"
+                        pb="10px"
+                        textTransform="none"
+                    >
+                        Desde {travel.dataFrom} hasta {travel.dataTo} 
                     </Typography>
                 </Link>
             ))}
