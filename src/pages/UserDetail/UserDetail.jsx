@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useCheckSameUser } from "../../customHook/useCheckSameUser";
 import { useUserDetail } from "../../customHook/useUserDetail";
+import TravelCreation from "./components/travelCreation/TravelCreation";
 
 const UserDetail = () => {
     const { username } = useParams();
@@ -13,9 +14,7 @@ const UserDetail = () => {
             {userDetail && (
                 <div>
                     <p>{userDetail.username}</p>
-                    {isSameUser
-                        ? "Estas en tu perfil de usuario"
-                        : "Estas en el perfil de usuario de otro"}
+                    {isSameUser && <TravelCreation />}
                 </div>
             )}
         </>
