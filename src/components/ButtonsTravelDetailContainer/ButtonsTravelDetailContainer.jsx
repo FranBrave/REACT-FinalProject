@@ -12,8 +12,8 @@ const ButtonsTravelDetailContainer = (travelID, userId) => {
 
     return(
         <div>
-        <button onClick = "Join()">Join</button>
-        <button onClick = "Follow()">Follow</button>
+        <button onClick = {Join}>Join</button>
+        <button onClick = {Follow}>Follow</button>
         </div>
     )
 }
