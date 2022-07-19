@@ -15,14 +15,3 @@
 .travel-card__image {
  background-size: 20%;
 }
-
-.travel-card {
-    flex: 0 0 auto;
-}
-
-.TravelsContainer {
-
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-}
