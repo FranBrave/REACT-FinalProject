@@ -2,6 +2,7 @@ import { Link, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setReduxUsersList } from "../../../../../../state/redux/actions/userActions";
+import './UsersContainer.css'
 
 const UsersContainer = () => {
     const { userList } = useSelector((state) => state.user);
@@ -18,10 +19,12 @@ const UsersContainer = () => {
             {userList.map((user) => (
                 <Link
                     className="user-card"
-                    sx={{
-                        width: 300,
-                        height: 300,
+                    sx={{  
+                        width:  { lg: '900px', xs: '300px'  },
+                        height: { lg: '800px', xs: '750px'  },
                         border: "1px solid grey",
+                        borderRadius: '30px',
+                        m: '10px'
                     }}
                     key={user.id}
                     href={`/User/${user.username}`}
