@@ -4,6 +4,8 @@ export const TRAVEL_DETAIL = "TRAVEL_DETAIL";
 export const TRAVELS_LIST = "TRAVELS_LIST";
 export const TRAVEL_ERROR = "TRAVEL_ERROR";
 
+export const PUSH_TRAVEL = "PUSH_TRAVEL";
+
 const actionTravelDetail = (travelDetail) => ({
     type: TRAVEL_DETAIL,
     payload: travelDetail,
@@ -17,6 +19,11 @@ const actionTravelsList = (travelsList) => ({
 const actionTravelError = (error) => ({
     type: TRAVEL_ERROR,
     payload: error,
+});
+
+const actionPushTravel = (travel) => ({
+    type: PUSH_TRAVEL,
+    payload: travel,
 });
 
 /**
@@ -46,6 +53,19 @@ export const setReduxTravelsList = () => {
             return getTravelsList().then((res) =>
                 dispatch(actionTravelsList(res))
             );
+        } catch (error) {
+            dispatch(actionTravelError());
+        }
+    };
+};
+
+export const setReduxAddTravel = (data) => {
+    return (dispatch) => {
+        try {
+            console.log(data);
+            // return postTravel(data).then((res) =>
+            //     dispatch(actionPushTravel(res))
+            // );
         } catch (error) {
             dispatch(actionTravelError());
         }
