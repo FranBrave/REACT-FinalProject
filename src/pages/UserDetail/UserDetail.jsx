@@ -15,9 +15,8 @@ const UserDetail = () => {
             {userDetail && (
                 <div>
                     <p>{userDetail.username}</p>
-                    {isSameUser && <TravelCreation />}
-
-                <UserDetailCOntainer/>
+                    {isSameUser && <TravelCreation userId={userDetail._id} />}
+                    <UserDetailCOntainer />
                 </div>
             )}
         </>

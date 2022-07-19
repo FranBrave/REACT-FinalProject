@@ -14,3 +14,12 @@ export const getTravelsList = async () => {
 
     return response.data;
 };
+
+export const postTravel = async (data) => {
+    const response = await axios.post(
+        `${environment.API_URL}/user/travel/${data.userId}`,
+        data.orm
+    );
+
+    return response.data;
+};
