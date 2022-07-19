@@ -1,14 +1,17 @@
-import { CardMedia, ImageListItem, Link, Stack, Typography } from "@mui/material";
+import { Link, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getTags } from "../../../../../../services/getTags";
 import { getUserDetail } from "../../../../../../state/context/services/authContext.services";
 import { setReduxTravelsList } from "../../../../../../state/redux/actions/travelActions";
 import './TravelsContainer.css';
-import TravelTagsCont from "./TravelTagsCont/TravelTagsCont";
+
+
 
 const TravelsContainer = () => {
     const { travelsList } = useSelector((state) => state.travel);
     const [ownerList, setOwnerList] = useState([]);
+    const [tagsList, setTagsList] = useState([])
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,36 +26,39 @@ const TravelsContainer = () => {
             Promise.all(promiseArray).then((res) => setOwnerList(res));
         };
 
-
-        // const getTagsFromTravels = () => {
-        //     const promiseArray = travelsList.map((travel) =>
-        //         getTravelDetail(travel.tags)
-        //     );
-        //     Promise.all(promiseArray).then((res) => setTagsList(res));
-        // };
-
         getUsersFromTravels();
-        // getTagsFromTravels();
+        
+    }, [travelsList]);
+
+    useEffect(() => {
+        const getTagsFromTravels = () => {
+            const promiseArray = travelsList.map((travel) =>
+                getTags(travel.tags)
+            );
+            Promise.all(promiseArray).then((res) => setTagsList(res));
+        };
+
+        getTagsFromTravels();
+        
     }, [travelsList]);
 
     return (
-        <>
-    {ownerList.length > 0 ? (
-        <Stack direction="row" className="TravelsContainer">
-            {travelsList.map((travel) => (
-                <Link
-                    className="travel-card"
-            sx={{  
-             background: `url(${travel.images[0]})`, backgroundSize: "cover",
-                height: "50vh",
-                width:  { lg: '900px', xs: '300px'  },
-                height: { lg: '800px', xs: '750px'  },
-                border: "1px solid grey",
-                borderRadius: '30px',
-                m: '10px'
-            }}
-            key={travel.id}
-            href={`/travel/${travel.id}`}
+                <>
+            {ownerList.length > 0 ? (
+                <Stack direction="row" className="TravelsContainer">
+                    {travelsList.map((travel) => (
+                        <Link
+                            className="travel-card"
+                    sx={{
+                        background: `url(${travel.images[0]})`, backgroundSize: "cover",
+                        width:  { lg: '50vw', xs: '40vw'  },
+                        height: { lg: '50vh', xs: '50vh'  },
+                        border: "1px solid grey",
+                        borderRadius: '30px',
+                        m: '10px'
+                    }}
+                    key={travel.id}
+                    href={`/travel/${travel.id}`}
 
                 >
                     <Typography
@@ -122,6 +128,7 @@ const TravelsContainer = () => {
             >
                 {travel.budget}€
             </Typography>
+           {travel.tags.map((tag) => <p> {tag.title} </p>)}
                     <Typography
             className="travel-card__data"
                 ml="21px"
@@ -136,25 +143,11 @@ const TravelsContainer = () => {
             >
                 Desde {travel.dataFrom} hasta {travel.dataTo} 
             </Typography>
-            <Typography
-            className="travel-card__data"
-                ml="21px"
-                mr='0px'
-                p='0px'
-                color="#1d3557"
-                fontWeight="bold"
-                sx={{ fontSize: { lg: "15px", xs: "13px" } }}
-                mt="11px"
-                pb="10px"
-                textTransform="none"
-            >
-             {travel.tags} 
-            </Typography>
                 </Link>
                
             ))}
         </Stack>
-      
+       
     ) : (
         ""
     )}
