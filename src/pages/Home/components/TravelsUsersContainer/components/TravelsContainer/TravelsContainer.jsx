@@ -1,8 +1,10 @@
-import { Link, Stack, Typography } from "@mui/material";
+import { CardMedia, ImageListItem, Link, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetail } from "../../../../../../state/context/services/authContext.services";
 import { setReduxTravelsList } from "../../../../../../state/redux/actions/travelActions";
+import './TravelsContainer.css';
+import TravelTagsCont from "./TravelTagsCont/TravelTagsCont";
 
 const TravelsContainer = () => {
     const { travelsList } = useSelector((state) => state.travel);
@@ -21,13 +23,22 @@ const TravelsContainer = () => {
             Promise.all(promiseArray).then((res) => setOwnerList(res));
         };
 
+
+        // const getTagsFromTravels = () => {
+        //     const promiseArray = travelsList.map((travel) =>
+        //         getTravelDetail(travel.tags)
+        //     );
+        //     Promise.all(promiseArray).then((res) => setTagsList(res));
+        // };
+
         getUsersFromTravels();
+        // getTagsFromTravels();
     }, [travelsList]);
 
     return (
-        <>
+                <>
             {ownerList.length > 0 ? (
-                <Stack direction="row">
+                <Stack direction="row" className="TravelsContainer">
                     {travelsList.map((travel) => (
                         <Link
                             className="travel-card"
@@ -61,6 +72,17 @@ const TravelsContainer = () => {
                             >
                                 {travel.cityName}
                             </Typography>
+                                                <Typography
+                        ml="21px"
+                        color="#1d3557"
+                        fontWeight="bold"
+                        sx={{ fontSize: { lg: "20px", xs: "17px" } }}
+                        mt="11px"
+                        pb="10px"
+                        textTransform="capitalize"
+                    >
+                        {travel.description}
+                    </Typography>
                             <Typography
                                 ml="21px"
                                 color="#1d3557"
@@ -86,14 +108,57 @@ const TravelsContainer = () => {
                                     ).username
                                 }
                             </Typography>
+                            <Typography
+                        className="travel-card__budget"
+                        color="#1d3557"
+                        fontWeight="bold"
+                        sx={{ fontSize: { lg: "15px", xs: "13px" } }}
+                        textTransform="capitalize"
+                    >
+                        {travel.budget}€
+                    </Typography>
+                            <Typography
+                    className="travel-card__data"
+                        ml="21px"
+                        mr='0px'
+                        p='0px'
+                        color="#1d3557"
+                        fontWeight="bold"
+                        sx={{ fontSize: { lg: "15px", xs: "13px" } }}
+                        mt="11px"
+                        pb="10px"
+                        textTransform="none"
+                    >
+                        Desde {travel.dataFrom} hasta {travel.dataTo} 
+                    </Typography>
+                    <Typography
+                    className="travel-card__data"
+                        ml="21px"
+                        mr='0px'
+                        p='0px'
+                        color="#1d3557"
+                        fontWeight="bold"
+                        sx={{ fontSize: { lg: "15px", xs: "13px" } }}
+                        mt="11px"
+                        pb="10px"
+                        textTransform="none"
+                    >
+                     {travel.tags} 
+                    </Typography>
                         </Link>
+                       
                     ))}
                 </Stack>
+              
             ) : (
                 ""
             )}
-        </>
+          
+            </>    
+
     );
+    
+
 };
 
 export default TravelsContainer;
