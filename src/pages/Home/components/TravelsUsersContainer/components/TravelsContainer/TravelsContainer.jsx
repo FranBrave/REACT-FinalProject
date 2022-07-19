@@ -1,24 +1,37 @@
 import { ImageListItem, Link, Stack, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useUserDetailById } from "../../../../../../customHook/useUserDetailById";
+import { getUserDetail } from "../../../../../../state/context/services/authContext.services";
 import { setReduxTravelsList } from "../../../../../../state/redux/actions/travelActions";
 import './TravelsContainer.css';
 
 const TravelsContainer = () => {
     const { travelsList } = useSelector((state) => state.travel);
+    const [ownerList, setOwnerList] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(setReduxTravelsList());
     }, []);
 
+    useEffect(() => {
+        const getUsersFromTravels = () => {
+            const promiseArray = travelsList.map((travel) =>
+                getUserDetail(travel.userOwnerId)
+            );
+            Promise.all(promiseArray).then((res) => setOwnerList(res));
+        };
+
+        getUsersFromTravels();
+    }, [travelsList]);
+
     return (
-        
-        <Stack direction="row">
-            {travelsList.map((travel) => (
-                <Link
-                    className="travel-card"
+                <>
+            {ownerList.length > 0 ? (
+                <Stack direction="row">
+                    {travelsList.map((travel) => (
+                        <Link
+                            className="travel-card"
                     sx={{  
                         width:  { lg: '900px', xs: '300px'  },
                         height: { lg: '800px', xs: '750px'  },
@@ -28,30 +41,31 @@ const TravelsContainer = () => {
                     }}
                     key={travel.id}
                     href={`/travel/${travel.title}`}
-                >
-                    <Typography
-                        ml="21px"
-                        color="#84a59d"
-                        fontWeight="bold"
-                        sx={{ fontSize: { lg: "33px", xs: "29px" } }}
-                        mt="11px"
-                        pb="10px"
-                        textTransform="capitalize"
-                    >
-                        {travel.title}
-                    </Typography>
-                    <Typography
-                        ml="21px"
-                        color="#1d3557"
-                        fontWeight="bold"
-                        sx={{ fontSize: { lg: "24px", xs: "20px" } }}
-                        mt="11px"
-                        pb="10px"
-                        textTransform="capitalize"
-                    >
-                        Destino {travel.cityName}   
-                    </Typography>
-                    <Typography
+
+                        >
+                            <Typography
+                                ml="21px"
+                                color="#84a59d"
+                                fontWeight="bold"
+                                sx={{ fontSize: { lg: "33px", xs: "29px" } }}
+                                mt="11px"
+                                pb="10px"
+                                textTransform="capitalize"
+                            >
+                                {travel.title}
+                            </Typography>
+                            <Typography
+                                ml="21px"
+                                color="#1d3557"
+                                fontWeight="bold"
+                                sx={{ fontSize: { lg: "24px", xs: "20px" } }}
+                                mt="11px"
+                                pb="10px"
+                                textTransform="capitalize"
+                            >
+                                {travel.cityName}
+                            </Typography>
+                                                <Typography
                         ml="21px"
                         color="#1d3557"
                         fontWeight="bold"
@@ -62,19 +76,32 @@ const TravelsContainer = () => {
                     >
                         {travel.description}
                     </Typography>
-                    <Typography
-                        ml="21px"
-                        color="#1d3557"
-                        fontWeight="bold"
-                        sx={{ fontSize: { lg: "18px", xs: "15px" } }}
-                        mt="11px"
-                        pb="10px"
-                        textTransform="none"
-                    >
-                        {/* Creado por {useUserDetailById(travel.userOwnerId).username} */}
-                    </Typography>
-
-                    <Typography
+                            <Typography
+                                ml="21px"
+                                color="#1d3557"
+                                fontWeight="bold"
+                                sx={{ fontSize: { lg: "24px", xs: "20px" } }}
+                                mt="11px"
+                                pb="10px"
+                                textTransform="capitalize"
+                            >
+                                {
+                                    ownerList.find(
+                                        (user) =>
+                                            user._id ===
+                                            ownerList
+                                                .map(
+                                                    (user) =>
+                                                        user.travelsCreated
+                                                )
+                                                .flat()
+                                                .find(
+                                                    (el) => el.id === travel.id
+                                                ).userOwnerId
+                                    ).username
+                                }
+                            </Typography>
+                            <Typography
                         className="travel-card__budget"
                         color="#1d3557"
                         fontWeight="bold"
@@ -83,9 +110,7 @@ const TravelsContainer = () => {
                     >
                         {travel.budget}€
                     </Typography>
-
-                    <ImageListItem
-                        
+                            <ImageListItem
                         key={travel.images[0]}
                         className='travel-card__image'
                         class=''
@@ -96,8 +121,7 @@ const TravelsContainer = () => {
                         loading="lazy"
                         
                     />
-
-                    <Typography
+                            <Typography
                     className="travel-card__data"
                         ml="21px"
                         mr='0px'
@@ -111,10 +135,13 @@ const TravelsContainer = () => {
                     >
                         Desde {travel.dataFrom} hasta {travel.dataTo} 
                     </Typography>
-                </Link>
-            ))}
-        </Stack>
-        
+                        </Link>
+                    ))}
+                </Stack>
+            ) : (
+                ""
+            )}
+            </>
     );
 
 };
