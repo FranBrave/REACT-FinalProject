@@ -1,46 +1,61 @@
-import { ImageListItem, Link, Stack, Typography } from "@mui/material";
+import { Link, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserDetail } from "../../../../../../../state/context/services/authContext.services";
-import { setReduxTravelsList } from "../../../../../../../state/redux/actions/travelActions";
-import "./TravelTagsCont.css";
+import { getTags } from "../../../../../../../../services/getTags";
+import { getUserDetail } from "../../../../../../../../state/context/services/authContext.services";
+import "./PlayaTravelList.css";
+import shortid from "shortid";
 
-const TravelTagsCont = () => {
-    const { travelsList } = useSelector((state) => state.travel);
+const PlayaTravelList = ({ travelsList }) => {
+    const [playaTravelList, setPlayaTravelList] = useState();
     const [ownerList, setOwnerList] = useState([]);
-    const dispatch = useDispatch();
+    const [tagsList, setTagsList] = useState();
 
     useEffect(() => {
-        dispatch(setReduxTravelsList());
+        getTags().then((res) => {
+            setTagsList(res);
+        });
     }, []);
 
     useEffect(() => {
+        if (tagsList) {
+            const playaTag = tagsList.find((tag) => tag.title === "Playa");
+            setPlayaTravelList(
+                travelsList.filter((travel) =>
+                    travel.tags.includes(playaTag._id)
+                )
+            );
+        }
+    }, [travelsList]);
+
+    useEffect(() => {
         const getUsersFromTravels = () => {
-            const promiseArray = travelsList.map((travel) =>
+            const promiseArray = playaTravelList.map((travel) =>
                 getUserDetail(travel.userOwnerId)
             );
             Promise.all(promiseArray).then((res) => setOwnerList(res));
         };
 
-        getUsersFromTravels();
-    }, [travelsList]);
+        playaTravelList && getUsersFromTravels();
+    }, [playaTravelList]);
 
     return (
         <>
             {ownerList.length > 0 ? (
-                <Stack direction="row">
-                    {travelsList.map((travel) => (
+                <Stack direction="row" className="TravelsContainer">
+                    {playaTravelList.map((travel) => (
                         <Link
                             className="travel-card"
                             sx={{
-                                width: { lg: "900px", xs: "300px" },
-                                height: { lg: "800px", xs: "750px" },
+                                background: `url(${travel.images[0]})`,
+                                backgroundSize: "cover",
+                                width: { lg: "50vw", xs: "40vw" },
+                                height: { lg: "50vh", xs: "50vh" },
                                 border: "1px solid grey",
                                 borderRadius: "30px",
                                 m: "10px",
                             }}
                             key={travel.id}
-                            href={`/travel/${travel.title}`}
+                            href={`/travel/${travel.id}`}
                         >
                             <Typography
                                 ml="21px"
@@ -109,17 +124,13 @@ const TravelTagsCont = () => {
                             >
                                 {travel.budget}€
                             </Typography>
-                            <ImageListItem
-                                key={travel.images[0]}
-                                className="travel-card__image"
-                                style={{
-                                    background: `url(${travel.images[0]})`,
-                                    backgroundSize: "cover",
-                                    height: "50vh",
-                                }}
-                                alt={travel.title}
-                                loading="lazy"
-                            />
+                            {tagsList
+                                .filter((tag) => travel.tags.includes(tag._id))
+                                .map((tag) => (
+                                    <Typography sx={{ color: "white" }}>
+                                        {tag.title}
+                                    </Typography>
+                                ))}
                             <Typography
                                 className="travel-card__data"
                                 ml="21px"
@@ -143,4 +154,5 @@ const TravelTagsCont = () => {
         </>
     );
 };
-export default TravelTagsCont;
+
+export default PlayaTravelList;
