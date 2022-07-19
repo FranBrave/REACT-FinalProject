@@ -1,10 +1,10 @@
-import { CardMedia, ImageListItem, Link, Stack, Typography } from "@mui/material";
+import { Link, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetail } from "../../../../../../state/context/services/authContext.services";
 import { setReduxTravelsList } from "../../../../../../state/redux/actions/travelActions";
 import './TravelsContainer.css';
-import TravelTagsCont from "./TravelTagsCont/TravelTagsCont";
+
 
 const TravelsContainer = () => {
     const { travelsList } = useSelector((state) => state.travel);
@@ -23,16 +23,8 @@ const TravelsContainer = () => {
             Promise.all(promiseArray).then((res) => setOwnerList(res));
         };
 
-
-        // const getTagsFromTravels = () => {
-        //     const promiseArray = travelsList.map((travel) =>
-        //         getTravelDetail(travel.tags)
-        //     );
-        //     Promise.all(promiseArray).then((res) => setTagsList(res));
-        // };
-
         getUsersFromTravels();
-        // getTagsFromTravels();
+        
     }, [travelsList]);
 
     return (
@@ -43,10 +35,9 @@ const TravelsContainer = () => {
                         <Link
                             className="travel-card"
                     sx={{  
-                     background: `url(${travel.images[0]})`, backgroundSize: "cover",
-                        height: "50vh",
-                        width:  { lg: '900px', xs: '300px'  },
-                        height: { lg: '800px', xs: '750px'  },
+                        background: `url(${travel.images[0]})`, backgroundSize: "cover",
+                        width:  { lg: '50vw', xs: '40vw'  },
+                        height: { lg: '50vh', xs: '50vh'  },
                         border: "1px solid grey",
                         borderRadius: '30px',
                         m: '10px'

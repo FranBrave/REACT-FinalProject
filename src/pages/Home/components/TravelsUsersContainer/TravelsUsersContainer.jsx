@@ -11,8 +11,7 @@ import { Box } from "@mui/system";
 const TravelsUsersContainer = ({ travelDisplay }) => {
     return (
         <ScrollMenu>
-            {travelDisplay ? <TravelsContainer /> 
-                            : <UsersContainer />}
+            {travelDisplay ?  <TravelsContainer />  :  <UsersContainer />}
         
         </ScrollMenu>
     );
