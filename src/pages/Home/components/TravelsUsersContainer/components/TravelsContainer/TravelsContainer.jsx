@@ -37,6 +37,7 @@ const TravelsContainer = () => {
                                 border: "1px solid grey",
                             }}
                             key={travel.id}
+                            href = {`/Travel/${travel.id}`}
                         >
                             <Typography
                                 ml="21px"
