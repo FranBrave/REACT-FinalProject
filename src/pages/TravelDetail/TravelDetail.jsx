@@ -1,5 +1,6 @@
 import React from "react";
-import TravelDetailContainer from "../../components/TravelDetailContainer/TravelDetailContainer";
+import TravelDetailContainer from "./components/TravelDetailContainer/TravelDetailContainer";
+
 
 const TravelDetail = () => {
     return(
