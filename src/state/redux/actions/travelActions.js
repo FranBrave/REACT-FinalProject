@@ -41,6 +41,7 @@ export const setReduxTravelDetail = (travelId) => {
             getTravelDetail(travelId).then((res) =>
                 dispatch(actionTravelDetail(res))
             );
+
             return;
         } catch (error) {
             dispatch(actionTravelError());
@@ -69,8 +70,7 @@ export const setReduxAddTravel = (data) => {
             postTravel(data).then((res) => dispatch(actionPushTravel(res)));
             return;
         } catch (error) {
-            console.log(error.response.data);
-            dispatch(actionTravelError());
+            dispatch(actionTravelError(error.response.data));
         }
     };
 };
