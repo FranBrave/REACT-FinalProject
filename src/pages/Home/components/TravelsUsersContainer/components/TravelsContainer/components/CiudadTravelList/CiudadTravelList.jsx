@@ -2,10 +2,10 @@ import { Link, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getTags } from "../../../../../../../../services/getTags";
 import { getUserDetail } from "../../../../../../../../state/context/services/authContext.services";
-import "./PlayaTravelList.css";
+import "./CiudadTravelList.css";
 import shortid from "shortid";
 
-const PlayaTravelList = ({ travelsList }) => {
+const CiudadTravelList = ({ travelsList }) => {
     const [playaTravelList, setPlayaTravelList] = useState();
     const [ownerList, setOwnerList] = useState([]);
     const [tagsList, setTagsList] = useState();
@@ -18,7 +18,7 @@ const PlayaTravelList = ({ travelsList }) => {
 
     useEffect(() => {
         if (tagsList) {
-            const playaTag = tagsList.find((tag) => tag.title === "Playa");
+            const playaTag = tagsList.find((tag) => tag.title === "Ciudad");
             setPlayaTravelList(
                 travelsList.filter((travel) =>
                     travel.tags.includes(playaTag._id)
@@ -155,4 +155,4 @@ const PlayaTravelList = ({ travelsList }) => {
     );
 };
 
-export default PlayaTravelList;
+export default CiudadTravelList;
