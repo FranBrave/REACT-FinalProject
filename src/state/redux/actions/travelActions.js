@@ -1,4 +1,8 @@
-import { getTravelDetail, getTravelsList } from "../services/travelServices";
+import {
+    getTravelDetail,
+    getTravelsList,
+    postTravel,
+} from "../services/travelServices";
 
 export const TRAVEL_DETAIL = "TRAVEL_DETAIL";
 export const TRAVELS_LIST = "TRAVELS_LIST";
@@ -34,9 +38,10 @@ const actionPushTravel = (travel) => ({
 export const setReduxTravelDetail = (travelId) => {
     return (dispatch) => {
         try {
-            return getTravelDetail(travelId).then((res) =>
+            getTravelDetail(travelId).then((res) =>
                 dispatch(actionTravelDetail(res))
             );
+            return;
         } catch (error) {
             dispatch(actionTravelError());
         }
@@ -50,9 +55,8 @@ export const setReduxTravelDetail = (travelId) => {
 export const setReduxTravelsList = () => {
     return (dispatch) => {
         try {
-            return getTravelsList().then((res) =>
-                dispatch(actionTravelsList(res))
-            );
+            getTravelsList().then((res) => dispatch(actionTravelsList(res)));
+            return;
         } catch (error) {
             dispatch(actionTravelError());
         }
@@ -62,11 +66,10 @@ export const setReduxTravelsList = () => {
 export const setReduxAddTravel = (data) => {
     return (dispatch) => {
         try {
-            console.log(data);
-            // return postTravel(data).then((res) =>
-            //     dispatch(actionPushTravel(res))
-            // );
+            postTravel(data).then((res) => dispatch(actionPushTravel(res)));
+            return;
         } catch (error) {
+            console.log(error.response.data);
             dispatch(actionTravelError());
         }
     };
