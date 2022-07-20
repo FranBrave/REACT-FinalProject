@@ -16,6 +16,7 @@ import { getCities } from "../../../../services/getCities";
 import { getTags } from "../../../../services/getTags";
 import { useDispatch } from "react-redux/es/exports";
 import shortid from "shortid";
+import { setReduxAddTravel } from "../../../../state/redux/actions/travelActions";
 
 const INITIAL_STATE = {
     title: "",
@@ -36,10 +37,8 @@ const TravelCreation = ({ userId }) => {
     const dispatch = useDispatch();
 
     const handleChangeForm = (e) => {
-        console.log(e.target);
         const { name, value } = e.target;
-        console.log(name);
-        // name === "dateFrom" || (name === "dateTo" && value.toString());
+
         setForm({ ...form, [name]: value });
     };
 
@@ -85,7 +84,7 @@ const TravelCreation = ({ userId }) => {
                 form,
                 userId,
             };
-            console.log(data);
+            dispatch(setReduxAddTravel(data));
             setError(null);
         }
     };
@@ -132,7 +131,12 @@ const TravelCreation = ({ userId }) => {
                             type="number"
                             placeholder="travel's budget"
                             label="Budget"
-                            onChange={handleChangeForm}
+                            onChange={(e) =>
+                                setForm({
+                                    ...form,
+                                    budget: parseInt(e.target.value),
+                                })
+                            }
                             sx={{
                                 mt: 2,
                                 mb: 2,
@@ -153,7 +157,9 @@ const TravelCreation = ({ userId }) => {
                                 label="From"
                                 name="dateFrom"
                                 value={form.dateFrom}
-                                onChange={handleChangeForm}
+                                onChange={(e) =>
+                                    setForm({ ...form, dateFrom: e.toString() })
+                                }
                                 renderInput={(params) => (
                                     <TextField {...params} helperText={null} />
                                 )}
@@ -164,7 +170,9 @@ const TravelCreation = ({ userId }) => {
                                 label="To"
                                 name="dateTo"
                                 value={form.dateTo}
-                                onChange={handleChangeForm}
+                                onChange={(e) =>
+                                    setForm({ ...form, dateTo: e.toString() })
+                                }
                                 renderInput={(params) => (
                                     <TextField {...params} helperText={null} />
                                 )}
