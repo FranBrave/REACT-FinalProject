@@ -1,8 +1,14 @@
-import { getTravelDetail, getTravelsList } from "../services/travelServices";
+import {
+    getTravelDetail,
+    getTravelsList,
+    postTravel,
+} from "../services/travelServices";
 
 export const TRAVEL_DETAIL = "TRAVEL_DETAIL";
 export const TRAVELS_LIST = "TRAVELS_LIST";
 export const TRAVEL_ERROR = "TRAVEL_ERROR";
+
+export const PUSH_TRAVEL = "PUSH_TRAVEL";
 
 const actionTravelDetail = (travelDetail) => ({
     type: TRAVEL_DETAIL,
@@ -19,6 +25,11 @@ const actionTravelError = (error) => ({
     payload: error,
 });
 
+const actionPushTravel = (travel) => ({
+    type: PUSH_TRAVEL,
+    payload: travel,
+});
+
 /**
  * Function to set the redux state of the travel detail
  * @param {*} travelId The id of the travel that is needed to get the detail info
@@ -30,11 +41,8 @@ export const setReduxTravelDetail = (travelId) => {
             return getTravelDetail(travelId).then((res) =>
                 dispatch(actionTravelDetail(res))
             );
-<<<<<<< HEAD
 
             return;
-=======
->>>>>>> 7843a8b9fc745d89a3f1395670da16fb647169d6
         } catch (error) {
             dispatch(actionTravelError());
         }
@@ -56,7 +64,6 @@ export const setReduxTravelsList = () => {
         }
     };
 };
-<<<<<<< HEAD
 
 export const setReduxAddTravel = (data) => {
     return (dispatch) => {
@@ -68,5 +75,3 @@ export const setReduxAddTravel = (data) => {
         }
     };
 };
-=======
->>>>>>> 7843a8b9fc745d89a3f1395670da16fb647169d6
