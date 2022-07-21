@@ -4,9 +4,11 @@ import { setReduxTravelsList } from "../../../../../../state/redux/actions/trave
 import TravelList from "./components/TravelList/TravelList";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import TravelSearcher from "./components/TravelSearcher/TravelSearcher";
 
 const TravelsContainer = () => {
   const { travelsList } = useSelector((state) => state.travel);
+  const { searchTravel } = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,16 +17,22 @@ const TravelsContainer = () => {
 
   return (
     <Box>
-      <h1>Playa</h1>
+      <TravelSearcher
+        searchTravel={searchTravel}
+        tipo="Resultados de la búsqueda"
+      />
+
       <TravelList travelsList={travelsList} tipo="Playa" />
-      <h1>Nacional</h1>
+
       <TravelList travelsList={travelsList} tipo="Nacional" />
-      <h1>Ciudad</h1>
+
       <TravelList travelsList={travelsList} tipo="Ciudad" />
-      <h1>Internacional</h1>
+
       <TravelList travelsList={travelsList} tipo="Internacional" />
-      <h1>Naturaleza</h1>
+
       <TravelList travelsList={travelsList} tipo="Naturaleza" />
     </Box>
   );
 };
+
+export default TravelsContainer;
