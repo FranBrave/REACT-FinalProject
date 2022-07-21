@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useCheckSameUser } from "../../customHook/useCheckSameUser";
 import { useUserDetail } from "../../customHook/useUserDetail";
 import TravelCreation from "./components/travelCreation/TravelCreation";
-import UserDetailCOntainer from "./components/UserDetailContainer/UserDetailContainer";
+import UserDetailContainer from "./components/UserDetailContainer/UserDetailContainer";
 
 const UserDetail = () => {
     const { username } = useParams();
@@ -17,7 +17,7 @@ const UserDetail = () => {
                     <p>{userDetail.username}</p>
                     {isSameUser && <TravelCreation />}
 
-                <UserDetailCOntainer/>
+                <UserDetailContainer/>
                 </div>
             )}
         </>
