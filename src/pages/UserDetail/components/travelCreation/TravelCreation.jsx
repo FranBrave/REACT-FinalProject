@@ -4,6 +4,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
+    Alert,
     Button,
     Grid,
     InputLabel,
@@ -33,7 +34,8 @@ const TravelCreation = ({ userId }) => {
     const [cities, setCities] = useState();
     const [tags, setTags] = useState();
     const [showTag, setShowTag] = useState("");
-    const [error, setError] = useState();
+    const [alertDisplay, setAlertDisplay] = useState(false);
+    const [error, setError] = useState(false);
     const dispatch = useDispatch();
 
     const handleChangeForm = (e) => {
@@ -77,7 +79,10 @@ const TravelCreation = ({ userId }) => {
             form.cityName === 0 ||
             form.tags.length < 1
         ) {
-            setError("All inputs are required");
+            setError(true);
+            setTimeout(() => {
+                setError(false);
+            }, 2000);
             return;
         } else {
             const data = {
@@ -85,7 +90,12 @@ const TravelCreation = ({ userId }) => {
                 userId,
             };
             dispatch(setReduxAddTravel(data));
-            setError(null);
+            setForm(INITIAL_STATE);
+            setAlertDisplay(true);
+
+            setTimeout(() => {
+                setAlertDisplay(false);
+            }, 2000);
         }
     };
 
@@ -272,7 +282,16 @@ const TravelCreation = ({ userId }) => {
                             <Button onClick={addTag}>Add Tag</Button>
                         </Stack>
                         <Button onClick={submitUserForm}>Create Travel</Button>
-                        {error && <p>{error}</p>}
+                        {error && (
+                            <Alert variant="filled" severity="error">
+                                All the fields are required!
+                            </Alert>
+                        )}
+                        {alertDisplay && (
+                            <Alert variant="filled" severity="success">
+                                Travel successfully created!
+                            </Alert>
+                        )}
                     </Grid>
                 </LocalizationProvider>
             )}
