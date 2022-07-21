@@ -16,10 +16,7 @@ const TravelsContainer = () => {
 
     return (
         <Box>
-            <TravelSearcher
-                searchTravel={searchTravel}
-                tipo="Resultados de la búsqueda"
-            />
+            <TravelSearcher searchTravel={searchTravel} />
             <TravelList travelsList={travelsList} tipo="Playa" />
             <TravelList travelsList={travelsList} tipo="Nacional" />
             <TravelList travelsList={travelsList} tipo="Ciudad" />
