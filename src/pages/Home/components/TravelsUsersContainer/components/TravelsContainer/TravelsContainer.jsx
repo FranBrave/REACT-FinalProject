@@ -1,5 +1,6 @@
-import { Box } from "@mui/material";
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { setReduxTravelsList } from "../../../../../../state/redux/actions/travelActions";
 import TravelList from "./components/TravelList/TravelList";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";

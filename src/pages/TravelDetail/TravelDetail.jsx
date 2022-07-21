@@ -4,7 +4,7 @@ import TravelDetailContainer from "./components/TravelDetailContainer/TravelDeta
 
 const TravelDetail = () => {
     return(
-        <div>TravelDetail
+        <div>
             <TravelDetailContainer/>
         </div>
     )
