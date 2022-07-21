@@ -5,7 +5,6 @@ import { useCheckSameUser } from "../../customHook/useCheckSameUser";
 import { useUserDetail } from "../../customHook/useUserDetail";
 import SlidingButtons from "./components/slidingButtons/SlidingButtons";
 import TravelCreation from "./components/travelCreation/TravelCreation";
-import UserInfo from "./components/userInfo/UserInfo";
 
 const values = ["User Info", "Travel Creation", "Travels Joined"];
 
