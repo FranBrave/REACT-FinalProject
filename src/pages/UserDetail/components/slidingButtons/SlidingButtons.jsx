@@ -14,6 +14,7 @@ const ClickableLabel = ({ title, onChange, id, switchInfo }) => (
             switchInfo(title);
         }}
         className={id}
+        user
     >
         {titleCase(title)}
     </SwitchLabel>
@@ -34,7 +35,7 @@ const SlidingButtons = ({ values, defaultSelected, switchInfo }) => {
 
     const selectionStyle = () => {
         return {
-            left: `${(values.indexOf(selected) / 3) * 100}%`,
+            left: `${(values.indexOf(selected) / values.length) * 100}%`,
         };
     };
 
@@ -52,7 +53,7 @@ const SlidingButtons = ({ values, defaultSelected, switchInfo }) => {
                     </span>
                 );
             })}
-            <SwitchSelection style={selectionStyle()} />
+            <SwitchSelection style={selectionStyle()} user />
         </Switch>
     );
 };
