@@ -57,6 +57,7 @@ const AuthForm = () => {
                     sx={{
                         mt: 2,
                         mb: 2,
+                        width: "40vw",
                     }}
                 />
             )}
@@ -69,6 +70,7 @@ const AuthForm = () => {
                 sx={{
                     mt: 2,
                     mb: 2,
+                    width: "40vw",
                 }}
             />
             <TextField
@@ -81,6 +83,7 @@ const AuthForm = () => {
                     mt: 2,
                     mb: 2,
                     fontSize: 18,
+                    width: "40vw",
                 }}
             />
             <Button onClick={submitUserForm}>

@@ -7,12 +7,27 @@ import {
     Stack,
     Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import shortid from "shortid";
+import { ModalContext } from "../../../../state/context/modalContext";
+import {
+    toggleCreateModal,
+    toggleEditModal,
+} from "../../../../state/context/actions/modalActions";
 
 const UserInfo = ({ userDetail }) => {
+    const { modalState, modalDispatch } = useContext(ModalContext);
+
+    const handleEditModal = () => {
+        toggleEditModal(modalState.edit, modalDispatch);
+    };
+
+    const handleCreateModal = () => {
+        toggleCreateModal(modalState.create, modalDispatch);
+    };
+
     return (
         <>
             {userDetail && (
@@ -101,6 +116,7 @@ const UserInfo = ({ userDetail }) => {
                                             backgroundColor: "#9ac2c9",
                                         },
                                     }}
+                                    onClick={handleEditModal}
                                 >
                                     Edit
                                 </Button>
@@ -113,6 +129,7 @@ const UserInfo = ({ userDetail }) => {
                                             backgroundColor: "#F0A370",
                                         },
                                     }}
+                                    onClick={handleCreateModal}
                                 >
                                     Create travel
                                 </Button>
