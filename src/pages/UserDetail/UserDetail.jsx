@@ -4,9 +4,8 @@ import { useParams } from "react-router-dom";
 import { useCheckSameUser } from "../../customHook/useCheckSameUser";
 import { useUserDetail } from "../../customHook/useUserDetail";
 import SlidingButtons from "./components/slidingButtons/SlidingButtons";
-import TravelCreation from "./components/travelCreation/TravelCreation";
-import TravelsInfo from "./components/travelsInfo/TravelsInfo";
 import UserInfo from "./components/userInfo/UserInfo";
+import GalleryImages from "./components/galleryImages/GalleryImages";
 
 const values = ["Travels Created", "Travels Joined", "Travels Following"];
 
@@ -45,11 +44,10 @@ const UserDetail = () => {
                         defaultSelected="Travels Created"
                         switchInfo={switchInfo}
                     />
-
-                    {/* {isSameUser && selectedComp === valuesUserLogged[1] && (
-                        <TravelCreation userId={userDetail._id} />
-                    )}
-                    {selectedComp === valuesUserLogged[2] && <TravelsInfo />} */}
+                    <GalleryImages
+                        selectedComp={selectedComp}
+                        userDetail={userDetail}
+                    />
                 </Grid>
             )}
         </Grid>
