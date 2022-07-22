@@ -8,15 +8,14 @@ import TravelCreation from "./components/travelCreation/TravelCreation";
 import TravelsInfo from "./components/travelsInfo/TravelsInfo";
 import UserInfo from "./components/userInfo/UserInfo";
 
-const valuesUserLogged = ["User Info", "Travel Creation", "Travels Info"];
-const valuesDefault = ["User Info", "Travels Info"];
+const values = ["Travels Created", "Travels Joined", "Travels Following"];
 
 const UserDetail = () => {
     const { username } = useParams();
     const userDetail = useUserDetail(username);
     const isSameUser = useCheckSameUser(username);
 
-    const [selectedComp, setSelectedComp] = useState(valuesUserLogged[0]);
+    const [selectedComp, setSelectedComp] = useState(values[0]);
 
     const switchInfo = (value) => {
         setSelectedComp(value);
@@ -31,27 +30,27 @@ const UserDetail = () => {
             justifyContent="center"
             gap="1rem"
         >
-            {/* {isSameUser ? (
-                <SlidingButtons
-                    values={valuesUserLogged}
-                    defaultSelected="User Info"
-                    switchInfo={switchInfo}
-                />
-            ) : (
-                <SlidingButtons
-                    values={valuesDefault}
-                    defaultSelected="User Info"
-                    switchInfo={switchInfo}
-                />
-            )} */}
             {userDetail && (
-                <div>
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="start"
+                    gap="1rem"
+                >
                     <UserInfo userDetail={userDetail} />
+                    <SlidingButtons
+                        values={values}
+                        defaultSelected="Travels Created"
+                        switchInfo={switchInfo}
+                    />
+
                     {/* {isSameUser && selectedComp === valuesUserLogged[1] && (
                         <TravelCreation userId={userDetail._id} />
                     )}
                     {selectedComp === valuesUserLogged[2] && <TravelsInfo />} */}
-                </div>
+                </Grid>
             )}
         </Grid>
     );

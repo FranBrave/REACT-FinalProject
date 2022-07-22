@@ -98,6 +98,18 @@ const UserInfo = ({ userDetail }) => {
                                 <Button
                                     sx={{
                                         p: "0.5rem 4rem",
+                                        backgroundColor: "#8AA1B1",
+                                        color: "white",
+                                        "&:hover": {
+                                            backgroundColor: "#9ac2c9",
+                                        },
+                                    }}
+                                >
+                                    Edit
+                                </Button>
+                                <Button
+                                    sx={{
+                                        p: "0.5rem 4rem",
                                         backgroundColor: "#ffcb47",
                                         color: "white",
                                         "&:hover": {
@@ -105,7 +117,7 @@ const UserInfo = ({ userDetail }) => {
                                         },
                                     }}
                                 >
-                                    Edit
+                                    Create travel
                                 </Button>
                             </Grid>
                         </Grid>
