@@ -1,29 +1,32 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Box } from "@mui/material";
+import React, { useEffect } from "react";
 import { setReduxTravelsList } from "../../../../../../state/redux/actions/travelActions";
 import TravelList from "./components/TravelList/TravelList";
-import TravelSearcher from "./components/TravelSearcher/TravelSearcher";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 const TravelsContainer = () => {
-    const { travelsList } = useSelector((state) => state.travel);
-    const { searchTravel } = useSelector((state) => state.search);
-    const dispatch = useDispatch();
+  const { travelsList } = useSelector((state) => state.travel);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(setReduxTravelsList());
-    }, []);
+  useEffect(() => {
+    dispatch(setReduxTravelsList());
+  }, []);
 
-    return (
-        <Box>
-            <TravelSearcher searchTravel={searchTravel} />
-            <TravelList travelsList={travelsList} tipo="Playa" />
-            <TravelList travelsList={travelsList} tipo="Nacional" />
-            <TravelList travelsList={travelsList} tipo="Ciudad" />
-            <TravelList travelsList={travelsList} tipo="Internacional" />
-            <TravelList travelsList={travelsList} tipo="Naturaleza" />
-        </Box>
-    );
+  return (
+    <Box>
+      <h1>Playa</h1>
+      <TravelList travelsList={travelsList} tipo="Playa" />
+      <h1>Nacional</h1>
+      <TravelList travelsList={travelsList} tipo="Nacional" />
+      <h1>Ciudad</h1>
+      <TravelList travelsList={travelsList} tipo="Ciudad" />
+      <h1>Internacional</h1>
+      <TravelList travelsList={travelsList} tipo="Internacional" />
+      <h1>Naturaleza</h1>
+      <TravelList travelsList={travelsList} tipo="Naturaleza" />
+    </Box>
+  );
 };
 
 export default TravelsContainer;

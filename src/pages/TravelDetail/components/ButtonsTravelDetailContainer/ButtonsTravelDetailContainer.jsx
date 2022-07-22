@@ -1,30 +1,32 @@
-import React, {} from "react";
-import {Box, Button, Typography} from '@mui/material'
+import React from "react";
+import { Button, Typography, Grid } from "@mui/material";
+import { useSelector } from "react-redux";
+import { setReduxUserDetail } from "../../../../state/redux/actions/userActions";
 
 const ButtonsTravelDetailContainer = () => {
 
-    const Join = () => {
-        
-    }
+  
 
-    const Follow = () => {
+  const Join = () => {
 
-    }
+  };
 
-    return(
-        <Box sx={{
-            mt: { lg: '212px', xs: '70px'},
-            ml: { sm: '50px'}     }}
-            position='relative' p='20px'
-            >
-        <Button variant = 'contained' onClick = {Join}>
-        <Typography>Join</Typography>
+  const Follow = () => {};
+
+  return (
+    <Grid container spacing={4}>
+      <Grid xs={2}>
+        <Button variant="contained" onClick={Join}>
+          <Typography>Join</Typography>
         </Button>
-        <Button variant = 'contained' onClick = {Follow}>
+      </Grid>
+      <Grid xs={2}>
+      <Button variant = 'contained' onClick = {Follow}>
         <Typography>Follow</Typography>
         </Button>
-        </Box>
-    )
-}
+      </Grid>
+    </Grid>
+  );
+};
 
 export default ButtonsTravelDetailContainer;

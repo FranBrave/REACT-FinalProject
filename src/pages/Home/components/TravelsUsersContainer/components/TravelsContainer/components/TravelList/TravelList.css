@@ -1,3 +1,19 @@
+.TravelsContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+
+.travel-card__image {
+    background-size: 20%;
+   }
+   
+   .travel-card {
+       flex: 0 0 auto;
+   }
+   
+
 .travel-card__budget {
     border: solid 1px;
     display: inline-flex;
@@ -11,16 +27,3 @@
     background-color: orange;
 }
 
-.travel-card__image {
-    background-size: 20%;
-}
-
-.travel-card {
-    flex: 0 0 auto;
-}
-
-.travel__container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-}

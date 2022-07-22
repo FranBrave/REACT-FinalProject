@@ -38,10 +38,13 @@ const actionPushTravel = (travel) => ({
 export const setReduxTravelDetail = (travelId) => {
     return (dispatch) => {
         try {
-            return getTravelDetail(travelId).then((res) =>
+            getTravelDetail(travelId).then((res) =>
                 dispatch(actionTravelDetail(res))
             );
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9f55deed294797edf0ff1b71be311183d81c6a5e
             return;
         } catch (error) {
             dispatch(actionTravelError());
@@ -56,9 +59,8 @@ export const setReduxTravelDetail = (travelId) => {
 export const setReduxTravelsList = () => {
     return (dispatch) => {
         try {
-            return getTravelsList().then((res) =>
-                dispatch(actionTravelsList(res))
-            );
+            getTravelsList().then((res) => dispatch(actionTravelsList(res)));
+            return;
         } catch (error) {
             dispatch(actionTravelError());
         }
@@ -71,7 +73,12 @@ export const setReduxAddTravel = (data) => {
             postTravel(data).then((res) => dispatch(actionPushTravel(res)));
             return;
         } catch (error) {
+<<<<<<< HEAD
+            console.log(error.response.data);
+            dispatch(actionTravelError());
+=======
             dispatch(actionTravelError(error.response.data));
+>>>>>>> 9f55deed294797edf0ff1b71be311183d81c6a5e
         }
     };
 };
