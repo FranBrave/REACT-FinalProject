@@ -19,10 +19,13 @@ const TravelDetailContainer = () => {
       .then((response) => response.json())
       .then((data) => setTravel(data));
   }, [id]);
+  
 
   useEffect(() => {
     travel && setimgPrincipal(travel.images[0]);
   }, [travel]);
+
+  console.log (travel);
 
   const actualizarImgPrincipal = (image) => {
     setimgPrincipal(image);
