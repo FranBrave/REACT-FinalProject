@@ -27,7 +27,6 @@ const UserInfo = ({ userDetail }) => {
                         sx={{ width: "70vw" }}
                     >
                         <Stack
-                            container
                             spacing={0}
                             direction="column"
                             alignItems="center"
@@ -53,7 +52,6 @@ const UserInfo = ({ userDetail }) => {
                             sx={{ width: "70%" }}
                         >
                             <Stack
-                                container
                                 spacing={0}
                                 direction="row"
                                 alignItems="start"
@@ -85,7 +83,6 @@ const UserInfo = ({ userDetail }) => {
                                     {userDetail.location}
                                 </Stack>
                                 <Stack
-                                    container
                                     spacing={0}
                                     direction="row"
                                     alignItems="start"

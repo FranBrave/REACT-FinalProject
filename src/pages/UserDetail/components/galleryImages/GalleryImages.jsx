@@ -16,7 +16,6 @@ const GalleryImages = ({ selectedComp, userDetail }) => {
                         .toLowerCase()
             );
 
-            console.log(infoSelected.flat()[1]);
             setSelected(infoSelected.flat()[1]);
         }
     }, [selectedComp, userDetail]);
