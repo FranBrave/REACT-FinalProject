@@ -25,6 +25,12 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 error: action.payload,
             };
+        case actions.PUSH_TRAVEL:
+            return {
+                ...state,
+                travelsList: [...state.travelsList, action.payload],
+                error: "",
+            };
         default:
             return state;
     }

@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
         modalStateContext
     );
 
+    console.log(userAuth);
     return (
         <AuthContext.Provider
             value={{
