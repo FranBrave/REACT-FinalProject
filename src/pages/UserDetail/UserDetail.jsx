@@ -6,6 +6,7 @@ import { useUserDetail } from "../../customHook/useUserDetail";
 import SlidingButtons from "./components/slidingButtons/SlidingButtons";
 import UserInfo from "./components/userInfo/UserInfo";
 import GalleryImages from "./components/galleryImages/GalleryImages";
+import UserModal from "./components/userModal/UserModal";
 
 const values = ["Travels Created", "Travels Joined", "Travels Following"];
 
@@ -50,6 +51,7 @@ const UserDetail = () => {
                     />
                 </Grid>
             )}
+            <UserModal />
         </Grid>
     );
 };

@@ -5,11 +5,11 @@ import { toggleAuthModal } from "../../state/context/actions/modalActions";
 import { AuthContext } from "../../state/context/authContext";
 import { Link } from "react-router-dom";
 import { useUserLoggedDetail } from "../../customHook/useUserLoggedDetail";
+import { ModalContext } from "../../state/context/modalContext";
 
 const Header = () => {
-    const { modalState, modalDispatch, userAuth, authDispatch } = useContext(
-        AuthContext
-    );
+    const { userAuth, authDispatch } = useContext(AuthContext);
+    const { modalState, modalDispatch } = useContext(ModalContext);
     const userLogged = useUserLoggedDetail();
 
     const handleAuthModal = () => {

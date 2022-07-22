@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { authUserProvider } from "../../../state/context/actions/authActions";
 import { toggleAuthModal } from "../../../state/context/actions/modalActions";
 import { AuthContext } from "../../../state/context/authContext";
+import { ModalContext } from "../../../state/context/modalContext";
 
 const INITIAL_STATE = {
     username: "",
@@ -13,7 +14,8 @@ const INITIAL_STATE = {
 const AuthForm = () => {
     const [form, setForm] = useState(INITIAL_STATE);
     const [loginDisplay, setLoginDisplay] = useState(true);
-    const { authDispatch, modalState, modalDispatch } = useContext(AuthContext);
+    const { authDispatch } = useContext(AuthContext);
+    const { modalState, modalDispatch } = useContext(ModalContext);
 
     const handleChangeForm = (e) => {
         const { name, value } = e.target;
@@ -23,7 +25,7 @@ const AuthForm = () => {
     const submitUserForm = (e) => {
         e.preventDefault();
         authDispatch(authUserProvider(form, authDispatch));
-        toggleAuthModal(modalState.open, modalDispatch);
+        toggleAuthModal(modalState.auth, modalDispatch);
     };
 
     const toggleForm = () => {
