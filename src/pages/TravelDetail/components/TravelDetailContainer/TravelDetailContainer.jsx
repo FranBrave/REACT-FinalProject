@@ -25,7 +25,6 @@ const TravelDetailContainer = () => {
     travel && setimgPrincipal(travel.images[0]);
   }, [travel]);
 
-  console.log (travel);
 
   const actualizarImgPrincipal = (image) => {
     setimgPrincipal(image);
