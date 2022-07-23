@@ -31,6 +31,15 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
                 travelsList: [...state.travelsList, action.payload],
                 error: "",
             };
+        case actions.TRAVEL_WANT_LIST:
+            return {
+                ...state,
+                travelDetail: {
+                    ...state.travelDetail,
+                    usersWantJoin: action.payload,
+                },
+                error: "",
+            };
         default:
             return state;
     }

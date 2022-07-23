@@ -28,6 +28,7 @@ export const editUserDetail = async (data, userId) => {
         );
 
         const finalResult = await response.json();
+        console.log(finalResult, "fallo en userServices");
 
         return finalResult;
     } catch (error) {

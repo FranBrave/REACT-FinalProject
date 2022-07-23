@@ -1,69 +1,41 @@
-import React, {  useEffect, useState } from "react";
+import React from "react";
 import { Button, Typography, Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useUserLoggedDetail } from "../../../../customHook/useUserLoggedDetail";
-import { useUserDetail } from "../../../../customHook/useUserDetail";
+import { useDispatch } from "react-redux";
+import { setReduxUserWantJoin } from "../../../../state/redux/actions/travelActions";
 
+const ButtonsTravelDetailContainer = ({ travel }) => {
+    //travel id
+    const { id } = useParams();
+    const userLogged = useUserLoggedDetail();
+    const dispatch = useDispatch();
 
+    const addUserToWantJoinList = () => {
+        const data = {
+            userName: userLogged.username,
+            travelId: id,
+        };
 
+        dispatch(setReduxUserWantJoin(data, travel.usersWantJoin));
+    };
 
+    const addUserToFollowList = () => {};
 
-
-const ButtonsTravelDetailContainer = () => {
-  
-  const BASEURL = "https://viajes-upgrade-hub.herokuapp.com";
-
-  //user
-  const userLogged = useUserLoggedDetail();
-
-  
-  
-  //travel
-
-  const { id } = useParams();
-  const TRAVELURL = "/travel/detail/";
-
-  const [travel, setTravel] = useState();
-
-  useEffect(() => {
-    fetch(`${BASEURL}${TRAVELURL}${id}`)
-      .then((response) => response.json())
-      .then((data) => setTravel(data));
-  }, [id]);
-
-
-
-  const INITIAL_STATE= {
-    usersWantJoin: []
-  }
-  
- 
-  const Join = ({travel, userLogged})=> {
-    const [userWantJoin, setUserWantJoin] = useState(INITIAL_STATE);
-    
-
-  };
-    
-   
-
-  const Follow = (
-
-  ) => {};
-
-  return (
-    <Grid container spacing={4}>
-      <Grid xs={2}>
-        <Button variant="contained" onClick={Join}>
-          <Typography>Join</Typography>
-        </Button>
-      </Grid>
-      <Grid xs={2}>
-      <Button variant = 'contained' onClick = {Follow}>
-        <Typography>Follow</Typography>
-        </Button>
-      </Grid>
-    </Grid>
-  );
+    return (
+        <Grid container spacing={4}>
+            <Grid xs={2}>
+                <Button variant="contained" onClick={addUserToWantJoinList}>
+                    <Typography>Join</Typography>
+                </Button>
+            </Grid>
+            <Grid xs={2}>
+                <Button variant="contained" onClick={addUserToFollowList}>
+                    <Typography>Follow</Typography>
+                </Button>
+            </Grid>
+        </Grid>
+    );
 };
 
 export default ButtonsTravelDetailContainer;

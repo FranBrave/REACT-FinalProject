@@ -24,3 +24,12 @@ export const postTravel = async (data) => {
 
     return response.data;
 };
+
+export const postUserToWantJoinList = async (data) => {
+    const response = await axios.post(
+        `${environment.API_URL}/travel/join`,
+        data
+    );
+
+    return response.data;
+};
