@@ -3,10 +3,10 @@ import React, { useEffect, useState, useContext } from "react";
 import { getTags } from "../../../../../../../../services/getTags";
 import { getUserDetail } from "../../../../../../../../state/context/services/authContext.services";
 import "./TravelList.css";
+import shortid from "shortid";
 import RightArrowIcon from "../../../../../../../../assets/icons/right-arrow.png";
 import LeftArrowIcon from "../../../../../../../../assets/icons/left-arrow.png";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
-import shortid from "shortid";
 
 const TravelList = ({ travelsList, tipo }) => {
   const [TravelList, setTravelList] = useState();

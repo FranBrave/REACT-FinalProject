@@ -38,10 +38,9 @@ const actionPushTravel = (travel) => ({
 export const setReduxTravelDetail = (travelId) => {
     return (dispatch) => {
         try {
-            return getTravelDetail(travelId).then((res) =>
+            getTravelDetail(travelId).then((res) =>
                 dispatch(actionTravelDetail(res))
             );
-
             return;
         } catch (error) {
             dispatch(actionTravelError());
@@ -56,9 +55,8 @@ export const setReduxTravelDetail = (travelId) => {
 export const setReduxTravelsList = () => {
     return (dispatch) => {
         try {
-            return getTravelsList().then((res) =>
-                dispatch(actionTravelsList(res))
-            );
+            getTravelsList().then((res) => dispatch(actionTravelsList(res)));
+            return;
         } catch (error) {
             dispatch(actionTravelError());
         }

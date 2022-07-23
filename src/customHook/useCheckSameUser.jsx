@@ -8,6 +8,7 @@ export const useCheckSameUser = (username) => {
     const userLogged = useUserLoggedDetail();
     const userDetail = useUserDetail(username);
 
+    console.log(userDetail);
     const [isSameUser, setIsSameUser] = useState();
 
     useEffect(() => {
