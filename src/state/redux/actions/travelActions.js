@@ -2,13 +2,15 @@ import {
     getTravelDetail,
     getTravelsList,
     postTravel,
+    postUserToWantJoinList,
 } from "../services/travelServices";
+import { actionUserCreateTravel } from "../actions/userActions";
 
 export const TRAVEL_DETAIL = "TRAVEL_DETAIL";
 export const TRAVELS_LIST = "TRAVELS_LIST";
 export const TRAVEL_ERROR = "TRAVEL_ERROR";
-
 export const PUSH_TRAVEL = "PUSH_TRAVEL";
+export const TRAVEL_WANT_LIST = "TRAVEL_WANT_LIST";
 
 const actionTravelDetail = (travelDetail) => ({
     type: TRAVEL_DETAIL,
@@ -28,6 +30,11 @@ const actionTravelError = (error) => ({
 const actionPushTravel = (travel) => ({
     type: PUSH_TRAVEL,
     payload: travel,
+});
+
+const actionPushUserToWantList = (user) => ({
+    type: TRAVEL_WANT_LIST,
+    payload: user,
 });
 
 /**
@@ -66,8 +73,25 @@ export const setReduxTravelsList = () => {
 export const setReduxAddTravel = (data) => {
     return (dispatch) => {
         try {
-            postTravel(data).then((res) => dispatch(actionPushTravel(res)));
+            postTravel(data).then((res) => {
+                dispatch(actionPushTravel(res));
+                dispatch(actionUserCreateTravel(res));
+            });
             return;
+        } catch (error) {
+            dispatch(actionTravelError(error.response.data));
+        }
+    };
+};
+
+export const setReduxUserWantJoin = (data, usersWantList) => {
+    return (dispatch) => {
+        try {
+            postUserToWantJoinList(data).then((res) => {
+                const array = usersWantList;
+                array.push(res);
+                dispatch(actionPushUserToWantList(array));
+            });
         } catch (error) {
             dispatch(actionTravelError(error.response.data));
         }

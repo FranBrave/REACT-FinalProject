@@ -14,3 +14,24 @@ export const getUserDetailByUsername = async (username) => {
 
     return response.data;
 };
+
+export const editUserDetail = async (data, userId) => {
+    const requestOptions = {
+        method: "POST",
+        body: data,
+    };
+
+    try {
+        const response = await fetch(
+            `${environment.API_URL}/user/info/${userId}`,
+            requestOptions
+        );
+
+        const finalResult = await response.json();
+        console.log(finalResult, "fallo en userServices");
+
+        return finalResult;
+    } catch (error) {
+        console.log(error);
+    }
+};

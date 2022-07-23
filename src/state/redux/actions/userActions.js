@@ -1,20 +1,33 @@
 import {
     getUsersList,
     getUserDetailByUsername,
+    editUserDetail,
 } from "../services/userServices";
 
 export const USER_DETAIL = "USER_DETAIL";
+export const USER_EDIT = "USER_EDIT";
 export const USERS_LIST = "USERS_LIST";
 export const USER_ERROR = "USER_ERROR";
+export const USER_CREATE_TRAVEL = "USER_CREATE_TRAVEL";
 
 const actionUserDetail = (userDetail) => ({
     type: USER_DETAIL,
     payload: userDetail,
 });
 
+const actionUserEdit = (userDetail) => ({
+    type: USER_EDIT,
+    payload: userDetail,
+});
+
 const actionUsersList = (usersList) => ({
     type: USERS_LIST,
     payload: usersList,
+});
+
+export const actionUserCreateTravel = (data) => ({
+    type: USER_CREATE_TRAVEL,
+    payload: data,
 });
 
 const actionUserError = (error) => ({
@@ -34,7 +47,7 @@ export const setReduxUserDetail = (username) => {
                 dispatch(actionUserDetail(res))
             );
         } catch (error) {
-            dispatch(actionUserError());
+            dispatch(actionUserError(error.response.data));
         }
     };
 };
@@ -48,7 +61,19 @@ export const setReduxUsersList = () => {
         try {
             return getUsersList().then((res) => dispatch(actionUsersList(res)));
         } catch (error) {
-            dispatch(actionUserError());
+            dispatch(actionUserError(error.response.data));
+        }
+    };
+};
+
+export const setReduxUserEdit = (data, userId) => {
+    return (dispatch) => {
+        try {
+            return editUserDetail(data, userId).then((res) =>
+                dispatch(actionUserEdit(res))
+            );
+        } catch (error) {
+            dispatch(actionUserError(error.response.data));
         }
     };
 };

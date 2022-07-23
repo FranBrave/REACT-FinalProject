@@ -1,181 +1,149 @@
-import { Link, Typography, Box } from "@mui/material";
-import React, { useContext } from "react";
-import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
-import RightArrowIcon from "../../../../../../../../assets/icons/right-arrow.png";
-import LeftArrowIcon from "../../../../../../../../assets/icons/left-arrow.png";
+import { Link, Typography, Box, Grid } from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import React from "react";
+import shortid from "shortid";
 
 const TravelSearcher = ({ searchTravel }) => {
-    const LeftArrow = () => {
-        const { scrollPrev } = useContext(VisibilityContext);
-
-        return (
-            <Typography onClick={() => scrollPrev()} className="right-arrow">
-                <img src={LeftArrowIcon} alt="left-arrow" />
-            </Typography>
-        );
-    };
-
-    const RightArrow = () => {
-        const { scrollNext } = useContext(VisibilityContext);
-
-        return (
-            <Typography onClick={() => scrollNext()} className="left-arrow">
-                <img src={RightArrowIcon} alt="right-arrow" />
-            </Typography>
-        );
-    };
-
-    return (
+  return (
+    <>
+      {searchTravel.length > 0 && (
         <>
-            {searchTravel.length > 0 && (
-                <>
+          <Box>
+            <Typography
+              container
+              alignItems="center"
+              justifyContent="center"
+              color="#ffcb47"
+              fontWeight=""
+              sx={{
+                fontSize: { lg: "33px", xs: "29px" },
+                display: "flex",
+                fontWeight: "900",
+              }}
+              m="3rem"
+              pb="10px"
+              textTransform="none"
+            >
+              Resultados:
+            </Typography>
+          </Box>
+          <Grid
+            container
+            spacing={0}
+            alignItems="center"
+            justifyContent="center"
+            gap="0.6rem"
+            sx={{ margin: { xs: "3.9px" } }}
+          >
+            {searchTravel.map((travel) => (
+              <Link key={travel.id} href={`/travel/${travel.id}`}>
+                <Grid sx={{ border: "1px solid grey", m: "5px" }}>
+                  <Grid
+                    className="travel-card"
+                    sx={{
+                      background: `url(${travel.images[0]})`,
+                      backgroundSize: "cover",
+                      filter: "brightness(0.9)",
+                      width: {
+                        lg: "20vw",
+                        sm: "30vw",
+                        xs: "95vw",
+                      },
+                      height: {
+                        lg: "30vh",
+                        sm: "30vw",
+                        xs: "70vh",
+                      },
+                    }}
+                    loading="lazy"
+                  >
                     <Typography
-                        ml="21px"
-                        color="#84a59d"
-                        fontWeight="bold"
-                        sx={{ fontSize: { lg: "33px", xs: "29px" } }}
-                        mt="11px"
-                        pb="10px"
-                        textTransform="capitalize"
+                      sx={{
+                        ml: "10px",
+                        pt: "5px",
+                        fontWeight: "900",
+                        color: "#2b2d42",
+                        textTransform: "capitalize",
+                        fontSize: {
+                          lg: "33px",
+                          xs: "29px",
+                        },
+                      }}
                     >
-                        Resultados de tu busqueda:
+                      <LocationOnIcon />
+                      {travel.cityName}
                     </Typography>
-
-                    <ScrollMenu
-                        LeftArrow={LeftArrow}
-                        RightArrow={RightArrow}
-                        direction="row"
-                        className="travel__container"
+                    <Typography
+                      className="travel-card__budget"
+                      sx={{
+                        color: "black",
+                        fontWeight: "900",
+                        margin: "10px",
+                        fontSize: {
+                          lg: "15px",
+                          xs: "13px",
+                        },
+                        textTransform: "capitalize",
+                      }}
                     >
-                        {searchTravel.map((travel) => (
-                            <Link key={travel.id} href={`/travel/${travel.id}`}>
-                                <Box
-                                    className="travel-card"
-                                    sx={{
-                                        background: `url(${travel.images[0]})`,
-                                        backgroundSize: "cover",
-                                        width: {
-                                            lg: "20vw",
-                                            sm: "30vw",
-                                            xs: "90vw",
-                                        },
-                                        height: {
-                                            lg: "30vh",
-                                            sm: "30vw",
-                                            xs: "90vh",
-                                        },
-                                        border: "1px solid grey",
-                                        borderRadius: "30px",
-                                        m: "10px",
-                                    }}
-                                >
-                                    <Typography
-                                        ml="21px"
-                                        color="#84a59d"
-                                        fontWeight="bold"
-                                        sx={{
-                                            fontSize: {
-                                                lg: "33px",
-                                                xs: "29px",
-                                            },
-                                        }}
-                                        mt="11px"
-                                        pb="10px"
-                                        textTransform="capitalize"
-                                    >
-                                        {travel.title}
-                                    </Typography>
-                                    <Typography
-                                        ml="21px"
-                                        color="#1d3557"
-                                        fontWeight="bold"
-                                        sx={{
-                                            fontSize: {
-                                                lg: "24px",
-                                                xs: "20px",
-                                            },
-                                        }}
-                                        mt="11px"
-                                        pb="10px"
-                                        textTransform="capitalize"
-                                    >
-                                        {travel.cityName}
-                                    </Typography>
-                                    <Typography
-                                        ml="21px"
-                                        color="#1d3557"
-                                        fontWeight="bold"
-                                        sx={{
-                                            fontSize: {
-                                                lg: "20px",
-                                                xs: "17px",
-                                            },
-                                        }}
-                                        mt="11px"
-                                        pb="10px"
-                                        textTransform="capitalize"
-                                    >
-                                        {travel.description}
-                                    </Typography>
-                                    <Typography
-                                        ml="21px"
-                                        color="#1d3557"
-                                        fontWeight="bold"
-                                        sx={{
-                                            fontSize: {
-                                                lg: "24px",
-                                                xs: "20px",
-                                            },
-                                        }}
-                                        mt="11px"
-                                        pb="10px"
-                                        textTransform="capitalize"
-                                    >
-                                        user
-                                    </Typography>
-                                    <Typography
-                                        className="travel-card__budget"
-                                        color="#1d3557"
-                                        fontWeight="bold"
-                                        sx={{
-                                            fontSize: {
-                                                lg: "15px",
-                                                xs: "13px",
-                                            },
-                                        }}
-                                        textTransform="capitalize"
-                                    >
-                                        {travel.budget}€
-                                    </Typography>
-                                    Tipo
-                                    <Typography
-                                        className="travel-card__data"
-                                        ml="21px"
-                                        mr="0px"
-                                        p="0px"
-                                        color="#1d3557"
-                                        fontWeight="bold"
-                                        sx={{
-                                            fontSize: {
-                                                lg: "15px",
-                                                xs: "13px",
-                                            },
-                                        }}
-                                        mt="11px"
-                                        pb="10px"
-                                        textTransform="none"
-                                    >
-                                        Desde {travel.dataFrom} hasta
-                                        {travel.dataTo}
-                                    </Typography>
-                                </Box>
-                            </Link>
-                        ))}
-                    </ScrollMenu>
-                </>
-            )}
+                      Presupuesto: {travel.budget}€
+                    </Typography>
+                  </Grid>
+                  <Typography
+                    sx={{
+                      ml: "10px",
+                      mt: "10px",
+                      textTransform: "capitalize",
+                      color: "orange",
+                      fontWeight: "bold",
+                      fontSize: {
+                        lg: "35px",
+                        xs: "28px",
+                      },
+                    }}
+                  >
+                    {travel.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      ml: "10px",
+                      mt: "10px",
+                      pb: "10px",
+                      textTransform: "capitalize",
+                      color: "gray",
+                      fontWeight: "bold",
+                      fontSize: {
+                        lg: "16px",
+                        xs: "12px",
+                      },
+                    }}
+                  >
+                    {travel.description.slice(0, 50).concat("...")}
+                  </Typography>
+                  <Typography
+                    className="travel-card__data"
+                    sx={{
+                      ml: "10px",
+                      mt: "10px",
+                      color: "gray",
+                      fontWeight: "bold",
+                      fontSize: {
+                        lg: "15px",
+                        xs: "10px",
+                      },
+                    }}
+                  >
+                    {travel.dataFrom.slice(0, 10).replace(/-/g, "/")} -
+                    {travel.dataTo.slice(0, 10).replace(/-/g, "/")}
+                  </Typography>
+                </Grid>
+              </Link>
+            ))}
+          </Grid>
         </>
-    );
+      )}
+    </>
+  );
 };
 
 export default TravelSearcher;

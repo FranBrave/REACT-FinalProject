@@ -16,26 +16,21 @@ import { getCities } from "../../../../services/getCities";
 import { getTags } from "../../../../services/getTags";
 import { useDispatch } from "react-redux/es/exports";
 import shortid from "shortid";
-import { setReduxAddTravel } from "../../../../state/redux/actions/travelActions";
+import { setReduxUserEdit } from "../../../../state/redux/actions/userActions";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
-const INITIAL_STATE = {
-    name: "",
-    surname: "",
-    age: 0,
-    bio: "",
-    location: "",
-    sex: "",
-    preferences: [],
-};
-
-const EditForm = ({ userId }) => {
-    const [form, setForm] = useState(INITIAL_STATE);
+const EditForm = ({ userId, handleCloseModal }) => {
+    const { userDetail } = useSelector((state) => state.user);
+    const [form, setForm] = useState();
     const [cities, setCities] = useState();
     const [tags, setTags] = useState();
     const [showTag, setShowTag] = useState("");
     const [alertDisplay, setAlertDisplay] = useState(false);
-    const [error, setError] = useState();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setForm(userDetail);
+    }, [userDetail]);
 
     const handleChangeForm = (e) => {
         const { name, value } = e.target;
@@ -49,17 +44,20 @@ const EditForm = ({ userId }) => {
 
     const addTag = () => {
         const tagsTitleArray = tags.map((tag) => tag.title);
-        if (tagsTitleArray.includes(showTag) && !form.tags.includes(showTag)) {
-            const tagsValue = form.tags;
+        if (
+            tagsTitleArray.includes(showTag) &&
+            !form.preferences.includes(showTag)
+        ) {
+            const tagsValue = form.preferences;
             tagsValue.push(showTag);
-            setForm({ ...form, tags: tagsValue });
+            setForm({ ...form, preferences: tagsValue });
         }
     };
 
     const removeTag = (tag) => {
-        const tagsValue = form.tags;
+        const tagsValue = form.preferences;
         tagsValue.splice(tagsValue.indexOf(tag), 1);
-        setForm({ ...form, tags: tagsValue });
+        setForm({ ...form, preferences: tagsValue });
     };
 
     useEffect(() => {
@@ -71,32 +69,19 @@ const EditForm = ({ userId }) => {
     }, []);
 
     const submitUserForm = () => {
-        if (
-            form.name === "" ||
-            form.surname === "" ||
-            form.sex === "" ||
-            form.age === 0 ||
-            form.location === 0 ||
-            form.preferences.length < 1
-        ) {
-            setError(true);
-            setTimeout(() => {
-                setError(false);
-            }, 2000);
-            return;
-        } else {
-            const data = {
-                form,
-                userId,
-            };
-            dispatch(setReduxAddTravel(data));
-            setForm(INITIAL_STATE);
-            setAlertDisplay(true);
+        const data = {
+            form,
+            userId,
+        };
 
-            setTimeout(() => {
-                setAlertDisplay(false);
-            }, 3500);
-        }
+        dispatch(setReduxUserEdit(data));
+        setForm(userDetail);
+        setAlertDisplay(true);
+        handleCloseModal();
+
+        setTimeout(() => {
+            setAlertDisplay(false);
+        }, 3500);
     };
 
     return (
@@ -147,6 +132,12 @@ const EditForm = ({ userId }) => {
                     <TextField
                         name="age"
                         type="number"
+                        InputProps={{
+                            inputProps: {
+                                max: 100,
+                                min: 10,
+                            },
+                        }}
                         placeholder="Age"
                         label="Age"
                         onChange={(e) =>
@@ -171,7 +162,7 @@ const EditForm = ({ userId }) => {
                         <Select
                             labelId="sex-label"
                             id="sex"
-                            value={form.sex}
+                            value={form && form.sex}
                             onChange={handleChangeForm}
                             autoWidth
                             name="sex"
@@ -202,7 +193,7 @@ const EditForm = ({ userId }) => {
                         <Select
                             labelId="location-label"
                             id="location"
-                            value={form.location}
+                            value={form && form.location}
                             onChange={handleChangeForm}
                             autoWidth
                             name="location"
@@ -231,7 +222,9 @@ const EditForm = ({ userId }) => {
                             sx={{ padding: "0 1rem 1rem 1rem" }}
                         >
                             <InputLabel id="tags-label">Preferences</InputLabel>
-                            {form.preferences.length > 0 &&
+                            {form &&
+                                form.preferences &&
+                                form.preferences.length > 0 &&
                                 form.preferences.map((tag) => (
                                     <InputLabel
                                         sx={{
@@ -322,15 +315,6 @@ const EditForm = ({ userId }) => {
                     >
                         Edit
                     </Button>
-                    {error && (
-                        <Alert
-                            variant="filled"
-                            severity="error"
-                            sx={{ position: " absolute" }}
-                        >
-                            All the fields are required!
-                        </Alert>
-                    )}
                     {alertDisplay && (
                         <Alert
                             variant="filled"

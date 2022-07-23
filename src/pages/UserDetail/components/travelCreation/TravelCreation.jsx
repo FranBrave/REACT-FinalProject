@@ -29,7 +29,7 @@ const INITIAL_STATE = {
     tags: [],
 };
 
-const TravelCreation = ({ userId }) => {
+const TravelCreation = ({ userId, handleCloseModal }) => {
     const [form, setForm] = useState(INITIAL_STATE);
     const [cities, setCities] = useState();
     const [tags, setTags] = useState();
@@ -92,10 +92,11 @@ const TravelCreation = ({ userId }) => {
             dispatch(setReduxAddTravel(data));
             setForm(INITIAL_STATE);
             setAlertDisplay(true);
-
             setTimeout(() => {
                 setAlertDisplay(false);
             }, 3500);
+
+            handleCloseModal();
         }
     };
 
