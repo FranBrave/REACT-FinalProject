@@ -1,6 +1,6 @@
 import { Link, Typography, Box, Grid } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { getTags } from "../../../../../../../../services/getTags";
 import { getUserDetail } from "../../../../../../../../state/context/services/authContext.services";
 import "./TravelList.css";
@@ -48,7 +48,11 @@ const TravelList = ({ travelsList, tipo }) => {
               justifyContent="center"
               color="#ffcb47"
               fontWeight=""
-              sx={{ fontSize: { lg: "33px", xs: "29px" } }}
+              sx={{
+                fontSize: { lg: "33px", xs: "29px" },
+                display: "flex",
+                fontWeight: "900",
+              }}
               m="3rem"
               pb="10px"
               textTransform="capitalize"

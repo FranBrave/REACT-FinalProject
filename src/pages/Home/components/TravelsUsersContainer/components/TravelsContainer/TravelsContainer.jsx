@@ -20,19 +20,21 @@ const TravelsContainer = () => {
         setValue(newValue);
     };
 
-    return (
-        <>
-            <TravelSearcher searchTravel={searchTravel} />
-            <TabContext value={value}>
-                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                    <TabList onChange={handleChange}>
-                        <Tab label="Playa" value="1" />
-                        <Tab label="Nacional" value="2" />
-                        <Tab label="Ciudad" value="3" />
-                        <Tab label="Internacional" value="4" />
-                        <Tab label="Naturaleza" value="5" />
-                    </TabList>
-                </Box>
+
+  return (
+    <>
+      <TravelSearcher searchTravel={searchTravel} />
+      <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <TabList value={value} onChange={handleChange} variant="fullWidth">
+            <Tab label="Playa" value="1" />
+            <Tab label="Nacional" value="2" />
+            <Tab label="Ciudad" value="3" />
+            <Tab label="Internacional" value="4" />
+            <Tab label="Naturaleza" value="5" />
+          </TabList>
+        </Box>
+
 
                 <TabPanel value="1">
                     <TravelList travelsList={travelsList} tipo="Playa" />
