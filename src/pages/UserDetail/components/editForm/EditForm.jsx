@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux/es/exports";
 import shortid from "shortid";
 import { setReduxUserEdit } from "../../../../state/redux/actions/userActions";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import CloseIcon from "@mui/icons-material/Close";
 
 const EditForm = ({ userId, handleCloseModal }) => {
     const { userDetail } = useSelector((state) => state.user);
@@ -228,7 +229,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                                 form.preferences.map((tag) => (
                                     <InputLabel
                                         sx={{
-                                            p: "0 2rem",
+                                            p: "0 1.3rem",
                                             height: "2rem",
                                             backgroundColor: "gray",
                                             color: "white",
@@ -237,22 +238,21 @@ const EditForm = ({ userId, handleCloseModal }) => {
                                             display: "flex",
                                             direction: "row",
                                             alignItems: "center",
+                                            justifyContent: "space-between",
                                         }}
                                         key={shortid.generate()}
                                     >
                                         {tag}
-                                        <Button
+                                        <CloseIcon
                                             onClick={() => removeTag(tag)}
                                             sx={{
-                                                color: "white",
-                                                position: "absolute",
-                                                right: 0,
-                                                width: 0,
+                                                cursor: "pointer",
+                                                ml: "1rem",
                                             }}
                                             key={shortid.generate()}
                                         >
                                             X
-                                        </Button>
+                                        </CloseIcon>
                                     </InputLabel>
                                 ))}
                         </Stack>

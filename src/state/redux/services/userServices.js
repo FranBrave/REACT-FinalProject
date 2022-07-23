@@ -28,8 +28,27 @@ export const editUserDetail = async (data, userId) => {
         );
 
         const finalResult = await response.json();
-        console.log(finalResult, "fallo en userServices");
 
+        return finalResult;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const uploadImage = async (data, userId) => {
+    const requestOptions = {
+        method: "POST",
+        body: data,
+    };
+
+    try {
+        const response = await fetch(
+            `${environment.API_URL}/user/images/${userId}`,
+            requestOptions
+        );
+
+        const finalResult = await response.json();
+        console.log(finalResult);
         return finalResult;
     } catch (error) {
         console.log(error);
