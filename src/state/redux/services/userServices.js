@@ -16,20 +16,12 @@ export const getUserDetailByUsername = async (username) => {
 };
 
 export const editUserDetail = async (data, userId) => {
-    const requestOptions = {
-        method: "POST",
-        body: data,
-    };
-
     try {
-        const response = await fetch(
+        const response = await axios.post(
             `${environment.API_URL}/user/info/${userId}`,
-            requestOptions
+            data
         );
-
-        const finalResult = await response.json();
-
-        return finalResult;
+        return response.data;
     } catch (error) {
         console.log(error);
     }
@@ -48,7 +40,7 @@ export const uploadImage = async (data, userId) => {
         );
 
         const finalResult = await response.json();
-        console.log(finalResult);
+
         return finalResult;
     } catch (error) {
         console.log(error);

@@ -70,12 +70,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
     }, []);
 
     const submitUserForm = () => {
-        const data = {
-            form,
-            userId,
-        };
-
-        dispatch(setReduxUserEdit(data));
+        dispatch(setReduxUserEdit(form, userId));
         setForm(userDetail);
         setAlertDisplay(true);
         handleCloseModal();
