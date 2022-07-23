@@ -1,31 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { Button, Typography, Grid } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import { setReduxUserDetail } from "../../../../state/redux/actions/userActions";
-import { setReduxTravelDetail } from "../../../../state/redux/actions/travelActions";
 import { useParams } from "react-router-dom";
+import { useUserLoggedDetail } from "../../../../customHook/useUserLoggedDetail";
+import { useUserDetail } from "../../../../customHook/useUserDetail";
+
+
+
+
 
 
 const ButtonsTravelDetailContainer = () => {
-
-
-
-  const {user} = useSelector((state) => state.user);
- 
-  //user
   
-  const dispatchUser = useDispatch();
-
-  useEffect(() => {
-    dispatchUser(setReduxUserDetail());
-  },[]);
-
-  useEffect(() => {}, [user]);
-
-  //travel
-  
-  const { id } = useParams();
   const BASEURL = "https://viajes-upgrade-hub.herokuapp.com";
+
+  //user
+  const userLogged = useUserLoggedDetail();
+
+  
+  
+  //travel
+
+  const { id } = useParams();
   const TRAVELURL = "/travel/detail/";
 
   const [travel, setTravel] = useState();
@@ -36,19 +31,24 @@ const ButtonsTravelDetailContainer = () => {
       .then((data) => setTravel(data));
   }, [id]);
 
-  console.log(travel)
 
-  //usersFollowing
 
+  const INITIAL_STATE= {
+    usersWantJoin: []
+  }
   
-
-
-  const Join = () => {const 
-    [usersWantJoin, setUsersWantJoin] = useState();
-  };
+ 
+  const Join = ({travel, userLogged})=> {
+    const [userWantJoin, setUserWantJoin] = useState(INITIAL_STATE);
     
 
-  const Follow = () => {};
+  };
+    
+   
+
+  const Follow = (
+
+  ) => {};
 
   return (
     <Grid container spacing={4}>
