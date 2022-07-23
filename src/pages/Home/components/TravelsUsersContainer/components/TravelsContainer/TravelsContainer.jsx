@@ -25,7 +25,7 @@ const TravelsContainer = () => {
       <TravelSearcher searchTravel={searchTravel} />
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList onChange={handleChange}>
+          <TabList value={value} onChange={handleChange} variant="fullWidth">
             <Tab label="Playa" value="1" />
             <Tab label="Nacional" value="2" />
             <Tab label="Ciudad" value="3" />
