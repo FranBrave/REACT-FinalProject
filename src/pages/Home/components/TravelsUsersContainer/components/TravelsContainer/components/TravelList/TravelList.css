@@ -27,3 +27,21 @@
     background-color: orange;
 }
 
+.travel-card__image {
+    background-size: 20%;
+}
+
+.travel-card {
+    flex: 0 0 auto;
+}
+
+.travel-card:hover{
+    cursor: pointer;
+    gap: 47px,
+}
+
+.travel__container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
