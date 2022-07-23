@@ -1,9 +1,11 @@
 import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import shortid from "shortid";
 
 const GalleryImages = ({ selectedComp, userDetail }) => {
     const [selected, setSelected] = useState();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (userDetail) {
@@ -20,17 +22,26 @@ const GalleryImages = ({ selectedComp, userDetail }) => {
         }
     }, [selectedComp, userDetail]);
 
+    const navigateFunction = (travelId) => {
+        navigate(`/travel/${travelId}`);
+    };
+
     return (
         <>
             {selected && selected.length > 0 ? (
                 <ImageList cols={3} gap={8} sx={{ width: "80vw" }}>
                     {selected.map((travel) => (
-                        <ImageListItem key={shortid.generate()}>
+                        <ImageListItem
+                            key={shortid.generate()}
+                            sx={{ height: "20vw", cursor: "pointer" }}
+                            onClick={() => navigateFunction(travel.id)}
+                        >
                             <img
                                 src={`${travel.images[0]}?w=248&fit=crop&auto=format`}
                                 srcSet={`${travel.images[0]}?w=248&fit=crop&auto=format&dpr=2 2x`}
                                 alt="travel image"
                                 loading="lazy"
+                                sx={{ height: "100%" }}
                             />
                             <ImageListItemBar
                                 title={travel.title}

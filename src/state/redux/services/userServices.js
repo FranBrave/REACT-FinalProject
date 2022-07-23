@@ -14,3 +14,12 @@ export const getUserDetailByUsername = async (username) => {
 
     return response.data;
 };
+
+export const editUserDetail = async (data) => {
+    const response = await axios.post(
+        `${environment.API_URL}/user/info/${data.userId}`,
+        data.form
+    );
+
+    return response.data;
+};

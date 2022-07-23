@@ -17,6 +17,7 @@ import { getTags } from "../../../../services/getTags";
 import { useDispatch } from "react-redux/es/exports";
 import shortid from "shortid";
 import { setReduxAddTravel } from "../../../../state/redux/actions/travelActions";
+import { setReduxUserEdit } from "../../../../state/redux/actions/userActions";
 
 const INITIAL_STATE = {
     name: "",
@@ -49,10 +50,13 @@ const EditForm = ({ userId }) => {
 
     const addTag = () => {
         const tagsTitleArray = tags.map((tag) => tag.title);
-        if (tagsTitleArray.includes(showTag) && !form.tags.includes(showTag)) {
-            const tagsValue = form.tags;
+        if (
+            tagsTitleArray.includes(showTag) &&
+            !form.preferences.includes(showTag)
+        ) {
+            const tagsValue = form.preferences;
             tagsValue.push(showTag);
-            setForm({ ...form, tags: tagsValue });
+            setForm({ ...form, preferences: tagsValue });
         }
     };
 
@@ -89,7 +93,9 @@ const EditForm = ({ userId }) => {
                 form,
                 userId,
             };
-            dispatch(setReduxAddTravel(data));
+
+            console.log(data.form);
+            // dispatch(setReduxUserEdit(data));
             setForm(INITIAL_STATE);
             setAlertDisplay(true);
 
