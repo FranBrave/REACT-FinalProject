@@ -1,31 +1,32 @@
-import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Button, Typography, Grid } from "@mui/material";
+import SlidingButtons from "./SlidingButtons";
+import GalleryImages from "../../pages/UserDetail/components/galleryImages/GalleryImages";
+import UsersContainer from "../../pages/Home/components/TravelsUsersContainer/components/UsersContainer/UsersContainer";
 
-const Toggle = ({ toggleDisplay }) => {
-  const travelDisplay = () => {
-    toggleDisplay(true);
-  };
+const values = ["Travels", "Users"];
 
-  const userDisplay = () => {
-    toggleDisplay(false);
+const Toggle = () => {
+  const [selectedComp, setSelectedComp] = useState(values[0]);
+  const switchInfo = (value) => {
+    setSelectedComp(value);
   };
 
   return (
-    <Box
-      sx={{
-        mt: { lg: "212px", xs: "70px" },
-        ml: { sm: "50px" },
-      }}
-      position="relative"
-      p="20px"
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      gap="1rem"
     >
-      <Button variant="contained" onClick={travelDisplay}>
-        <Typography>Travels</Typography>
-      </Button>
-      <Button variant="contained" onClick={userDisplay}>
-        <Typography>Users</Typography>
-      </Button>
-    </Box>
+      <SlidingButtons
+        values={values}
+        defaultSelected={"Travels"}
+        switchInfo={switchInfo}
+      />
+    </Grid>
   );
 };
 
