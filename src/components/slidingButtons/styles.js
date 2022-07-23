@@ -4,7 +4,7 @@ export const Switch = styled.div`
     font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
     position: relative;
     height: 60px;
-    width: 600px;
+    width: ${(props) => (props.home ? "300px" : "600px")};
     background-color: #e4e4e4;
     border-radius: 20px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3),
@@ -21,7 +21,7 @@ export const SwitchSelection = styled.span`
     z-index: 1;
     top: 0px;
     left: 0px;
-    width: 200px;
+    width: ${(props) => (props.home ? "150px" : "200px")};
     height: 60px;
     color: #fff;
     background: #ffcb47;
@@ -33,7 +33,7 @@ export const SwitchLabel = styled.label`
     position: relative;
     z-index: 2;
     float: left;
-    width: 200px;
+    width: ${(props) => (props.home ? "150px" : "200px")};
     line-height: 60px;
     font-size: 20px;
     color: #fff;

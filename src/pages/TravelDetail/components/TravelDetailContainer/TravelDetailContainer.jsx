@@ -67,7 +67,6 @@ const TravelDetailContainer = () => {
                                 alt={travel.cityName}
                             />
                         </Grid>
-
                         <Grid xs={4}>
                             {travel.images.map((image) => {
                                 if (image !== imgPrincipal) {
@@ -164,8 +163,11 @@ const TravelDetailContainer = () => {
                             mt: { lg: "4vw", xs: "2vw" },
                         }}
                     >
-                        <ButtonsTravelDetailContainer />
+                        <ButtonsTravelDetailContainer travel={travel} />
                     </Grid>
+                    {travel.usersWantJoin.map((user) => (
+                        <Typography>{user.username}</Typography>
+                    ))}
                 </Grid>
             ) : (
                 <p>Loading</p>
