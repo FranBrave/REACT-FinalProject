@@ -5,10 +5,11 @@ import { useStyles } from "../../../../../../components/AuthModal/styles/styles"
 import { ModalContext } from "../../../../../../state/context/modalContext";
 import { toggleAuthModal } from "../../../../../../state/context/actions/modalActions";
 import TravelCreation from "../../../travelCreation/TravelCreation";
+import { useSelector } from "react-redux";
 
 const CreateModal = () => {
     const classes = useStyles();
-
+    const { userDetail } = useSelector((state) => state.user);
     const { modalState, modalDispatch } = useContext(ModalContext);
 
     const handleCloseModal = () => {
@@ -20,7 +21,7 @@ const CreateModal = () => {
             <Fade in={modalState.create}>
                 <Box sx={classes.modal}>
                     <Button onClick={handleCloseModal}>Close</Button>
-                    <TravelCreation />
+                    <TravelCreation userId={userDetail._id}/>
                 </Box>
             </Fade>
         </Modal>

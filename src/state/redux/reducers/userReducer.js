@@ -14,7 +14,13 @@ export const userReducer = (state = INITIAL_STATE, action) => {
                 userDetail: action.payload,
                 error: "",
             };
-
+        case actions.USER_EDIT:
+            console.log(action.payload, action.payload[0]);
+            return {
+                ...state,
+                userDetail: action.payload,
+                error: "",
+            };
         case actions.USERS_LIST:
             return {
                 ...state,

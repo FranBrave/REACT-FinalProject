@@ -16,9 +16,16 @@ export const getUserDetailByUsername = async (username) => {
 };
 
 export const editUserDetail = async (data) => {
+    const body = data.form;
+    console.log(data);
     const response = await axios.post(
         `${environment.API_URL}/user/info/${data.userId}`,
-        data.form
+        body,
+        {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        }
     );
 
     return response.data;

@@ -5,10 +5,11 @@ import { useStyles } from "../../../../../../components/AuthModal/styles/styles"
 import { ModalContext } from "../../../../../../state/context/modalContext";
 import { toggleAuthModal } from "../../../../../../state/context/actions/modalActions";
 import EditForm from "../../../editForm/EditForm";
+import { useSelector } from "react-redux";
 
 const EditModal = () => {
     const classes = useStyles();
-
+    const { userDetail } = useSelector((state) => state.user);
     const { modalState, modalDispatch } = useContext(ModalContext);
 
     const handleCloseModal = () => {
@@ -20,7 +21,10 @@ const EditModal = () => {
             <Fade in={modalState.edit}>
                 <Box sx={classes.modal}>
                     <Button onClick={handleCloseModal}>Close</Button>
-                    <EditForm />
+                    <EditForm
+                        userId={userDetail._id}
+                        handleCloseModal={handleCloseModal}
+                    />
                 </Box>
             </Fade>
         </Modal>

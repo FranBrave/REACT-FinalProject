@@ -67,6 +67,7 @@ export const setReduxUserEdit = (data) => {
                 dispatch(actionUserEdit(res))
             );
         } catch (error) {
+            console.log(error.response.data);
             dispatch(actionUserError(error.response.data));
         }
     };
