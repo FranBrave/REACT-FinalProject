@@ -14,3 +14,23 @@ export const getUserDetailByUsername = async (username) => {
 
     return response.data;
 };
+
+export const editUserDetail = async (data, userId) => {
+    const requestOptions = {
+        method: "POST",
+        body: data,
+    };
+
+    try {
+        const response = await fetch(
+            `${environment.API_URL}/user/info/${userId}`,
+            requestOptions
+        );
+
+        const finalResult = await response.json();
+
+        return finalResult;
+    } catch (error) {
+        console.log(error);
+    }
+};

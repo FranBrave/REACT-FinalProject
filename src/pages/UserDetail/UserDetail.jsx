@@ -27,6 +27,7 @@ const UserDetail = () => {
             alignItems="center"
             justifyContent="center"
             gap="1rem"
+            sx={{ pt: "3rem" }}
         >
             {userDetail && (
                 <Grid

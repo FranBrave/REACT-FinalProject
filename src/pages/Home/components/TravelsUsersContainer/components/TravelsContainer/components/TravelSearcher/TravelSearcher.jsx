@@ -40,7 +40,6 @@ const TravelSearcher = ({ searchTravel }) => {
                     >
                         Resultados de tu busqueda:
                     </Typography>
-
                     <ScrollMenu
                         LeftArrow={LeftArrow}
                         RightArrow={RightArrow}

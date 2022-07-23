@@ -4,27 +4,27 @@ import { Box } from "@mui/system";
 import { useStyles } from "../../../../../../components/AuthModal/styles/styles";
 import { ModalContext } from "../../../../../../state/context/modalContext";
 import { toggleAuthModal } from "../../../../../../state/context/actions/modalActions";
-import EditForm from "../../../editForm/EditForm";
 import { useSelector } from "react-redux";
+import UploadImage from "../../../uploadImage/UploadImage";
 
-const EditModal = () => {
+const ImagesModal = () => {
     const classes = useStyles();
     const { userDetail } = useSelector((state) => state.user);
     const { modalState, modalDispatch } = useContext(ModalContext);
 
     const handleCloseModal = () => {
-        toggleAuthModal(modalState.edit, modalDispatch);
+        toggleAuthModal(modalState.image, modalDispatch);
     };
 
     return (
-        <Modal open={modalState.edit} sx={classes.backdrop}>
-            <Fade in={modalState.edit}>
+        <Modal open={modalState.image} sx={classes.backdrop}>
+            <Fade in={modalState.image}>
                 <Box sx={classes.modal}>
                     <Button onClick={handleCloseModal}>Close</Button>
                     {userDetail && (
-                        <EditForm
-                            userId={userDetail._id}
+                        <UploadImage
                             handleCloseModal={handleCloseModal}
+                            userDetail={userDetail}
                         />
                     )}
                 </Box>
@@ -33,4 +33,4 @@ const EditModal = () => {
     );
 };
 
-export default EditModal;
+export default ImagesModal;

@@ -14,11 +14,28 @@ export const userReducer = (state = INITIAL_STATE, action) => {
                 userDetail: action.payload,
                 error: "",
             };
-
+        case actions.USER_EDIT:
+            return {
+                ...state,
+                userDetail: action.payload,
+                error: "",
+            };
         case actions.USERS_LIST:
             return {
                 ...state,
                 userList: action.payload,
+                error: "",
+            };
+        case actions.USER_CREATE_TRAVEL:
+            return {
+                ...state,
+                userDetail: {
+                    ...state.userDetail,
+                    travelsCreated: [
+                        ...state.userDetail.travelsCreated,
+                        action.payload,
+                    ],
+                },
                 error: "",
             };
         case actions.USER_ERROR:
