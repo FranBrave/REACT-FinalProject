@@ -207,11 +207,11 @@ const UserInfo = ({ userDetail, username }) => {
                                 {isSameUser && (
                                     <Button
                                         sx={{
-                                            p: "0.5rem 4rem",
-                                            backgroundColor: "#ffcb47",
-                                            color: "white",
+                                            p: "0.5rem 2rem",
+                                            backgroundColor: "#D7FFAB",
+                                            color: "black",
                                             "&:hover": {
-                                                backgroundColor: "#F0A370",
+                                                backgroundColor: "#96ADC8",
                                             },
                                         }}
                                         onClick={handleImageModal}
