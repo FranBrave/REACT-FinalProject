@@ -66,10 +66,10 @@ export const setReduxUsersList = () => {
     };
 };
 
-export const setReduxUserEdit = (data) => {
+export const setReduxUserEdit = (data, userId) => {
     return (dispatch) => {
         try {
-            return editUserDetail(data).then((res) =>
+            return editUserDetail(data, userId).then((res) =>
                 dispatch(actionUserEdit(res))
             );
         } catch (error) {

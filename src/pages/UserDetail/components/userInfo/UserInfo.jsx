@@ -8,7 +8,7 @@ import {
     Typography,
     TextField,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import shortid from "shortid";
@@ -22,11 +22,18 @@ import { useCheckSameUser } from "../../../../customHook/useCheckSameUser";
 import InfoIcon from "@mui/icons-material/Info";
 import EditIcon from "@mui/icons-material/Edit";
 import { Box } from "@mui/system";
-import { Label } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { setReduxUserEdit } from "../../../../state/redux/actions/userActions";
 
 const UserInfo = ({ userDetail, username }) => {
     const { modalState, modalDispatch } = useContext(ModalContext);
     const isSameUser = useCheckSameUser(username);
+    const [form, setForm] = useState();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        setForm(userDetail);
+    }, [userDetail]);
 
     const handleEditModal = () => {
         toggleEditModal(modalState.edit, modalDispatch);
@@ -41,7 +48,16 @@ const UserInfo = ({ userDetail, username }) => {
     };
 
     const submitAvatar = (e) => {
-        console.log(e.currentTarget.files[0]);
+        const data = {
+            img: e.currentTarget.files[0],
+        };
+        const formData = new FormData();
+
+        Object.entries(data).forEach((el) => {
+            formData.append(el[0], el[1]);
+        });
+
+        dispatch(setReduxUserEdit(formData, userDetail._id));
     };
 
     return (

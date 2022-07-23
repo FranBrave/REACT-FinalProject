@@ -15,18 +15,22 @@ export const getUserDetailByUsername = async (username) => {
     return response.data;
 };
 
-export const editUserDetail = async (data) => {
-    const body = data.form;
-    console.log(data);
-    const response = await axios.post(
-        `${environment.API_URL}/user/info/${data.userId}`,
-        body,
-        {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        }
-    );
+export const editUserDetail = async (data, userId) => {
+    const requestOptions = {
+        method: "POST",
+        body: data,
+    };
 
-    return response.data;
+    try {
+        const response = await fetch(
+            `${environment.API_URL}/user/info/${userId}`,
+            requestOptions
+        );
+
+        const finalResult = await response.json();
+
+        return finalResult;
+    } catch (error) {
+        console.log(error);
+    }
 };
