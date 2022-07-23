@@ -4,8 +4,8 @@ import { Box } from "@mui/system";
 import { useStyles } from "../../../../../../components/AuthModal/styles/styles";
 import { ModalContext } from "../../../../../../state/context/modalContext";
 import { toggleAuthModal } from "../../../../../../state/context/actions/modalActions";
-import EditForm from "../../../editForm/EditForm";
 import { useSelector } from "react-redux";
+import UploadImage from "../../../uploadImage/UploadImage";
 
 const ImagesModal = () => {
     const classes = useStyles();
@@ -21,7 +21,12 @@ const ImagesModal = () => {
             <Fade in={modalState.image}>
                 <Box sx={classes.modal}>
                     <Button onClick={handleCloseModal}>Close</Button>
-                    {userDetail && <p>Hola</p>}
+                    {userDetail && (
+                        <UploadImage
+                            handleCloseModal={handleCloseModal}
+                            userDetail={userDetail}
+                        />
+                    )}
                 </Box>
             </Fade>
         </Modal>
