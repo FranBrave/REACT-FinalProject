@@ -1,19 +1,26 @@
 import React, { useState } from "react";
-import Toggle from "../../components/Toggle/Toggle";
 import { Box } from "@mui/material";
 import TravelsUsersContainer from "./components/TravelsUsersContainer/TravelsUsersContainer";
+import SlidingButtons from "../../components/Toggle/SlidingButtons";
+
+const values = ["Travels", "Users"];
 
 const Home = () => {
-    const [travelDisplay, setTravelDisplay] = useState(true);
+    const [selectedComp, setSelectedComp] = useState(values[0]);
 
-    const toggleDisplay = (value) => {
-        setTravelDisplay(value);
+    const switchInfo = (value) => {
+        setSelectedComp(value);
     };
 
     return (
         <Box>
-            <Toggle toggleDisplay={toggleDisplay} />
-            <TravelsUsersContainer travelDisplay={travelDisplay} />
+            {/* <Toggle toggleDisplay={toggleDisplay} /> */}
+            <SlidingButtons
+                values={values}
+                defaultSelected="Travels"
+                switchInfo={switchInfo}
+            />
+            <TravelsUsersContainer selectedComp={selectedComp} />
         </Box>
     );
 };

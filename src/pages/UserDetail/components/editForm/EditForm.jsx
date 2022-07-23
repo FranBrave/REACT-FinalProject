@@ -223,6 +223,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                         >
                             <InputLabel id="tags-label">Preferences</InputLabel>
                             {form &&
+                                form.preferences &&
                                 form.preferences.length > 0 &&
                                 form.preferences.map((tag) => (
                                     <InputLabel
