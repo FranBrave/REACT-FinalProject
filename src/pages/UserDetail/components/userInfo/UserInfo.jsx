@@ -16,6 +16,7 @@ import { ModalContext } from "../../../../state/context/modalContext";
 import {
     toggleCreateModal,
     toggleEditModal,
+    toggleImageModal,
     toggleInfoModal,
 } from "../../../../state/context/actions/modalActions";
 import { useCheckSameUser } from "../../../../customHook/useCheckSameUser";
@@ -45,6 +46,10 @@ const UserInfo = ({ userDetail, username }) => {
 
     const handleInfoModal = () => {
         toggleInfoModal(modalState.info, modalDispatch);
+    };
+
+    const handleImageModal = () => {
+        toggleImageModal(modalState.image, modalDispatch);
     };
 
     const submitAvatar = (e) => {
@@ -197,6 +202,21 @@ const UserInfo = ({ userDetail, username }) => {
                                         onClick={handleCreateModal}
                                     >
                                         Create travel
+                                    </Button>
+                                )}
+                                {isSameUser && (
+                                    <Button
+                                        sx={{
+                                            p: "0.5rem 4rem",
+                                            backgroundColor: "#ffcb47",
+                                            color: "white",
+                                            "&:hover": {
+                                                backgroundColor: "#F0A370",
+                                            },
+                                        }}
+                                        onClick={handleImageModal}
+                                    >
+                                        Upload Images
                                     </Button>
                                 )}
                             </Grid>
