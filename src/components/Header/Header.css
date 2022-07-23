@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+
+a:link {
+    color: #e1a50e;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: #e1a50e;
+  }
+
+.login {
+    font-family: 'Roboto';
+}
+
+  .logout {
+    font-family: 'Roboto';
+  }
