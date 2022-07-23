@@ -1,6 +1,6 @@
-import React, { useEffect, useState, SyntheticEvent } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Tabs, Tab } from "@mui/material";
+import { Box, Tab } from "@mui/material";
 import { setReduxTravelsList } from "../../../../../../state/redux/actions/travelActions";
 import TravelList from "./components/TravelList/TravelList";
 import TravelSearcher from "./components/TravelSearcher/TravelSearcher";
