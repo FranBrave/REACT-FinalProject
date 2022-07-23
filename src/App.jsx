@@ -9,27 +9,30 @@ import { store } from "./state/redux/reduxStore";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TravelDetail from "./pages/TravelDetail/TravelDetail";
 import UserDetail from "./pages/UserDetail/UserDetail";
+import { ModalProvider } from "./state/context/modalContext";
 
 const App = () => {
     return (
         <Router>
             <Provider store={store}>
                 <AuthProvider>
-                    <Header />
-                    <AuthModal />
-                    <main>
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route
-                                path="/User/:username"
-                                element={<UserDetail />}
-                            />
-                            <Route
-                                path="/Travel/:id"
-                                element={<TravelDetail />}
-                            />
-                        </Routes>
-                    </main>
+                    <ModalProvider>
+                        <Header />
+                        <AuthModal />
+                        <main>
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route
+                                    path="/User/:username"
+                                    element={<UserDetail />}
+                                />
+                                <Route
+                                    path="/Travel/:id"
+                                    element={<TravelDetail />}
+                                />
+                            </Routes>
+                        </main>
+                    </ModalProvider>
                 </AuthProvider>
             </Provider>
         </Router>
