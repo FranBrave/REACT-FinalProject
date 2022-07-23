@@ -18,23 +18,38 @@
     border: solid 1px;
     display: inline-flex;
     list-style: none;
-    float: right;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 40px;
-    background-color: orange;
+    background-color: #ffcb47;
 }
+
+.travel-card__tags {
+    border: solid 1px;
+    display: inline-flex;
+    list-style: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 40px;
+    background-color: rgba(148, 134, 134, 0.162);
+}
+
 
 .travel-card__image {
     background-size: 20%;
+    
 }
 
 .travel-card {
     flex: 0 0 auto;
-}
+    height: 500px;
+    max-width: 100%;
 
+}
 .travel-card:hover{
     cursor: pointer;
     gap: 47px,
