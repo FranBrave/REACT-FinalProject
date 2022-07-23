@@ -57,9 +57,9 @@ const TravelCreation = ({ userId }) => {
         }
     };
 
-    const removeTag = () => {
+    const removeTag = (tag) => {
         const tagsValue = form.tags;
-        tagsValue.splice(tagsValue.indexOf(showTag), 1);
+        tagsValue.splice(tagsValue.indexOf(tag), 1);
         setForm({ ...form, tags: tagsValue });
     };
 
@@ -101,119 +101,114 @@ const TravelCreation = ({ userId }) => {
 
     return (
         <>
-            {cities && tags && (
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <Typography>Creation travel form</Typography>
-                    <Grid
-                        container
-                        spacing={0}
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                        gap="1rem"
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <Typography sx={{ textAlign: "center" }}>
+                    Creation travel form
+                </Typography>
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    gap="1rem"
+                    sx={{ height: "80vh" }}
+                >
+                    <TextField
+                        name="title"
+                        type="text"
+                        placeholder="travel's title"
+                        label="Title"
+                        onChange={handleChangeForm}
+                        sx={{
+                            width: "40vw",
+                        }}
+                    />
+                    <TextField
+                        name="description"
+                        type="text"
+                        placeholder="travel's description"
+                        label="Description"
+                        onChange={handleChangeForm}
+                        sx={{
+                            width: "40vw",
+                        }}
+                    />
+                    <TextField
+                        name="budget"
+                        type="number"
+                        placeholder="travel's budget"
+                        label="Budget"
+                        onChange={(e) =>
+                            setForm({
+                                ...form,
+                                budget: parseInt(e.target.value),
+                            })
+                        }
+                        sx={{
+                            width: "40vw",
+                        }}
+                    />
+                    <Stack
+                        direction="row"
+                        spacing={1}
+                        sx={{
+                            width: "40vw",
+                            justifyContent: "center",
+                        }}
                     >
-                        <TextField
-                            name="title"
-                            type="text"
-                            placeholder="travel's title"
-                            label="Title"
-                            onChange={handleChangeForm}
-                            sx={{
-                                mt: 2,
-                                mb: 2,
-                                width: "40vw",
-                            }}
-                        />
-                        <TextField
-                            name="description"
-                            type="text"
-                            placeholder="travel's description"
-                            label="Description"
-                            onChange={handleChangeForm}
-                            sx={{
-                                mt: 2,
-                                mb: 2,
-                                width: "40vw",
-                            }}
-                        />
-                        <TextField
-                            name="budget"
-                            type="number"
-                            placeholder="travel's budget"
-                            label="Budget"
+                        <DatePicker
+                            openTo="year"
+                            views={["year", "month", "day"]}
+                            label="From"
+                            name="dateFrom"
+                            value={form.dateFrom}
                             onChange={(e) =>
-                                setForm({
-                                    ...form,
-                                    budget: parseInt(e.target.value),
-                                })
+                                setForm({ ...form, dateFrom: e.toString() })
                             }
-                            sx={{
-                                mt: 2,
-                                mb: 2,
-                                width: "40vw",
-                            }}
+                            renderInput={(params) => (
+                                <TextField {...params} helperText={null} />
+                            )}
                         />
-                        <Stack
-                            direction="row"
-                            spacing={1}
+                        <DatePicker
+                            openTo="year"
+                            views={["year", "month", "day"]}
+                            label="To"
+                            name="dateTo"
+                            value={form.dateTo}
+                            onChange={(e) =>
+                                setForm({ ...form, dateTo: e.toString() })
+                            }
+                            renderInput={(params) => (
+                                <TextField {...params} helperText={null} />
+                            )}
+                        />
+                    </Stack>
+                    <Stack>
+                        <InputLabel
+                            id="cityName-label"
                             sx={{
-                                width: "40vw",
-                                justifyContent: "center",
+                                textAlign: "left",
                             }}
                         >
-                            <DatePicker
-                                openTo="year"
-                                views={["year", "month", "day"]}
-                                label="From"
-                                name="dateFrom"
-                                value={form.dateFrom}
-                                onChange={(e) =>
-                                    setForm({ ...form, dateFrom: e.toString() })
-                                }
-                                renderInput={(params) => (
-                                    <TextField {...params} helperText={null} />
-                                )}
-                            />
-                            <DatePicker
-                                openTo="year"
-                                views={["year", "month", "day"]}
-                                label="To"
-                                name="dateTo"
-                                value={form.dateTo}
-                                onChange={(e) =>
-                                    setForm({ ...form, dateTo: e.toString() })
-                                }
-                                renderInput={(params) => (
-                                    <TextField {...params} helperText={null} />
-                                )}
-                            />
-                        </Stack>
-                        <Stack>
-                            <InputLabel
-                                id="cityName-label"
-                                sx={{
-                                    textAlign: "left",
-                                }}
-                            >
-                                City Name
-                            </InputLabel>
-                            <Select
-                                labelId="cityName-label"
-                                id="cityName"
-                                value={form.cityName}
-                                onChange={handleChangeForm}
-                                autoWidth
-                                name="cityName"
-                                sx={{
-                                    mt: 2,
-                                    mb: 2,
-                                    width: "40vw",
-                                }}
-                            >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {cities.map((city) => (
+                            City Name
+                        </InputLabel>
+                        <Select
+                            labelId="cityName-label"
+                            id="cityName"
+                            value={form.cityName}
+                            onChange={handleChangeForm}
+                            autoWidth
+                            name="cityName"
+                            sx={{
+                                width: "40vw",
+                            }}
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            {cities &&
+                                cities.map((city) => (
                                     <MenuItem
                                         value={city.cityName}
                                         key={city.id}
@@ -221,12 +216,17 @@ const TravelCreation = ({ userId }) => {
                                         {city.cityName}
                                     </MenuItem>
                                 ))}
-                            </Select>
-                        </Stack>
-                        <Stack>
-                            <Stack direction="row" spacing={1}>
-                                <InputLabel id="tags-label">Tags</InputLabel>
-                                {form.tags.map((tag) => (
+                        </Select>
+                    </Stack>
+                    <Stack>
+                        <Stack
+                            direction="row"
+                            spacing={2}
+                            sx={{ padding: "1rem" }}
+                        >
+                            <InputLabel id="tags-label">Tags</InputLabel>
+                            {form.tags.length > 0 &&
+                                form.tags.map((tag) => (
                                     <InputLabel
                                         sx={{
                                             p: "0 2rem",
@@ -243,7 +243,7 @@ const TravelCreation = ({ userId }) => {
                                     >
                                         {tag}
                                         <Button
-                                            onClick={removeTag}
+                                            onClick={() => removeTag(tag)}
                                             sx={{
                                                 color: "white",
                                                 position: "absolute",
@@ -256,45 +256,68 @@ const TravelCreation = ({ userId }) => {
                                         </Button>
                                     </InputLabel>
                                 ))}
-                            </Stack>
-                            <Select
-                                labelId="tags-label"
-                                id="tags"
-                                value={showTag}
-                                onChange={handleTags}
-                                autoWidth
-                                name="tags"
-                                sx={{
-                                    mt: 2,
-                                    mb: 2,
-                                    width: "40vw",
-                                }}
-                            >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {tags.map((tag) => (
+                        </Stack>
+                        <Select
+                            labelId="tags-label"
+                            id="tags"
+                            value={showTag}
+                            onChange={handleTags}
+                            autoWidth
+                            name="tags"
+                            sx={{
+                                width: "40vw",
+                            }}
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            {tags &&
+                                tags.map((tag) => (
                                     <MenuItem value={tag.title} key={tag.id}>
                                         {tag.title}
                                     </MenuItem>
                                 ))}
-                            </Select>
-                            <Button onClick={addTag}>Add Tag</Button>
-                        </Stack>
-                        <Button onClick={submitUserForm}>Create Travel</Button>
-                        {error && (
-                            <Alert variant="filled" severity="error">
-                                All the fields are required!
-                            </Alert>
-                        )}
-                        {alertDisplay && (
-                            <Alert variant="filled" severity="success">
-                                Travel successfully created!
-                            </Alert>
-                        )}
-                    </Grid>
-                </LocalizationProvider>
-            )}
+                        </Select>
+                        <Button
+                            onClick={addTag}
+                            sx={{
+                                p: "0.5rem 4rem",
+                                backgroundColor: "#ffcb47",
+                                color: "white",
+                                "&:hover": {
+                                    backgroundColor: "#F0A370",
+                                },
+                            }}
+                        >
+                            Add Tag
+                        </Button>
+                    </Stack>
+
+                    <Button
+                        onClick={submitUserForm}
+                        sx={{
+                            p: "0.5rem 4rem",
+                            backgroundColor: "#ffcb47",
+                            color: "white",
+                            "&:hover": {
+                                backgroundColor: "#F0A370",
+                            },
+                        }}
+                    >
+                        Create Travel
+                    </Button>
+                    {error && (
+                        <Alert variant="filled" severity="error">
+                            All the fields are required!
+                        </Alert>
+                    )}
+                    {alertDisplay && (
+                        <Alert variant="filled" severity="success">
+                            Travel successfully created!
+                        </Alert>
+                    )}
+                </Grid>
+            </LocalizationProvider>
         </>
     );
 };

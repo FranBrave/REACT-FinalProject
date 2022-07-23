@@ -16,9 +16,11 @@ import {
     toggleCreateModal,
     toggleEditModal,
 } from "../../../../state/context/actions/modalActions";
+import { useCheckSameUser } from "../../../../customHook/useCheckSameUser";
 
-const UserInfo = ({ userDetail }) => {
+const UserInfo = ({ userDetail, username }) => {
     const { modalState, modalDispatch } = useContext(ModalContext);
+    const isSameUser = useCheckSameUser(username);
 
     const handleEditModal = () => {
         toggleEditModal(modalState.edit, modalDispatch);
@@ -107,32 +109,36 @@ const UserInfo = ({ userDetail }) => {
                                     <AccessTimeIcon sx={{ color: "blue" }} />
                                     {userDetail.age} years
                                 </Stack>
-                                <Button
-                                    sx={{
-                                        p: "0.5rem 4rem",
-                                        backgroundColor: "#8AA1B1",
-                                        color: "white",
-                                        "&:hover": {
-                                            backgroundColor: "#9ac2c9",
-                                        },
-                                    }}
-                                    onClick={handleEditModal}
-                                >
-                                    Edit
-                                </Button>
-                                <Button
-                                    sx={{
-                                        p: "0.5rem 4rem",
-                                        backgroundColor: "#ffcb47",
-                                        color: "white",
-                                        "&:hover": {
-                                            backgroundColor: "#F0A370",
-                                        },
-                                    }}
-                                    onClick={handleCreateModal}
-                                >
-                                    Create travel
-                                </Button>
+                                {isSameUser && (
+                                    <Button
+                                        sx={{
+                                            p: "0.5rem 4rem",
+                                            backgroundColor: "#8AA1B1",
+                                            color: "white",
+                                            "&:hover": {
+                                                backgroundColor: "#9ac2c9",
+                                            },
+                                        }}
+                                        onClick={handleEditModal}
+                                    >
+                                        Edit
+                                    </Button>
+                                )}
+                                {isSameUser && (
+                                    <Button
+                                        sx={{
+                                            p: "0.5rem 4rem",
+                                            backgroundColor: "#ffcb47",
+                                            color: "white",
+                                            "&:hover": {
+                                                backgroundColor: "#F0A370",
+                                            },
+                                        }}
+                                        onClick={handleCreateModal}
+                                    >
+                                        Create travel
+                                    </Button>
+                                )}
                             </Grid>
                         </Grid>
                     </Grid>
