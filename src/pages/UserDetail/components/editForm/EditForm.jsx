@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
     Alert,
     Button,
@@ -20,16 +19,16 @@ import shortid from "shortid";
 import { setReduxAddTravel } from "../../../../state/redux/actions/travelActions";
 
 const INITIAL_STATE = {
-    title: "",
-    description: "",
-    dateFrom: new Date().toString(),
-    dateTo: new Date().toString(),
-    budget: 0,
-    cityName: "",
-    tags: [],
+    name: "",
+    surname: "",
+    age: 0,
+    bio: "",
+    location: "",
+    sex: "",
+    preferences: [],
 };
 
-const TravelCreation = ({ userId }) => {
+const EditForm = ({ userId }) => {
     const [form, setForm] = useState(INITIAL_STATE);
     const [cities, setCities] = useState();
     const [tags, setTags] = useState();
@@ -73,11 +72,12 @@ const TravelCreation = ({ userId }) => {
 
     const submitUserForm = () => {
         if (
-            form.title === "" ||
-            form.description === "" ||
-            form.budget === 0 ||
-            form.cityName === 0 ||
-            form.tags.length < 1
+            form.name === "" ||
+            form.surname === "" ||
+            form.sex === "" ||
+            form.age === 0 ||
+            form.location === 0 ||
+            form.preferences.length < 1
         ) {
             setError(true);
             setTimeout(() => {
@@ -103,7 +103,7 @@ const TravelCreation = ({ userId }) => {
         <>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <Typography sx={{ textAlign: "center" }}>
-                    Creation travel form
+                    Edit user form
                 </Typography>
                 <Grid
                     container
@@ -115,91 +115,97 @@ const TravelCreation = ({ userId }) => {
                     sx={{ height: "80vh" }}
                 >
                     <TextField
-                        name="title"
+                        name="name"
                         type="text"
-                        placeholder="travel's title"
-                        label="Title"
+                        placeholder="User name"
+                        label="User name"
                         onChange={handleChangeForm}
                         sx={{
                             width: "40vw",
                         }}
                     />
                     <TextField
-                        name="description"
+                        name="surname"
                         type="text"
-                        placeholder="travel's description"
-                        label="Description"
+                        placeholder="Surname"
+                        label="Surname"
                         onChange={handleChangeForm}
                         sx={{
                             width: "40vw",
                         }}
                     />
                     <TextField
-                        name="budget"
+                        name="bio"
+                        type="text"
+                        placeholder="Bio"
+                        label="Bio"
+                        onChange={handleChangeForm}
+                        sx={{
+                            width: "40vw",
+                        }}
+                    />
+                    <TextField
+                        name="age"
                         type="number"
-                        placeholder="travel's budget"
-                        label="Budget"
+                        placeholder="Age"
+                        label="Age"
                         onChange={(e) =>
                             setForm({
                                 ...form,
-                                budget: parseInt(e.target.value),
+                                age: parseInt(e.target.value),
                             })
                         }
                         sx={{
                             width: "40vw",
                         }}
                     />
-                    <Stack
-                        direction="row"
-                        spacing={1}
-                        sx={{
-                            width: "40vw",
-                            justifyContent: "center",
-                        }}
-                    >
-                        <DatePicker
-                            openTo="year"
-                            views={["year", "month", "day"]}
-                            label="From"
-                            name="dateFrom"
-                            value={form.dateFrom}
-                            onChange={(e) =>
-                                setForm({ ...form, dateFrom: e.toString() })
-                            }
-                            renderInput={(params) => (
-                                <TextField {...params} helperText={null} />
-                            )}
-                        />
-                        <DatePicker
-                            openTo="year"
-                            views={["year", "month", "day"]}
-                            label="To"
-                            name="dateTo"
-                            value={form.dateTo}
-                            onChange={(e) =>
-                                setForm({ ...form, dateTo: e.toString() })
-                            }
-                            renderInput={(params) => (
-                                <TextField {...params} helperText={null} />
-                            )}
-                        />
-                    </Stack>
                     <Stack>
                         <InputLabel
-                            id="cityName-label"
+                            id="sex-label"
                             sx={{
                                 textAlign: "left",
                             }}
                         >
-                            City Name
+                            Sex
                         </InputLabel>
                         <Select
-                            labelId="cityName-label"
-                            id="cityName"
-                            value={form.cityName}
+                            labelId="sex-label"
+                            id="sex"
+                            value={form.sex}
                             onChange={handleChangeForm}
                             autoWidth
-                            name="cityName"
+                            name="sex"
+                            sx={{
+                                width: "40vw",
+                            }}
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value="Male " key={shortid.generate()}>
+                                Male
+                            </MenuItem>
+                            <MenuItem value="Female" key={shortid.generate()}>
+                                Female
+                            </MenuItem>
+                        </Select>
+                    </Stack>
+                    <Stack>
+                        <InputLabel
+                            id="location-label"
+                            sx={{
+                                textAlign: "left",
+                            }}
+                        >
+                            Location
+                        </InputLabel>
+                        <Select
+                            labelId="location-label"
+                            id="location"
+                            value={form.location}
+                            onChange={handleChangeForm}
+                            autoWidth
+                            name="location"
                             sx={{
                                 width: "40vw",
                             }}
@@ -224,9 +230,9 @@ const TravelCreation = ({ userId }) => {
                             spacing={2}
                             sx={{ padding: "0 1rem 1rem 1rem" }}
                         >
-                            <InputLabel id="tags-label">Tags</InputLabel>
-                            {form.tags.length > 0 &&
-                                form.tags.map((tag) => (
+                            <InputLabel id="tags-label">Preferences</InputLabel>
+                            {form.preferences.length > 0 &&
+                                form.preferences.map((tag) => (
                                     <InputLabel
                                         sx={{
                                             p: "0 2rem",
@@ -268,7 +274,7 @@ const TravelCreation = ({ userId }) => {
                                 value={showTag}
                                 onChange={handleTags}
                                 autoWidth
-                                name="tags"
+                                name="preferences"
                                 sx={{
                                     width: "40vw",
                                 }}
@@ -298,7 +304,7 @@ const TravelCreation = ({ userId }) => {
                                     },
                                 }}
                             >
-                                Add Tag
+                                Add
                             </Button>
                         </Stack>
                     </Stack>
@@ -314,15 +320,23 @@ const TravelCreation = ({ userId }) => {
                             },
                         }}
                     >
-                        Create Travel
+                        Edit
                     </Button>
                     {error && (
-                        <Alert variant="filled" severity="error">
+                        <Alert
+                            variant="filled"
+                            severity="error"
+                            sx={{ position: " absolute" }}
+                        >
                             All the fields are required!
                         </Alert>
                     )}
                     {alertDisplay && (
-                        <Alert variant="filled" severity="success">
+                        <Alert
+                            variant="filled"
+                            severity="success"
+                            sx={{ position: " absolute" }}
+                        >
                             Travel successfully created!
                         </Alert>
                     )}
@@ -332,4 +346,4 @@ const TravelCreation = ({ userId }) => {
     );
 };
 
-export default TravelCreation;
+export default EditForm;

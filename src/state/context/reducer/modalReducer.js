@@ -1,17 +1,35 @@
 import * as actions from "../actions/modalActions";
 
 export const INITIAL_STATE = {
-    open: false,
+    auth: false,
+    edit: false,
+    create: false,
 };
 export const modalReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case actions.MODAL_OPEN:
             return {
-                open: action.payload,
+                auth: action.payload,
             };
         case actions.MODAL_CLOSED:
             return {
-                open: action.payload,
+                auth: action.payload,
+            };
+        case actions.EDIT_MODAL_OPEN:
+            return {
+                edit: action.payload,
+            };
+        case actions.EDIT_MODAL_CLOSED:
+            return {
+                edit: action.payload,
+            };
+        case actions.CREATE_MODAL_OPEN:
+            return {
+                create: action.payload,
+            };
+        case actions.CREATE_MODAL_CLOSED:
+            return {
+                create: action.payload,
             };
         default:
             return state;

@@ -1,23 +1,23 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../state/context/authContext";
 import { Modal, Button, Fade } from "@mui/material";
 import { Box } from "@mui/system";
 import { toggleAuthModal } from "../../state/context/actions/modalActions";
 import { useStyles } from "./styles/styles";
 import AuthForm from "./components/AuthForm";
+import { ModalContext } from "../../state/context/modalContext";
 
 const AuthModal = () => {
     const classes = useStyles();
 
-    const { modalState, modalDispatch } = useContext(AuthContext);
+    const { modalState, modalDispatch } = useContext(ModalContext);
 
     const handleCloseModal = () => {
-        toggleAuthModal(modalState.open, modalDispatch);
+        toggleAuthModal(modalState.auth, modalDispatch);
     };
 
     return (
-        <Modal open={modalState.open} sx={classes.backdrop}>
-            <Fade in={modalState.open}>
+        <Modal open={modalState.auth} sx={classes.backdrop}>
+            <Fade in={modalState.auth}>
                 <Box sx={classes.modal}>
                     <Button onClick={handleCloseModal}>Close</Button>
                     <AuthForm />

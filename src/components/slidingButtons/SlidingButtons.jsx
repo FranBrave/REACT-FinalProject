@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, SwitchLabel, SwitchRadio, SwitchSelection } from "./styles.js";
+import shortid from "shortid";
 
 const titleCase = (str) =>
     str
@@ -34,7 +35,7 @@ const SlidingButtons = ({ values, defaultSelected, switchInfo }) => {
 
     const selectionStyle = () => {
         return {
-            left: `${(values.indexOf(selected) / 3) * 100}%`,
+            left: `${(values.indexOf(selected) / values.length) * 100}%`,
         };
     };
 
@@ -42,7 +43,7 @@ const SlidingButtons = ({ values, defaultSelected, switchInfo }) => {
         <Switch>
             {values.map((val) => {
                 return (
-                    <span>
+                    <span key={shortid.generate()}>
                         <ConcealedRadio value={val} selected={selected} />
                         <ClickableLabel
                             title={val}
