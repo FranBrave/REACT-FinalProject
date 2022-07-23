@@ -92,7 +92,6 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
             dispatch(setReduxAddTravel(data));
             setForm(INITIAL_STATE);
             setAlertDisplay(true);
-
             setTimeout(() => {
                 setAlertDisplay(false);
             }, 3500);

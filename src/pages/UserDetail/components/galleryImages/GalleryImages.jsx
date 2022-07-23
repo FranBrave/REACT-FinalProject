@@ -1,6 +1,6 @@
 import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import shortid from "shortid";
 
 const GalleryImages = ({ selectedComp, userDetail }) => {

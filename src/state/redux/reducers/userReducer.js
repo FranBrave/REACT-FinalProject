@@ -26,6 +26,18 @@ export const userReducer = (state = INITIAL_STATE, action) => {
                 userList: action.payload,
                 error: "",
             };
+        case actions.USER_CREATE_TRAVEL:
+            return {
+                ...state,
+                userDetail: {
+                    ...state.userDetail,
+                    travelsCreated: [
+                        ...state.userDetail.travelsCreated,
+                        action.payload,
+                    ],
+                },
+                error: "",
+            };
         case actions.USER_ERROR:
             return {
                 ...state,

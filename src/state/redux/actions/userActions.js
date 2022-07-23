@@ -25,9 +25,9 @@ const actionUsersList = (usersList) => ({
     payload: usersList,
 });
 
-const actionUserCreateTravel = (error) => ({
+export const actionUserCreateTravel = (data) => ({
     type: USER_CREATE_TRAVEL,
-    payload: error,
+    payload: data,
 });
 
 const actionUserError = (error) => ({
@@ -73,7 +73,6 @@ export const setReduxUserEdit = (data) => {
                 dispatch(actionUserEdit(res))
             );
         } catch (error) {
-            console.log(error.response.data);
             dispatch(actionUserError(error.response.data));
         }
     };

@@ -3,6 +3,7 @@ import {
     getTravelsList,
     postTravel,
 } from "../services/travelServices";
+import { actionUserCreateTravel } from "../actions/userActions";
 
 export const TRAVEL_DETAIL = "TRAVEL_DETAIL";
 export const TRAVELS_LIST = "TRAVELS_LIST";
@@ -66,7 +67,10 @@ export const setReduxTravelsList = () => {
 export const setReduxAddTravel = (data) => {
     return (dispatch) => {
         try {
-            postTravel(data).then((res) => dispatch(actionPushTravel(res)));
+            postTravel(data).then((res) => {
+                dispatch(actionPushTravel(res));
+                dispatch(actionUserCreateTravel(res));
+            });
             return;
         } catch (error) {
             dispatch(actionTravelError(error.response.data));
