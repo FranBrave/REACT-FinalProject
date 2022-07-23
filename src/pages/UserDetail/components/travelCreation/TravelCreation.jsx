@@ -4,10 +4,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
-<<<<<<< HEAD
-=======
     Alert,
->>>>>>> 9f55deed294797edf0ff1b71be311183d81c6a5e
     Button,
     Grid,
     InputLabel,
@@ -37,10 +34,7 @@ const TravelCreation = ({ userId }) => {
     const [cities, setCities] = useState();
     const [tags, setTags] = useState();
     const [showTag, setShowTag] = useState("");
-<<<<<<< HEAD
-=======
     const [alertDisplay, setAlertDisplay] = useState(false);
->>>>>>> 9f55deed294797edf0ff1b71be311183d81c6a5e
     const [error, setError] = useState();
     const dispatch = useDispatch();
 
@@ -85,14 +79,10 @@ const TravelCreation = ({ userId }) => {
             form.cityName === 0 ||
             form.tags.length < 1
         ) {
-<<<<<<< HEAD
-            setError("All inputs are required");
-=======
             setError(true);
             setTimeout(() => {
                 setError(false);
             }, 2000);
->>>>>>> 9f55deed294797edf0ff1b71be311183d81c6a5e
             return;
         } else {
             const data = {
@@ -100,16 +90,12 @@ const TravelCreation = ({ userId }) => {
                 userId,
             };
             dispatch(setReduxAddTravel(data));
-<<<<<<< HEAD
-            setError(null);
-=======
             setForm(INITIAL_STATE);
             setAlertDisplay(true);
 
             setTimeout(() => {
                 setAlertDisplay(false);
             }, 3500);
->>>>>>> 9f55deed294797edf0ff1b71be311183d81c6a5e
         }
     };
 
@@ -296,9 +282,6 @@ const TravelCreation = ({ userId }) => {
                             <Button onClick={addTag}>Add Tag</Button>
                         </Stack>
                         <Button onClick={submitUserForm}>Create Travel</Button>
-<<<<<<< HEAD
-                        {error && <p>{error}</p>}
-=======
                         {error && (
                             <Alert variant="filled" severity="error">
                                 All the fields are required!
@@ -309,7 +292,6 @@ const TravelCreation = ({ userId }) => {
                                 Travel successfully created!
                             </Alert>
                         )}
->>>>>>> 9f55deed294797edf0ff1b71be311183d81c6a5e
                     </Grid>
                 </LocalizationProvider>
             )}
