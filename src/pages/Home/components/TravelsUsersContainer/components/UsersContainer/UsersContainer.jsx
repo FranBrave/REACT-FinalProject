@@ -5,7 +5,6 @@ import { setReduxUsersList } from "../../../../../../state/redux/actions/userAct
 import RightArrowIcon from "../../../../../../assets/icons/right-arrow.png";
 import LeftArrowIcon from "../../../../../../assets/icons/left-arrow.png";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
-import "./UsersContainer.css";
 
 const UsersContainer = () => {
   const { userList } = useSelector((state) => state.user);

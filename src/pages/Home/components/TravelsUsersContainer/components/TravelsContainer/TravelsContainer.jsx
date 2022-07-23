@@ -15,16 +15,7 @@ const TravelsContainer = () => {
 
   return (
     <Box>
-      <h1>Playa</h1>
-      <TravelList travelsList={travelsList} tipo="Playa" />
-      <h1>Nacional</h1>
-      <TravelList travelsList={travelsList} tipo="Nacional" />
-      <h1>Ciudad</h1>
-      <TravelList travelsList={travelsList} tipo="Ciudad" />
-      <h1>Internacional</h1>
-      <TravelList travelsList={travelsList} tipo="Internacional" />
-      <h1>Naturaleza</h1>
-      <TravelList travelsList={travelsList} tipo="Naturaleza" />
+      <TravelList travelsList={travelsList} tipo="tipo" />
     </Box>
   );
 };
