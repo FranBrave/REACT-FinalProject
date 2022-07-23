@@ -8,13 +8,14 @@ const titleCase = (str) =>
         .map((w) => w[0].toUpperCase() + w.slice(1))
         .join(" ");
 
-const ClickableLabel = ({ title, onChange, id, switchInfo }) => (
+const ClickableLabel = ({ title, onChange, id, switchInfo, home }) => (
     <SwitchLabel
         onClick={() => {
             onChange(title);
             switchInfo(title);
         }}
         className={id}
+        home={home && true}
     >
         {titleCase(title)}
     </SwitchLabel>
@@ -22,7 +23,7 @@ const ClickableLabel = ({ title, onChange, id, switchInfo }) => (
 
 const ConcealedRadio = () => <SwitchRadio type="radio" name="switch" />;
 
-const SlidingButtons = ({ values, defaultSelected, switchInfo }) => {
+const SlidingButtons = ({ values, defaultSelected, switchInfo, home }) => {
     const [selected, setSelected] = useState();
 
     const handleChange = (val) => {
@@ -40,7 +41,7 @@ const SlidingButtons = ({ values, defaultSelected, switchInfo }) => {
     };
 
     return (
-        <Switch>
+        <Switch home={home && true}>
             {values.map((val) => {
                 return (
                     <span key={shortid.generate()}>
@@ -49,11 +50,12 @@ const SlidingButtons = ({ values, defaultSelected, switchInfo }) => {
                             title={val}
                             onChange={handleChange}
                             switchInfo={switchInfo}
+                            home={home}
                         />
                     </span>
                 );
             })}
-            <SwitchSelection style={selectionStyle()} />
+            <SwitchSelection style={selectionStyle()} home={home && true} />
         </Switch>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 import TravelsUsersContainer from "./components/TravelsUsersContainer/TravelsUsersContainer";
-import SlidingButtons from "../../components/Toggle/SlidingButtons";
+import SlidingButtons from "../../components/slidingButtons/SlidingButtons";
 
 const values = ["Travels", "Users"];
 
@@ -14,11 +14,11 @@ const Home = () => {
 
     return (
         <Box>
-            {/* <Toggle toggleDisplay={toggleDisplay} /> */}
             <SlidingButtons
                 values={values}
                 defaultSelected="Travels"
                 switchInfo={switchInfo}
+                home={true}
             />
             <TravelsUsersContainer selectedComp={selectedComp} />
         </Box>
