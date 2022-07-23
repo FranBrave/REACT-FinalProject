@@ -21,7 +21,12 @@ const CreateModal = () => {
             <Fade in={modalState.create}>
                 <Box sx={classes.modal}>
                     <Button onClick={handleCloseModal}>Close</Button>
-                    <TravelCreation userId={userDetail._id}/>
+                    {userDetail && (
+                        <TravelCreation
+                            userId={userDetail._id}
+                            handleCloseModal={handleCloseModal}
+                        />
+                    )}
                 </Box>
             </Fade>
         </Modal>

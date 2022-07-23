@@ -6,6 +6,7 @@ import {
     ImageList,
     Stack,
     Typography,
+    TextField,
 } from "@mui/material";
 import React, { useContext } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -15,8 +16,13 @@ import { ModalContext } from "../../../../state/context/modalContext";
 import {
     toggleCreateModal,
     toggleEditModal,
+    toggleInfoModal,
 } from "../../../../state/context/actions/modalActions";
 import { useCheckSameUser } from "../../../../customHook/useCheckSameUser";
+import InfoIcon from "@mui/icons-material/Info";
+import EditIcon from "@mui/icons-material/Edit";
+import { Box } from "@mui/system";
+import { Label } from "@mui/icons-material";
 
 const UserInfo = ({ userDetail, username }) => {
     const { modalState, modalDispatch } = useContext(ModalContext);
@@ -28,6 +34,14 @@ const UserInfo = ({ userDetail, username }) => {
 
     const handleCreateModal = () => {
         toggleCreateModal(modalState.create, modalDispatch);
+    };
+
+    const handleInfoModal = () => {
+        toggleInfoModal(modalState.info, modalDispatch);
+    };
+
+    const submitAvatar = (e) => {
+        console.log(e.currentTarget.files[0]);
     };
 
     return (
@@ -49,14 +63,34 @@ const UserInfo = ({ userDetail, username }) => {
                             alignItems="center"
                             justifyContent="center"
                             gap="1rem"
+                            sx={{ position: "relative" }}
                         >
                             <Avatar
                                 sx={{ width: 224, height: 224 }}
                                 src={userDetail.avatar}
                             />
-                            <Typography sx={{ fontSize: "20px" }}>
-                                {userDetail.username}
-                            </Typography>
+                            <Box>
+                                <label for="file-input">
+                                    <EditIcon
+                                        sx={{
+                                            position: "absolute",
+                                            right: "0",
+                                            bottom: "1rem",
+                                            color: "gray",
+                                            cursor: "pointer",
+                                            "&:hover": {
+                                                color: "black",
+                                            },
+                                        }}
+                                    />
+                                </label>
+                                <TextField
+                                    type="file"
+                                    id="file-input"
+                                    sx={{ display: "none" }}
+                                    onChange={(e) => submitAvatar(e)}
+                                />
+                            </Box>
                         </Stack>
 
                         <Grid
@@ -77,6 +111,16 @@ const UserInfo = ({ userDetail, username }) => {
                             >
                                 <Typography>{userDetail.name}</Typography>
                                 <Typography>{userDetail.surname}</Typography>
+                                <InfoIcon
+                                    sx={{
+                                        cursor: "pointer",
+                                        color: "gray",
+                                        "&:hover": {
+                                            color: "black",
+                                        },
+                                    }}
+                                    onClick={handleInfoModal}
+                                />
                             </Stack>
 
                             <Typography>{userDetail.bio}</Typography>

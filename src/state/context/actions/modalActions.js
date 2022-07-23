@@ -7,6 +7,9 @@ export const EDIT_MODAL_CLOSED = "EDIT_MODAL_CLOSED";
 export const CREATE_MODAL_OPEN = "CREATE_MODAL_OPEN";
 export const CREATE_MODAL_CLOSED = "CREATE_MODAL_CLOSED";
 
+export const INFO_MODAL_OPEN = "INFO_MODAL_OPEN";
+export const INFO_MODAL_CLOSED = "INFO_MODAL_CLOSED";
+
 const actionModalOpen = (value) => ({
     type: MODAL_OPEN,
     payload: !value,
@@ -37,6 +40,16 @@ const actionCreateModalClosed = (value) => ({
     payload: !value,
 });
 
+const actionInfoModalOpen = (value) => ({
+    type: INFO_MODAL_OPEN,
+    payload: !value,
+});
+
+const actionInfoModalClosed = (value) => ({
+    type: INFO_MODAL_CLOSED,
+    payload: !value,
+});
+
 /**
  * Toggle the state of the auth modal between visible or hidden with boolean parameter
  * @param {*} value (true/false)
@@ -58,4 +71,10 @@ export const toggleCreateModal = (value, dispatch) => {
     value
         ? dispatch(actionCreateModalOpen(value))
         : dispatch(actionCreateModalClosed(value));
+};
+
+export const toggleInfoModal = (value, dispatch) => {
+    value
+        ? dispatch(actionInfoModalOpen(value))
+        : dispatch(actionInfoModalClosed(value));
 };

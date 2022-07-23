@@ -55,9 +55,9 @@ const EditForm = ({ userId, handleCloseModal }) => {
     };
 
     const removeTag = (tag) => {
-        const tagsValue = form.tags;
+        const tagsValue = form.preferences;
         tagsValue.splice(tagsValue.indexOf(tag), 1);
-        setForm({ ...form, tags: tagsValue });
+        setForm({ ...form, preferences: tagsValue });
     };
 
     useEffect(() => {

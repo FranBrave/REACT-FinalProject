@@ -21,10 +21,12 @@ const EditModal = () => {
             <Fade in={modalState.edit}>
                 <Box sx={classes.modal}>
                     <Button onClick={handleCloseModal}>Close</Button>
-                    <EditForm
-                        userId={userDetail._id}
-                        handleCloseModal={handleCloseModal}
-                    />
+                    {userDetail && (
+                        <EditForm
+                            userId={userDetail._id}
+                            handleCloseModal={handleCloseModal}
+                        />
+                    )}
                 </Box>
             </Fade>
         </Modal>

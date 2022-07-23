@@ -8,6 +8,7 @@ export const USER_DETAIL = "USER_DETAIL";
 export const USER_EDIT = "USER_EDIT";
 export const USERS_LIST = "USERS_LIST";
 export const USER_ERROR = "USER_ERROR";
+export const USER_CREATE_TRAVEL = "USER_CREATE_TRAVEL";
 
 const actionUserDetail = (userDetail) => ({
     type: USER_DETAIL,
@@ -22,6 +23,11 @@ const actionUserEdit = (userDetail) => ({
 const actionUsersList = (usersList) => ({
     type: USERS_LIST,
     payload: usersList,
+});
+
+const actionUserCreateTravel = (error) => ({
+    type: USER_CREATE_TRAVEL,
+    payload: error,
 });
 
 const actionUserError = (error) => ({
