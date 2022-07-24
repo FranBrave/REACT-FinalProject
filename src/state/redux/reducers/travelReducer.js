@@ -39,8 +39,20 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
                     usersWantJoin: action.payload,
                 },
                 error: "",
+            };  
+        case action.TRAVEL_FOLLOW_LIST:
+            return {
+                ...state,
+                travelDetail: {
+                    ...state.travelDetail,
+                    userFollow: action.payload,
+                },
+                error:"",
             };
+
         default:
             return state;
     }
+
+        
 };

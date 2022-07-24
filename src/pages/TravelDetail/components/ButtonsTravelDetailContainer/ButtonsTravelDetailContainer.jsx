@@ -3,7 +3,7 @@ import { Button, Typography, Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useUserLoggedDetail } from "../../../../customHook/useUserLoggedDetail";
 import { useDispatch } from "react-redux";
-import { setReduxUserWantJoin } from "../../../../state/redux/actions/travelActions";
+import { setReduxUserFollow, setReduxUserWantJoin } from "../../../../state/redux/actions/travelActions";
 
 const ButtonsTravelDetailContainer = ({ travel }) => {
     //travel id
@@ -20,7 +20,14 @@ const ButtonsTravelDetailContainer = ({ travel }) => {
         dispatch(setReduxUserWantJoin(data, travel.usersWantJoin));
     };
 
-    const addUserToFollowList = () => {};
+    const addUserToFollowList = () => {
+      const data = {
+        userName: userLogged.username, 
+        travelId: id,
+      }
+
+      dispatch(setReduxUserFollow(data, travel.usersFollowing))
+    };
 
     return (
         <Grid container spacing={4}>
