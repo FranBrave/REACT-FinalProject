@@ -1,4 +1,11 @@
-import { Link, Typography, Box, Grid } from "@mui/material";
+import {
+  Link,
+  Typography,
+  Box,
+  Grid,
+  CircularProgress,
+  Stack,
+} from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import React, { useEffect, useState } from "react";
 import { getTags } from "../../../../../../../../services/getTags";
@@ -224,7 +231,14 @@ const TravelList = ({ travelsList, tipo }) => {
           </Grid>
         </>
       ) : (
-        ""
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          width="100%"
+        >
+          <CircularProgress disableShrink />
+        </Stack>
       )}
     </>
   );
