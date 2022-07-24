@@ -5,6 +5,7 @@ import { setReduxTravelsList } from "../../../../../../state/redux/actions/trave
 import TravelList from "./components/TravelList/TravelList";
 import TravelSearcher from "./components/TravelSearcher/TravelSearcher";
 import { TabPanel, TabContext, TabList } from "@mui/lab";
+import Searcher from "../../../../../../components/Searcher/Searcher";
 
 const TravelsContainer = () => {
   const { travelsList } = useSelector((state) => state.travel);
@@ -24,6 +25,7 @@ const TravelsContainer = () => {
     <>
       <TravelSearcher searchTravel={searchTravel} />
       <TabContext value={value}>
+        <Searcher />
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList value={value} onChange={handleChange} variant="fullWidth">
             <Tab label="Playa" value="1" />

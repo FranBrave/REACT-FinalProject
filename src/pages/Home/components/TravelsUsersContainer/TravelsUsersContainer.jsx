@@ -5,22 +5,17 @@ import TravelsContainer from "./components/TravelsContainer/TravelsContainer";
 import UsersContainer from "./components/UsersContainer/UsersContainer";
 
 const TravelsUsersContainer = ({ selectedComp }) => {
-    const [travelDisplay, setTravelDisplay] = useState();
+  const [travelDisplay, setTravelDisplay] = useState();
 
-    useEffect(() => {
-        setTravelDisplay(selectedComp);
-    }, [selectedComp]);
+  useEffect(() => {
+    setTravelDisplay(selectedComp);
+  }, [selectedComp]);
 
-    return (
-        <Box>
-            <Searcher />
-            {travelDisplay === "Travels" ? (
-                <TravelsContainer />
-            ) : (
-                <UsersContainer />
-            )}
-        </Box>
-    );
+  return (
+    <Box>
+      {travelDisplay === "Travels" ? <TravelsContainer /> : <UsersContainer />}
+    </Box>
+  );
 };
 
 export default TravelsUsersContainer;
