@@ -38,6 +38,15 @@ export const userReducer = (state = INITIAL_STATE, action) => {
                 },
                 error: "",
             };
+        case actions.USER_UPLOAD_IMG:
+            return {
+                ...state,
+                userDetail: {
+                    ...state.userDetail,
+                    images: action.payload,
+                },
+                error: "",
+            };
         case actions.USER_ERROR:
             return {
                 ...state,

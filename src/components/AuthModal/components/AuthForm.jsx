@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 const AuthForm = () => {
     const [form, setForm] = useState(INITIAL_STATE);
     const [loginDisplay, setLoginDisplay] = useState(true);
-    const { authDispatch } = useContext(AuthContext);
+    const { authDispatch, userAuth } = useContext(AuthContext);
     const { modalState, modalDispatch } = useContext(ModalContext);
 
     const handleChangeForm = (e) => {
