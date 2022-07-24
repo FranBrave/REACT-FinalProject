@@ -18,6 +18,7 @@ import { getTags } from "../../../../services/getTags";
 import { useDispatch } from "react-redux/es/exports";
 import shortid from "shortid";
 import { setReduxAddTravel } from "../../../../state/redux/actions/travelActions";
+import CloseIcon from "@mui/icons-material/Close";
 
 const INITIAL_STATE = {
     title: "",
@@ -230,7 +231,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                                 form.tags.map((tag) => (
                                     <InputLabel
                                         sx={{
-                                            p: "0 2rem",
+                                            p: "0 1.3rem",
                                             height: "2rem",
                                             backgroundColor: "gray",
                                             color: "white",
@@ -239,22 +240,21 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                                             display: "flex",
                                             direction: "row",
                                             alignItems: "center",
+                                            justifyContent: "space-between",
                                         }}
                                         key={shortid.generate()}
                                     >
                                         {tag}
-                                        <Button
+                                        <CloseIcon
                                             onClick={() => removeTag(tag)}
                                             sx={{
-                                                color: "white",
-                                                position: "absolute",
-                                                right: 0,
-                                                width: 0,
+                                                cursor: "pointer",
+                                                ml: "1rem",
                                             }}
                                             key={shortid.generate()}
                                         >
                                             X
-                                        </Button>
+                                        </CloseIcon>
                                     </InputLabel>
                                 ))}
                         </Stack>
