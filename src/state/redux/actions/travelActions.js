@@ -3,17 +3,16 @@ import {
     getTravelsList,
     postTravel,
     postUserToWantJoinList,
-    postUserFollow
+    postUserFollow,
 } from "../services/travelServices";
 import { actionUserCreateTravel } from "../actions/userActions";
-
 
 export const TRAVEL_DETAIL = "TRAVEL_DETAIL";
 export const TRAVELS_LIST = "TRAVELS_LIST";
 export const TRAVEL_ERROR = "TRAVEL_ERROR";
 export const PUSH_TRAVEL = "PUSH_TRAVEL";
 export const TRAVEL_WANT_LIST = "TRAVEL_WANT_LIST";
-export const TRAVEL_FOLLOW_LIST = "TRAVEL_FOLLOW_LIST"
+export const TRAVEL_FOLLOW_LIST = "TRAVEL_FOLLOW_LIST";
 
 const actionTravelDetail = (travelDetail) => ({
     type: TRAVEL_DETAIL,
@@ -118,4 +117,4 @@ export const setReduxUserFollow = (data, userFollow) => {
             dispatch(actionTravelError(error.response.data));
         }
     };
-}
+};
