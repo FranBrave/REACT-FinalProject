@@ -27,6 +27,8 @@ const TravelDetailContainer = () => {
         setimgPrincipal(image);
     };
 
+    
+
     return (
         <>
             {travel ? (

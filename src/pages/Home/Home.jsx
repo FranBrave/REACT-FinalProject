@@ -8,7 +8,7 @@ const values = ["Travels", "Users"];
 const Home = () => {
   const [selectedComp, setSelectedComp] = useState(values[0]);
 
-  console.log(selectedComp);
+
 
   const switchInfo = (value) => {
     setSelectedComp(value);
