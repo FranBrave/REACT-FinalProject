@@ -135,7 +135,10 @@ const AuthForm = () => {
                 <Alert
                     onClose={handleClose}
                     severity="warning"
-                    sx={{ width: "100%", top: "20rem" }}
+                    sx={{
+                        width: "100%",
+                        top: "20rem",
+                    }}
                 >
                     {userAuth.error}
                 </Alert>
