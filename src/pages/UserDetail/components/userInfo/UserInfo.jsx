@@ -68,7 +68,7 @@ const UserInfo = ({ userDetail, username }) => {
     return (
         <>
             {userDetail && (
-                <Grid>
+                <Grid sx={{ display: "contents" }}>
                     <Grid
                         container
                         spacing={0}
@@ -222,8 +222,16 @@ const UserInfo = ({ userDetail, username }) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    {userDetail.images && (
-                        <ImageList variant="masonry" cols={3} gap={8}>
+                    {userDetail.images && userDetail.images.length > 0 && (
+                        <ImageList
+                            sx={{
+                                width: "60vw",
+                                height: "30vh",
+                                alignContent: "center",
+                            }}
+                            cols={3}
+                            rowHeight="30vh"
+                        >
                             {userDetail.images.map((item) => (
                                 <ImageListItem key={shortid.generate()}>
                                     <img

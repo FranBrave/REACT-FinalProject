@@ -2,6 +2,7 @@ import {
     getUsersList,
     getUserDetailByUsername,
     editUserDetail,
+    uploadImage,
 } from "../services/userServices";
 
 export const USER_DETAIL = "USER_DETAIL";
@@ -9,6 +10,7 @@ export const USER_EDIT = "USER_EDIT";
 export const USERS_LIST = "USERS_LIST";
 export const USER_ERROR = "USER_ERROR";
 export const USER_CREATE_TRAVEL = "USER_CREATE_TRAVEL";
+export const USER_UPLOAD_IMG = "USER_UPLOAD_IMG";
 
 const actionUserDetail = (userDetail) => ({
     type: USER_DETAIL,
@@ -27,6 +29,11 @@ const actionUsersList = (usersList) => ({
 
 export const actionUserCreateTravel = (data) => ({
     type: USER_CREATE_TRAVEL,
+    payload: data,
+});
+
+export const actionUserUploadImg = (data) => ({
+    type: USER_UPLOAD_IMG,
     payload: data,
 });
 
@@ -71,6 +78,18 @@ export const setReduxUserEdit = (data, userId) => {
         try {
             return editUserDetail(data, userId).then((res) =>
                 dispatch(actionUserEdit(res))
+            );
+        } catch (error) {
+            dispatch(actionUserError(error.response.data));
+        }
+    };
+};
+
+export const setReduxUploadImg = (data, userId) => {
+    return (dispatch) => {
+        try {
+            return uploadImage(data, userId).then((res) =>
+                dispatch(actionUserUploadImg(res.images))
             );
         } catch (error) {
             dispatch(actionUserError(error.response.data));

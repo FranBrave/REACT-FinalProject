@@ -16,6 +16,18 @@ export const getUserDetailByUsername = async (username) => {
 };
 
 export const editUserDetail = async (data, userId) => {
+    try {
+        const response = await axios.post(
+            `${environment.API_URL}/user/info/${userId}`,
+            data
+        );
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const uploadImage = async (data, userId) => {
     const requestOptions = {
         method: "POST",
         body: data,
@@ -23,12 +35,11 @@ export const editUserDetail = async (data, userId) => {
 
     try {
         const response = await fetch(
-            `${environment.API_URL}/user/info/${userId}`,
+            `${environment.API_URL}/user/images/${userId}`,
             requestOptions
         );
 
         const finalResult = await response.json();
-        console.log(finalResult, "fallo en userServices");
 
         return finalResult;
     } catch (error) {
