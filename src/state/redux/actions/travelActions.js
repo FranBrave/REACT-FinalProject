@@ -4,19 +4,17 @@ import {
     postTravel,
     postUserToWantJoinList,
     postUserFollow,
-    postUserJoined
+    postUserJoined,
 } from "../services/travelServices";
 import { actionUserCreateTravel } from "../actions/userActions";
-
-
 
 export const TRAVEL_DETAIL = "TRAVEL_DETAIL";
 export const TRAVELS_LIST = "TRAVELS_LIST";
 export const TRAVEL_ERROR = "TRAVEL_ERROR";
 export const PUSH_TRAVEL = "PUSH_TRAVEL";
 export const TRAVEL_WANT_LIST = "TRAVEL_WANT_LIST";
-export const TRAVEL_FOLLOW_LIST = "TRAVEL_FOLLOW_LIST"
-export const TRAVEL_JOINED_LIST = "TRAVEL_JOINED_LIST"
+export const TRAVEL_FOLLOW_LIST = "TRAVEL_FOLLOW_LIST";
+export const TRAVEL_JOINED_LIST = "TRAVEL_JOINED_LIST";
 
 const actionTravelDetail = (travelDetail) => ({
     type: TRAVEL_DETAIL,
@@ -50,9 +48,8 @@ const actionPushUserToFollowList = (user) => ({
 
 const actionPushUserJoinedList = (user) => ({
     type: TRAVEL_JOINED_LIST,
-    paylod:user,
-})
-
+    paylod: user,
+});
 
 /**
  * Function to set the redux state of the travel detail
@@ -130,11 +127,13 @@ export const setReduxUserFollow = (data, userFollow) => {
 };
 
 export const setReduxUserJoined = (data, userJoined) => {
+    console.log(data);
     return (dispatch) => {
         try {
             postUserJoined(data).then((res) => {
                 const array = userJoined;
                 array.push(res);
+                console.log(res, "return de la api");
                 dispatch(actionPushUserJoinedList(array));
             });
         } catch (error) {

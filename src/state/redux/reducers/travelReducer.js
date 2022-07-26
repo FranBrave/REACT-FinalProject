@@ -49,7 +49,7 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
                 },
                 error: "",
             };
-        case action.TRAVEL_JOIN_LIST:
+        case action.TRAVEL_JOINED_LIST:
             return {
                 ...state,
                 travelDetail: {

@@ -1,65 +1,79 @@
-import { FormControl, InputLabel, Box, Select,MenuItem, Typography,Button } from "@mui/material";
+import {
+    FormControl,
+    InputLabel,
+    Box,
+    Select,
+    MenuItem,
+    Typography,
+    Button,
+    Stack,
+    Grid,
+} from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setReduxUserJoined } from "../../../../state/redux/actions/travelActions";
 
-const ListUsersWantJoin = ({travel}) => {
-
+const ListUsersWantJoin = ({ travel }) => {
     const dispatch = useDispatch();
 
-    const AcceptUser = (username) => {
-
+    // Use State con el usuario seleccionado
+    const acceptUser = () => {
         const data = {
-            userName: username,
+            username: userSelected,
             travelId: travel.id,
         };
 
         dispatch(setReduxUserJoined(data, travel.usersJoined));
 
-        DenieUser(username);
+        // DenieUser(username);
     };
-    
-    const DenieUser = (username) => {
-        
+
+    const denieUser = () => {
         const data = {
-            userName: username,
+            userName: userSelected,
             travelID: travel.id,
         };
 
-        dispatch()
-    }
-    
+        // dispatch()
+    };
+
     return (
         <Box>
-        {travel ? (<FormControl fullWidth>
-            <InputLabel> Users Want Join</InputLabel>
-            <Select
-                
-                label="User"
-            >
-                {travel.usersWantJoin.map((user) => {
-                    return (
-                        <MenuItem value = {user.username}> {user.username}
-                            <Link to = {`/User/${user.username}`}>
-                            <Button>Ver Perfil</Button>
+            {travel ? (
+                <Grid sx={{ direction: "column" }}>
+                    <FormControl fullWidth>
+                        <InputLabel> Users Want Join</InputLabel>
+                        <Select label="User">
+                            {travel.usersWantJoin.map((user) => {
+                                return (
+                                    <MenuItem
+                                        value={user.username}
+                                        onChange={setUserSelected(
+                                            user.username
+                                        )}
+                                    >
+                                        {user.username}
+                                    </MenuItem>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                    {userSelected && (
+                        <Stack sx={{ direction: "row" }}>
+                            <Link to={`/User/${userSelected}`}>
+                                <Button>Ver Perfil</Button>
                             </Link>
-                            <Button onClick={AcceptUser(user.username)}>Aceptar</Button>
-                            <Button onClick={DenieUser(user.username)}>Denegar</Button>
-                        </MenuItem>
-                    )
-                })}
-            </Select>
-        </FormControl>)
-        : (
-            <Typography>Loading</Typography>
-        )}
-        
+                            <Button onClick={acceptUser}>Aceptar</Button>
+                            <Button onClick={denieUser}>Denegar</Button>
+                        </Stack>
+                    )}
+                </Grid>
+            ) : (
+                <Typography>Loading</Typography>
+            )}
         </Box>
-    )
+    );
+};
 
-    
-
-}
-
-export default ListUsersWantJoin
+export default ListUsersWantJoin;
