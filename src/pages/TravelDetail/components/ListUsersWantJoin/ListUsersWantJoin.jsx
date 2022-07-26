@@ -20,7 +20,7 @@ const ListUsersWantJoin = ({ travel }) => {
     // Use State con el usuario seleccionado
     const acceptUser = () => {
         const data = {
-            username: userSelected,
+            // username: userSelected,
             travelId: travel.id,
         };
 
@@ -31,7 +31,7 @@ const ListUsersWantJoin = ({ travel }) => {
 
     const denieUser = () => {
         const data = {
-            userName: userSelected,
+            // userName: userSelected,
             travelID: travel.id,
         };
 
@@ -47,27 +47,22 @@ const ListUsersWantJoin = ({ travel }) => {
                         <Select label="User">
                             {travel.usersWantJoin.map((user) => {
                                 return (
-                                    <MenuItem
-                                        value={user.username}
-                                        onChange={setUserSelected(
-                                            user.username
-                                        )}
-                                    >
+                                    <MenuItem value={user.username}>
                                         {user.username}
                                     </MenuItem>
                                 );
                             })}
                         </Select>
                     </FormControl>
-                    {userSelected && (
+                    {
                         <Stack sx={{ direction: "row" }}>
-                            <Link to={`/User/${userSelected}`}>
+                            <Link to={`/User/`}>
                                 <Button>Ver Perfil</Button>
                             </Link>
                             <Button onClick={acceptUser}>Aceptar</Button>
                             <Button onClick={denieUser}>Denegar</Button>
                         </Stack>
-                    )}
+                    }
                 </Grid>
             ) : (
                 <Typography>Loading</Typography>

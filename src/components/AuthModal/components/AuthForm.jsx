@@ -30,13 +30,24 @@ const AuthForm = () => {
         if (reason === "clickaway") {
             return;
         }
-
         setOpen(false);
     };
 
     useEffect(() => {
         userAuth.error !== "" && errorHandle();
     }, [userAuth]);
+
+    useEffect(() => {
+        userAuth.done && modalHandle();
+    }, [userAuth]);
+
+    const modalHandle = () => {
+        toggleAuthModal(true, modalDispatch);
+
+        setTimeout(() => {
+            resetAuthProvider(authDispatch);
+        }, 2000);
+    };
 
     const errorHandle = () => {
         setOpen(true);
@@ -55,8 +66,6 @@ const AuthForm = () => {
     const submitUserForm = (e) => {
         e.preventDefault();
         authUserProvider(form, authDispatch);
-        userAuth.done && toggleAuthModal(modalState.auth, modalDispatch);
-        userAuth.done && resetAuthProvider(authDispatch);
     };
 
     const toggleForm = () => {
