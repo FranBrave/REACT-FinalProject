@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import ButtonsTravelDetailContainer from "../ButtonsTravelDetailContainer/ButtonsTravelDetailContainer";
 import PlaceIcon from "@mui/icons-material/Place";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import ListUsersWantJoin from "../ListUsersWantJoin/ListUsersWantJoin";
 
 const TravelDetailContainer = () => {
   const { id } = useParams();
@@ -140,6 +141,34 @@ const TravelDetailContainer = () => {
 
             <Grid xs={1}>
               <Typography
+                sx={{
+                  mt: { lg: "1vw", xs: "2vw" },
+                }}
+              >
+                {travel.cityName}
+              </Typography>
+            </Grid>
+            <Grid xs={1}>
+              <SvgIcon
+                component={CalendarMonthIcon}
+                sx={{
+                  ml: { lg: "6.5vw", xs: "50vw" },
+                  mt: { lg: "1vw", xs: "2vw" },
+                }}
+              />
+            </Grid>
+            <Grid xs={3}>
+              <Typography
+                sx={{
+                  mt: { lg: "1vw", xs: "2vw" },
+                }}
+              >
+                from: {travel.dataFrom} to: {travel.dataTo}
+              </Typography>
+            </Grid>
+
+            <Grid xs={1}>
+              <Typography
                 className="travel-card__budget"
                 color="#1d3557"
                 fontWeight="bold"
@@ -169,10 +198,8 @@ const TravelDetailContainer = () => {
             }}
           >
             <ButtonsTravelDetailContainer travel={travel} />
+            <ListUsersWantJoin travel={travel} />
           </Grid>
-          {travel.usersWantJoin.map((user) => (
-            <Typography>{user.username}</Typography>
-          ))}
         </Grid>
       ) : (
         <Stack

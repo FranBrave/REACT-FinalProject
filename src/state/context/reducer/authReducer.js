@@ -13,6 +13,14 @@ export const INITIAL_STATE = {
 
 export const authReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case actions.AUTH_RESET:
+            return {
+                userId: null,
+                userToken: null,
+                loading: false,
+                done: false,
+                error: "",
+            };
         case actions.AUTH_LOADING:
             return {
                 ...state,
@@ -53,6 +61,7 @@ export const authReducer = (state = INITIAL_STATE, action) => {
                 done: true,
                 error: "",
             };
+
         default:
             return state;
     }
