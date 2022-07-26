@@ -2,6 +2,7 @@ import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import shortid from "shortid";
+import FollowingBadge from "../followingBadge/FollowingBadge";
 
 const GalleryImages = ({ selectedComp, userDetail }) => {
     const [selected, setSelected] = useState();
@@ -47,6 +48,11 @@ const GalleryImages = ({ selectedComp, userDetail }) => {
                                 title={travel.title}
                                 subtitle={travel.description}
                             />
+                            {travel.usersWantJoin.length > 0 && (
+                                <FollowingBadge
+                                    users={travel.usersWantJoin.length}
+                                />
+                            )}
                         </ImageListItem>
                     ))}
                 </ImageList>
