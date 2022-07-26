@@ -7,14 +7,14 @@ import { setReduxUserFollow, setReduxUserWantJoin } from "../../../../state/redu
 
 const ButtonsTravelDetailContainer = ({ travel }) => {
     //travel id
-    const { id } = useParams();
+    
     const userLogged = useUserLoggedDetail();
     const dispatch = useDispatch();
 
     const addUserToWantJoinList = () => {
         const data = {
             userName: userLogged.username,
-            travelId: id,
+            travelId: travel.id,
         };
 
         dispatch(setReduxUserWantJoin(data, travel.usersWantJoin));
@@ -23,7 +23,7 @@ const ButtonsTravelDetailContainer = ({ travel }) => {
     const addUserToFollowList = () => {
       const data = {
         userName: userLogged.username, 
-        travelId: id,
+        travelId: travel.id,
       }
 
       dispatch(setReduxUserFollow(data, travel.usersFollowing))

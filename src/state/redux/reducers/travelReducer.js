@@ -49,7 +49,15 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
                 },
                 error:"",
             };
-
+        case action.TRAVEL_JOIN_LIST:
+            return {
+                ...state,
+                travelDetail: {
+                    ...state.travelDetail,
+                    usersJoined: action.payload
+                },
+                error:"",
+            };
         default:
             return state;
     }
