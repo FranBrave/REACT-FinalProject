@@ -1,7 +1,8 @@
-import { Button, Grid, Stack, TextField } from "@mui/material";
+import { Box, Button, Grid, Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { setReduxUploadImg } from "../../../../state/redux/actions/userActions";
 import { useDispatch } from "react-redux/es/exports";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 const UploadImage = ({ userDetail }) => {
     const [form, setForm] = useState({ img: [] });
@@ -70,13 +71,42 @@ const UploadImage = ({ userDetail }) => {
                     </Button>
                 )}
             </Stack>
-            {counter.map((el) => (
-                <TextField
-                    type="file"
-                    onChange={(e) => handleImage(e)}
-                    multiple
-                ></TextField>
-            ))}
+            <Grid
+                sx={{
+                    width: "15vw",
+                    height: "15vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "2rem",
+                    width: "70vw",
+                }}
+            >
+                {counter.map((el) => (
+                    <Box
+                        sx={{
+                            width: "15vw",
+                            height: "15vh",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            border: "2px solid black",
+                            borderRadius: "1rem",
+                        }}
+                    >
+                        <label for="file-input">
+                            <AddPhotoAlternateIcon />
+                        </label>
+                        <TextField
+                            type="file"
+                            onChange={(e) => handleImage(e)}
+                            sx={{ display: "none" }}
+                            multiple
+                        ></TextField>
+                    </Box>
+                ))}
+            </Grid>
+
             <Button onClick={uploadImg}>Upload</Button>
         </Grid>
     );

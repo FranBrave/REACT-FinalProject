@@ -27,8 +27,6 @@ const GalleryImages = ({ selectedComp, userDetail }) => {
         navigate(`/travel/${travelId}`);
     };
 
-    console.log(userDetail);
-
     return (
         <>
             {selected && selected.length > 0 ? (

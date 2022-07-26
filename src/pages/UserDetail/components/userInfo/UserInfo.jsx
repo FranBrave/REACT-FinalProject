@@ -161,7 +161,7 @@ const UserInfo = ({ userDetail, username }) => {
                                     justifyContent="center"
                                     gap="5px"
                                 >
-                                    <LocationOnIcon sx={{ color: "red" }} />
+                                    <LocationOnIcon sx={{ color: "gray" }} />
                                     {userDetail.location}
                                 </Stack>
                                 <Stack
@@ -171,9 +171,18 @@ const UserInfo = ({ userDetail, username }) => {
                                     justifyContent="center"
                                     gap="5px"
                                 >
-                                    <AccessTimeIcon sx={{ color: "blue" }} />
+                                    <AccessTimeIcon sx={{ color: "gray" }} />
                                     {userDetail.age} years
                                 </Stack>
+                            </Grid>
+                            <Grid
+                                container
+                                spacing={0}
+                                direction="row"
+                                alignItems="center"
+                                justifyContent="start"
+                                gap="1rem"
+                            >
                                 {isSameUser && (
                                     <Button
                                         sx={{

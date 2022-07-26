@@ -42,11 +42,7 @@ const AuthForm = () => {
     }, [userAuth]);
 
     const modalHandle = () => {
-        toggleAuthModal(true, modalDispatch);
-
-        setTimeout(() => {
-            resetAuthProvider(authDispatch);
-        }, 2000);
+        toggleAuthModal(modalState.auth, modalDispatch);
     };
 
     const errorHandle = () => {
