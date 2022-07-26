@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import ButtonsTravelDetailContainer from "../ButtonsTravelDetailContainer/ButtonsTravelDetailContainer";
 import PlaceIcon from "@mui/icons-material/Place";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import ListUsersWantJoin from "../ListUsersWantJoin/ListUsersWantJoin";
 
 const TravelDetailContainer = () => {
     const { id } = useParams();
@@ -27,7 +28,9 @@ const TravelDetailContainer = () => {
         setimgPrincipal(image);
     };
 
-    
+    if (travel){
+   console.log(travel)
+    }
 
     return (
         <>
@@ -166,10 +169,8 @@ const TravelDetailContainer = () => {
                         }}
                     >
                         <ButtonsTravelDetailContainer travel={travel} />
+                        <ListUsersWantJoin travel={travel}/>
                     </Grid>
-                    {travel.usersWantJoin.map((user) => (
-                        <Typography>{user.username}</Typography>
-                    ))}
                 </Grid>
             ) : (
                 <p>Loading</p>
