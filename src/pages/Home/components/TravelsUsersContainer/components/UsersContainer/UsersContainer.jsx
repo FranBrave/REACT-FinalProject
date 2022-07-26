@@ -1,7 +1,16 @@
-import { Link, Box, Typography, Avatar, Grid } from "@mui/material";
-import React, { useEffect, useContext } from "react";
+import {
+  Link,
+  Box,
+  Typography,
+  Avatar,
+  Grid,
+  Stack,
+  CircularProgress,
+} from "@mui/material";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setReduxUsersList } from "../../../../../../state/redux/actions/userActions";
+import "./UsersContainer.css";
 
 const UsersContainer = () => {
   const { userList } = useSelector((state) => state.user);
@@ -15,113 +24,131 @@ const UsersContainer = () => {
 
   return (
     <>
-      <Grid
-        container
-        spacing={0}
-        alignItems="center"
-        justifyContent="center"
-        gap="0.6rem"
-        sx={{ margin: { xs: "3.9px" } }}
-      >
-        {userList.map((user) => (
-          <Link key={user.id} href={`/User/${user.username}`}>
-            <Box
-              className="user-card"
-              sx={{
-                width: {
-                  lg: "20vw",
-                  sm: "30vw",
-                  xs: "90vw",
-                },
-                height: {
-                  lg: "30vh",
-                  sm: "30vw",
-                  xs: "90vh",
-                },
-                border: "1px solid grey",
-                m: "10px",
-              }}
-            >
-              <Avatar
+      <Box>
+        <Typography
+          container
+          alignItems="center"
+          justifyContent="center"
+          color="#ffcb47"
+          fontWeight=""
+          sx={{
+            fontSize: { lg: "33px", xs: "29px" },
+            display: "flex",
+            fontWeight: "900",
+          }}
+          m="3rem"
+          pb="10px"
+          textTransform="none"
+        >
+          Nuestros compañeros de viaje
+        </Typography>
+      </Box>
+      {userList ? (
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="center"
+          gap="1rem"
+          sx={{ margin: { xs: "3.9px" } }}
+        >
+          {userList.map((user) => (
+            <Link key={user.id} href={`/User/${user.username}`}>
+              <Grid
                 sx={{
-                  width: {
-                    lg: "5vw",
-                    sm: "5vw",
-                    xs: "5vw",
-                  },
-                  height: {
-                    lg: "5vh",
-                    sm: "5vw",
-                    xs: "5vh",
-                  },
+                  border: "1px solid grey",
                 }}
-                src={user.avatar}
-              />
+              >
+                <Grid
+                  sx={{
+                    background: `url(${user.images[0]})`,
+                    backgroundSize: "cover",
+                    width: {
+                      lg: "20vw",
+                      sm: "50vw",
+                      xs: "95vw",
+                    },
+                    height: {
+                      lg: "25vh",
+                      sm: "50vw",
+                      xs: "70vh",
+                    },
+                  }}
+                  loading="lazy"
+                />
 
-              <Typography
-                sx={{
-                  fontSize: {
-                    lg: "33px",
-                    xs: "29px",
-                    ml: "21px",
-                  },
-                  color: "#84a59d",
-                  fontWeight: "bold",
-                  mt: "11px",
-                  pb: "10px",
-                  textTransform: "capitalize",
-                }}
-              >
-                {user.username}
-              </Typography>
-              <Typography
-                ml="21px"
-                color="#84a59d"
-                fontWeight="bold"
-                sx={{ fontSize: { lg: "33px", xs: "29px" } }}
-                mt="11px"
-                pb="10px"
-                textTransform="capitalize"
-              >
-                {user.sex}
-              </Typography>
-              <Typography
-                ml="21px"
-                color="#1d3557"
-                fontWeight="bold"
-                sx={{ fontSize: { lg: "24px", xs: "20px" } }}
-                mt="11px"
-                pb="10px"
-                textTransform="capitalize"
-              >
-                {user.location}
-              </Typography>
-              <Typography
-                ml="21px"
-                color="#1d3557"
-                fontWeight="bold"
-                sx={{ fontSize: { lg: "20px", xs: "17px" } }}
-                mt="11px"
-                pb="10px"
-                textTransform="capitalize"
-              >
-                {user.bio && user.bio.slice(0, 100).concat("...")}
-              </Typography>
-              <Typography
-                ml="21px"
-                color="#1d3557"
-                fontWeight="bold"
-                sx={{ fontSize: { lg: "24px", xs: "20px" } }}
-                mt="11px"
-                pb="10px"
-                textTransform="capitalize"
-              >
-                {user.preferences}
-              </Typography>
-            </Box>
-          </Link>
-        ))}
-      </Grid>
+                <Box display="flex" flexDirection="column">
+                  <Avatar
+                    className="user-card__avatar"
+                    backgroundPosition="center"
+                    src={user.avatar}
+                    sx={{
+                      alignSelf: "center",
+                      height: { lg: "150px", sm: "120px", xs: "150px" },
+                      width: { lg: "150px", sm: "120px", xs: "150px" },
+                      border: "5px solid white",
+                    }}
+                  />
+                </Box>
+                <Typography
+                  sx={{
+                    textAlign: "center",
+                    pt: "5px",
+                    fontWeight: "900",
+                    color: "#2b2d42",
+                    textTransform: "capitalize",
+                    fontSize: {
+                      lg: "33px",
+                      xs: "29px",
+                    },
+                  }}
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                >
+                  {user.username}
+                </Typography>
+                <Typography
+                  sx={{
+                    textAlign: "center",
+                    fontWeight: "900",
+                    color: "black",
+                    textTransform: "none",
+                    fontSize: {
+                      lg: "15px",
+                      xs: "13px",
+                    },
+                  }}
+                >
+                  Vive en {user.location}
+                </Typography>
+                <Box display="flex" flexDirection="column">
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      textAlign: "center",
+                      m: "20px",
+                      fontWeight: "900",
+                      display: "inline-block",
+                      whiteSpace: "pre-line",
+                    }}
+                  >
+                    "{user.bio && user.bio.slice(0, 40).concat("...")}"
+                  </Typography>
+                </Box>
+              </Grid>
+            </Link>
+          ))}
+        </Grid>
+      ) : (
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          width="100%"
+        >
+          <CircularProgress disableShrink />
+        </Stack>
+      )}
     </>
   );
 };

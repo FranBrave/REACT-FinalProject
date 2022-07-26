@@ -36,9 +36,18 @@ export const postUserToWantJoinList = async (data) => {
 
 export const postUserFollow = async (data) => {
     const response = await axios.post(
-        `${environment.API_URL}/travel/follow`,
+        `${environment.API_URL}/user/follow`,
         data
     );
 
+    return response.data;
+};
+
+export const postUserJoined = async (data) => {
+    const response = await axios.post(
+        `${environment.API_URL}/user/chat`,
+        data
+    );
+    
     return response.data;
 };
