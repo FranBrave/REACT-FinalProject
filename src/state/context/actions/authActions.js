@@ -6,7 +6,7 @@ import {
 
 export const AUTH_LOADING = "AUTH_LOADING";
 export const AUTH_ERROR = "AUTH_ERROR";
-
+export const AUTH_RESET = "AUTH_RESET";
 export const REGISTER_DONE = "REGISTER_DONE";
 export const LOGIN_DONE = "LOGIN_DONE";
 export const LOGOUT_DONE = "LOGOUT_DONE";
@@ -31,6 +31,10 @@ const actionLoginDone = (data) => ({
 
 const actionLogoutDone = () => ({
     type: LOGOUT_DONE,
+});
+
+const actionReset = () => ({
+    type: AUTH_RESET,
 });
 
 /**
@@ -76,4 +80,9 @@ export const logoutUserProvider = async (dispatch) => {
         dispatch(actionAuthError(error));
         return;
     }
+};
+
+export const resetAuthProvider = (dispatch) => {
+    dispatch(actionReset());
+    return;
 };
