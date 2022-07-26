@@ -53,7 +53,12 @@ const Header = () => {
       </Stack>
       {userAuth.userId && userLogged && (
         <Link to={`/User/${userLogged.username}`}>
-          <Typography className="username" variant="h4">
+          <Typography
+            className="username"
+            sx={{
+              fontSize: { lg: "30px", xs: "20px" },
+            }}
+          >
             Hola {userLogged.username}
           </Typography>
         </Link>
@@ -69,9 +74,9 @@ const Header = () => {
             bgcolor: "#7DA2D1",
             color: "#fff",
             textTransform: "none",
-            width: { lg: "175px", xs: "80px" },
-            fontSize: { lg: "20px", xs: "14px" },
-            height: "56px",
+            width: { lg: "175px", xs: "45px" },
+            fontSize: { lg: "20px", xs: "0" },
+            height: { lg: "56px", xs: "40px" },
             right: "0",
           }}
         />
@@ -86,10 +91,11 @@ const Header = () => {
             bgcolor: "#D56049",
             color: "#fff",
             textTransform: "none",
-            width: { lg: "175px", xs: "80px" },
-            fontSize: { lg: "20px", xs: "14px" },
-            height: "56px",
+            width: { lg: "175px", xs: "45px" },
+            fontSize: { lg: "20px", xs: "0px" },
+            height: { lg: "56px", xs: "40px" },
             right: "0",
+            m: "5px",
           }}
         />
       )}

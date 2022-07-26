@@ -1,15 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 
-.travel-card__image {
-    background-size: 20%;
-   }
-   
-   .travel-card {
-       flex: 0 0 auto;
-   }
-   
-
-.travel-card__budget {
+.user-card__budget {
     border: solid 1px;
     display: inline-flex;
     list-style: none;
@@ -21,7 +13,7 @@
     background-color: #ffcb47;
 }
 
-.travel-card__tags {
+.user-card__tags {
     border: solid 1px;
     display: inline-flex;
     list-style: none;
@@ -35,19 +27,22 @@
 
 
 
-.travel-card {
-    flex: 0 0 auto;
-    height: 500px;
-    max-width: 100%;
 
-}
-.travel-card:hover{
+.user-card:hover{
     cursor: pointer;
     gap: 47px,
 }
 
-.travel__container {
+.user__container {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
 }
+
+
+.user-card__avatar {
+    position: absolute;
+  
+    margin: -83px 0 0 0
+}
+

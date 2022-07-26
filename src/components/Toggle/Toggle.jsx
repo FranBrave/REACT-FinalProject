@@ -23,7 +23,7 @@ const Toggle = () => {
     >
       <SlidingButtons
         values={values}
-        defaultSelected={"Travels"}
+        defaultSelected={"Viajes"}
         switchInfo={switchInfo}
       />
     </Grid>

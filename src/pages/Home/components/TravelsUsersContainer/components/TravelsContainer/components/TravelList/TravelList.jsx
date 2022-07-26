@@ -85,6 +85,7 @@ const TravelList = ({ travelsList, tipo }) => {
                       background: `url(${travel.images[0]})`,
                       backgroundSize: "cover",
                       filter: "brightness(0.9)",
+
                       width: {
                         lg: "20vw",
                         sm: "30vw",
@@ -236,6 +237,7 @@ const TravelList = ({ travelsList, tipo }) => {
           justifyContent="center"
           alignItems="center"
           width="100%"
+          mt="20rem"
         >
           <CircularProgress disableShrink />
         </Stack>

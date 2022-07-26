@@ -21,13 +21,30 @@ const TravelsContainer = () => {
     setValue(newValue);
   };
 
+  function transform(value) {
+    return value <= 1 ? `${value * 75}%` : value;
+  }
+
   return (
     <>
+      <Searcher />
       <TravelSearcher searchTravel={searchTravel} />
       <TabContext value={value}>
-        <Searcher />
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList value={value} onChange={handleChange} variant="fullWidth">
+        <Box
+          sx={{
+            borderBottom: 1,
+            borderColor: "divider",
+            color: "orange",
+          }}
+          centered
+        >
+          <TabList
+            value={value}
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="auto"
+            allowScrollButtonsMobile
+          >
             <Tab label="Playa" value="1" />
             <Tab label="Nacional" value="2" />
             <Tab label="Ciudad" value="3" />

@@ -27,6 +27,7 @@ const TravelSearcher = ({ searchTravel }) => {
               Resultados:
             </Typography>
           </Box>
+
           <Grid
             container
             spacing={0}
@@ -74,7 +75,6 @@ const TravelSearcher = ({ searchTravel }) => {
                       {travel.cityName}
                     </Typography>
                     <Typography
-                      className="travel-card__budget"
                       sx={{
                         color: "black",
                         fontWeight: "900",
