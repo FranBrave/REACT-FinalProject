@@ -171,7 +171,6 @@ const TravelDetailContainer = () => {
                         <ButtonsTravelDetailContainer travel={travel} />
                         <ListUsersWantJoin travel={travel}/>
                     </Grid>
-                   
                 </Grid>
             ) : (
                 <p>Loading</p>
