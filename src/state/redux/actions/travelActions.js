@@ -9,8 +9,6 @@ import {
 } from "../services/travelServices";
 import { actionUserCreateTravel } from "../actions/userActions";
 
-
-
 export const TRAVEL_DETAIL = "TRAVEL_DETAIL";
 export const TRAVELS_LIST = "TRAVELS_LIST";
 export const TRAVEL_ERROR = "TRAVEL_ERROR";
@@ -67,6 +65,7 @@ const actionDeleteUserWantJoin = (user) => ({
  * @returns Dispatch the action to redux store in order to set the detail travel info
  */
 export const setReduxTravelDetail = (travelId) => {
+    console.log(travelId)
     return (dispatch) => {
         try {
             getTravelDetail(travelId).then((res) =>
@@ -137,6 +136,7 @@ export const setReduxUserFollow = (data, userFollow) => {
 };
 
 export const setReduxUserJoined = (data, userJoined) => {
+    console.log(data);
     return (dispatch) => {
         try {
             postUserJoined(data).then((res) => {
@@ -154,9 +154,8 @@ export const setReduxUserWantJoinDelete = (data, usersWantList) => {
     return (dispatch) => {
         try {
             deleteUserWantJoin(data).then((res) =>{
-                const array = usersWantList;
-                array.delete(res);
-                dispatch(actionDeleteUserWantJoin(array));
+               
+                dispatch(actionDeleteUserWantJoin(res.usersWantJoin));
             })
         } catch (error) {
             console.log(error.response.data)

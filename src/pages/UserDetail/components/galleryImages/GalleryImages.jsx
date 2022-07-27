@@ -34,7 +34,11 @@ const GalleryImages = ({ selectedComp, userDetail }) => {
                     {selected.map((travel) => (
                         <ImageListItem
                             key={shortid.generate()}
-                            sx={{ height: "20vw", cursor: "pointer" }}
+                            sx={{
+                                height: "20vw",
+                                cursor: "pointer",
+                                borderRadius: "2rem",
+                            }}
                             onClick={() => navigateFunction(travel.id)}
                         >
                             <img
@@ -42,7 +46,7 @@ const GalleryImages = ({ selectedComp, userDetail }) => {
                                 srcSet={`${travel.images[0]}?w=248&fit=crop&auto=format&dpr=2 2x`}
                                 alt="travel image"
                                 loading="lazy"
-                                sx={{ height: "100%" }}
+                                sx={{ height: "100%", borderRadius: "2rem" }}
                             />
                             <ImageListItemBar
                                 title={travel.title}

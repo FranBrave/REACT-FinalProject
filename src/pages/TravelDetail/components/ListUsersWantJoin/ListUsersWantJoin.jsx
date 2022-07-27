@@ -33,22 +33,24 @@ const ListUsersWantJoin = ({ travel }) => {
 
     dispatch(setReduxUserJoined(data, travel.usersJoined));
 
+    denieUser();
+
   };
 
   const denieUser = () => {
     
     const data = {
-      username: userSelected,
+      userName: userSelected,
       travelId: travel.id,
       };
 
-      console.log(travel.usersWantJoin)
 
     dispatch(setReduxUserWantJoinDelete(data, travel.usersWantJoin));
 
 
   };
 
+  console.log(travel)
   return (
     <Box>
       {travel ? (

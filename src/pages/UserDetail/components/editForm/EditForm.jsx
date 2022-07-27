@@ -84,7 +84,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
         <>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <Typography sx={{ textAlign: "center" }}>
-                    Edit user form
+                    Edita tu datos
                 </Typography>
                 <Grid
                     container
@@ -99,7 +99,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                         name="name"
                         type="text"
                         placeholder="User name"
-                        label="User name"
+                        label="Nombre de usuario"
                         onChange={handleChangeForm}
                         sx={{
                             width: "40vw",
@@ -109,7 +109,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                         name="surname"
                         type="text"
                         placeholder="Surname"
-                        label="Surname"
+                        label="Apellidos"
                         onChange={handleChangeForm}
                         sx={{
                             width: "40vw",
@@ -135,7 +135,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                             },
                         }}
                         placeholder="Age"
-                        label="Age"
+                        label="Edad"
                         onChange={(e) =>
                             setForm({
                                 ...form,
@@ -153,7 +153,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                                 textAlign: "left",
                             }}
                         >
-                            Sex
+                            Sexo
                         </InputLabel>
                         <Select
                             labelId="sex-label"
@@ -167,13 +167,13 @@ const EditForm = ({ userId, handleCloseModal }) => {
                             }}
                         >
                             <MenuItem value="">
-                                <em>None</em>
+                                <em>Ninguno</em>
                             </MenuItem>
                             <MenuItem value="Male " key={shortid.generate()}>
-                                Male
+                                Hombre
                             </MenuItem>
                             <MenuItem value="Female" key={shortid.generate()}>
-                                Female
+                                Mujer
                             </MenuItem>
                         </Select>
                     </Stack>
@@ -184,7 +184,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                                 textAlign: "left",
                             }}
                         >
-                            Location
+                            De donde eres
                         </InputLabel>
                         <Select
                             labelId="location-label"
@@ -198,7 +198,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                             }}
                         >
                             <MenuItem value="">
-                                <em>None</em>
+                                <em>Ninguno</em>
                             </MenuItem>
                             {cities &&
                                 cities.map((city) => (
@@ -226,8 +226,9 @@ const EditForm = ({ userId, handleCloseModal }) => {
                                         sx={{
                                             p: "0 1.3rem",
                                             height: "2rem",
-                                            backgroundColor: "gray",
-                                            color: "white",
+                                            backgroundColor: "#B6B6B6",
+                                            color: "black",
+                                            border: "1px solid #C9C9C9",
                                             borderRadius: "0.5rem",
                                             position: "relative",
                                             display: "flex",
@@ -243,6 +244,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                                             sx={{
                                                 cursor: "pointer",
                                                 ml: "1rem",
+                                                color: "white",
                                             }}
                                             key={shortid.generate()}
                                         >
@@ -268,7 +270,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                                 }}
                             >
                                 <MenuItem value="">
-                                    <em>None</em>
+                                    <em>Ninguno</em>
                                 </MenuItem>
                                 {tags &&
                                     tags.map((tag) => (
@@ -287,12 +289,13 @@ const EditForm = ({ userId, handleCloseModal }) => {
                                     backgroundColor: "#b9d8c2",
                                     lineHeight: "1rem",
                                     color: "white",
+                                    borderRadius: "2rem",
                                     "&:hover": {
                                         backgroundColor: "#9ac2c9",
                                     },
                                 }}
                             >
-                                Add
+                                Añadir
                             </Button>
                         </Stack>
                     </Stack>
@@ -303,12 +306,13 @@ const EditForm = ({ userId, handleCloseModal }) => {
                             p: "0.5rem 4rem",
                             backgroundColor: "#ffcb47",
                             color: "white",
+                            borderRadius: "2rem",
                             "&:hover": {
                                 backgroundColor: "#F0A370",
                             },
                         }}
                     >
-                        Edit
+                        Editar
                     </Button>
                     {alertDisplay && (
                         <Alert
@@ -316,7 +320,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                             severity="success"
                             sx={{ position: " absolute" }}
                         >
-                            Travel successfully created!
+                            Viaje creado!
                         </Alert>
                     )}
                 </Grid>

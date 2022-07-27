@@ -2,11 +2,13 @@ import React from "react";
 import { Button, Typography, Grid } from "@mui/material";
 import { useUserLoggedDetail } from "../../../../customHook/useUserLoggedDetail";
 import { useDispatch } from "react-redux";
-import { setReduxUserFollow, setReduxUserWantJoin } from "../../../../state/redux/actions/travelActions";
+import {
+    setReduxUserFollow,
+    setReduxUserWantJoin,
+} from "../../../../state/redux/actions/travelActions";
 
 const ButtonsTravelDetailContainer = ({ travel }) => {
     //travel id
-    
     const userLogged = useUserLoggedDetail();
     const dispatch = useDispatch();
 
@@ -20,12 +22,12 @@ const ButtonsTravelDetailContainer = ({ travel }) => {
     };
 
     const addUserToFollowList = () => {
-      const data = {
-        userName: userLogged.username, 
-        travelId: travel.id,
-      }
+        const data = {
+            userName: userLogged.username,
+            travelId: travel.id,
+        };
 
-      dispatch(setReduxUserFollow(data, travel.usersFollowing))
+        dispatch(setReduxUserFollow(data, travel.usersFollowing));
     };
 
     return (

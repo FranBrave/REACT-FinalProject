@@ -1,41 +1,54 @@
 
+.travel {
+    display: flex;
+    margin: 0 auto;
+    padding: 0 1rem;
+    max-width: 70%;
+}
 
 .travel-card__image {
     background-size: 20%;
    }
    
-   .travel-card {
-       flex: 0 0 auto;
-   }
+.travel-card {
+    border-radius: 20px;
+ 
+}
    
+
+.travel-card1 {
+    transition: all 400ms ease;
+}
+
+.travel-card1:hover {
+    transform: translateY(-3%);
+}
 
 .travel-card__budget {
     border: solid 1px;
     display: inline-flex;
     list-style: none;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 40px;
-    background-color: #ffcb47;
-}
-
-.travel-card__tags {
-    border: solid 1px;
-    display: inline-flex;
-    list-style: none;
     padding-left: 12px;
-    padding-right: 12px;
+    padding-right: 13px;
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 40px;
-    background-color: rgba(148, 134, 134, 0.162);
+    background-color: rgb(255, 255, 255);
+    float: right;
+}
+
+.travel-card__location {
+    float: left;
+}
+
+
+.travel-card__tags {
+    display: inline-flex;
 }
 
 
 
-.travel-card {
+.travel-card__image {
     flex: 0 0 auto;
     height: 500px;
     max-width: 100%;

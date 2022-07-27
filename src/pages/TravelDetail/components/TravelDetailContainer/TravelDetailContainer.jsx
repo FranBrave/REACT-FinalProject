@@ -12,34 +12,35 @@ import ButtonsTravelDetailContainer from "../ButtonsTravelDetailContainer/Button
 import PlaceIcon from "@mui/icons-material/Place";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ListUsersWantJoin from "../ListUsersWantJoin/ListUsersWantJoin";
+import { useDispatch, useSelector } from "react-redux";
+import { setReduxTravelDetail } from "../../../../state/redux/actions/travelActions";
 
 const TravelDetailContainer = () => {
   const { id } = useParams();
-  const BASEURL = "https://viajes-upgrade-hub.herokuapp.com";
-  const TRAVELURL = "/travel/detail/";
+  
 
-  const [travel, setTravel] = useState();
+  const { travelDetail } = useSelector((state) => state.travel);
   const [imgPrincipal, setimgPrincipal] = useState();
+  const dispatch = useDispatch();
+
+
 
   useEffect(() => {
-    fetch(`${BASEURL}${TRAVELURL}${id}`)
-      .then((response) => response.json())
-      .then((data) => setTravel(data));
+    travelDetail && setimgPrincipal(travelDetail.images[0]);
+  }, [travelDetail]);
+
+  useEffect(() => {
+    dispatch(setReduxTravelDetail(id));
   }, [id]);
-
-  useEffect(() => {
-    travel && setimgPrincipal(travel.images[0]);
-  }, [travel]);
 
   const actualizarImgPrincipal = (image) => {
     setimgPrincipal(image);
   };
 
-  console.log(travel)
 
   return (
     <>
-      {travel ? (
+      {travelDetail ? (
         <Grid>
           <Grid xs={8}>
             <Typography
@@ -52,12 +53,12 @@ const TravelDetailContainer = () => {
                 mt: { lg: "4vw", xs: "2vw" },
               }}
             >
-              {travel.title}
+              {travelDetail.title}
             </Typography>
           </Grid>
 
           <Typography>
-            {travel.tags.map((tag) => (
+            {travelDetail.tags.map((tag) => (
               <p>{tag.title}</p>
             ))}
           </Typography>
@@ -74,11 +75,11 @@ const TravelDetailContainer = () => {
                   mt: { lg: "4vw", xs: "2vw" },
                 }}
                 src={imgPrincipal}
-                alt={travel.cityName}
+                alt={travelDetail.cityName}
               />
             </Grid>
             <Grid xs={4}>
-              {travel.images.map((image) => {
+              {travelDetail.images.map((image) => {
                 {
                   return (
                     <Box
@@ -97,8 +98,6 @@ const TravelDetailContainer = () => {
                         border: "1px solid grey",
                         mx: { lg: "3vw", xs: "50vw" },
                         mt: { lg: "4vw", xs: "2vw" },
-
-                       
                       }}
                       src={image}
                     />
@@ -122,7 +121,7 @@ const TravelDetailContainer = () => {
                   mt: { lg: "1vw", xs: "2vw" },
                 }}
               >
-                {travel.cityName}
+                {travelDetail.cityName}
               </Typography>
             </Grid>
             <Grid xs={1}>
@@ -140,7 +139,7 @@ const TravelDetailContainer = () => {
                   mt: { lg: "1vw", xs: "2vw" },
                 }}
               >
-                from: {travel.dataFrom} to: {travel.dataTo}
+                from: {travelDetail.dataFrom} to: {travelDetail.dataTo}
               </Typography>
             </Grid>
 
@@ -150,7 +149,7 @@ const TravelDetailContainer = () => {
                   mt: { lg: "1vw", xs: "2vw" },
                 }}
               >
-                {travel.cityName}
+                {travelDetail.cityName}
               </Typography>
             </Grid>
             <Grid xs={1}>
@@ -168,7 +167,7 @@ const TravelDetailContainer = () => {
                   mt: { lg: "1vw", xs: "2vw" },
                 }}
               >
-                from: {travel.dataFrom} to: {travel.dataTo}
+                from: {travelDetail.dataFrom} to: {travelDetail.dataTo}
               </Typography>
             </Grid>
 
@@ -183,7 +182,7 @@ const TravelDetailContainer = () => {
                 }}
                 textTransform="capitalize"
               >
-                {travel.budget}€
+                {travelDetail.budget}€
               </Typography>
             </Grid>
           </Grid>
@@ -194,7 +193,7 @@ const TravelDetailContainer = () => {
               mt: { lg: "4vw", xs: "2vw" },
             }}
           >
-            <Typography>{travel.description}</Typography>
+            <Typography>{travelDetail.description}</Typography>
           </Grid>
           <Grid
             sx={{
@@ -202,8 +201,8 @@ const TravelDetailContainer = () => {
               mt: { lg: "4vw", xs: "2vw" },
             }}
           >
-            <ButtonsTravelDetailContainer travel={travel} />
-            <ListUsersWantJoin travel={travel} />
+            <ButtonsTravelDetailContainer travel={travelDetail} />
+            <ListUsersWantJoin travel={travelDetail} />
           </Grid>
         </Grid>
       ) : (
