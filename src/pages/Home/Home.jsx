@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Box, Grid } from "@mui/material";
 import TravelsUsersContainer from "./components/TravelsUsersContainer/TravelsUsersContainer";
 import SlidingButtons from "../../components/slidingButtons/SlidingButtons";
-import "./Home.css";
 
 const values = ["Travels", "Users"];
 const valuesESP = ["Viajes", "Usuarios"];
