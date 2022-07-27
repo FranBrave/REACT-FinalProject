@@ -98,7 +98,7 @@ const TravelList = ({ travelsList, tipo }) => {
                         backgroundSize: "cover",
 
                         width: {
-                          lg: "15vw",
+                          lg: "20vw",
                           sm: "30vw",
                           xs: "95vw",
                         },
