@@ -133,7 +133,6 @@ export const setReduxUserJoined = (data, userJoined) => {
             postUserJoined(data).then((res) => {
                 const array = userJoined;
                 array.push(res);
-                console.log(res, "return de la api");
                 dispatch(actionPushUserJoinedList(array));
             });
         } catch (error) {

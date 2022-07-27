@@ -206,6 +206,7 @@ const UserInfo = ({ userDetail, username }) => {
                                             backgroundColor: "#ffcb47",
                                             color: "black",
                                             borderRadius: "2rem",
+                                            border: "2px solid #ffcb47",
                                             "&:hover": {
                                                 backgroundColor: "#F0A370",
                                             },
@@ -222,6 +223,7 @@ const UserInfo = ({ userDetail, username }) => {
                                             color: "black",
                                             borderRadius: "2rem",
                                             backgroundColor: "#C0EEFC",
+                                            border: "2px solid #C0EEFC",
                                             "&:hover": {
                                                 backgroundColor: "#D8F2F9",
                                             },

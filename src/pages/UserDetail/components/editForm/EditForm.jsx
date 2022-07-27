@@ -226,8 +226,9 @@ const EditForm = ({ userId, handleCloseModal }) => {
                                         sx={{
                                             p: "0 1.3rem",
                                             height: "2rem",
-                                            backgroundColor: "gray",
-                                            color: "white",
+                                            backgroundColor: "#B6B6B6",
+                                            color: "black",
+                                            border: "1px solid #C9C9C9",
                                             borderRadius: "0.5rem",
                                             position: "relative",
                                             display: "flex",
@@ -243,6 +244,7 @@ const EditForm = ({ userId, handleCloseModal }) => {
                                             sx={{
                                                 cursor: "pointer",
                                                 ml: "1rem",
+                                                color: "white",
                                             }}
                                             key={shortid.generate()}
                                         >

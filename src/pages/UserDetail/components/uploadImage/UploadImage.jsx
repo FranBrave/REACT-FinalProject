@@ -4,27 +4,38 @@ import { setReduxUploadImg } from "../../../../state/redux/actions/userActions";
 import { useDispatch } from "react-redux/es/exports";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import PreviewImage from "./utils/PreviewImage";
+import shortid from "shortid";
 
 const UploadImage = ({ userDetail }) => {
-    const [form, setForm] = useState({ img: [] });
+    const [form, setForm] = useState({ img: ["a"] });
     const [counter, setCounter] = useState(["a"]);
     const [file, setFile] = useState();
     const dispatch = useDispatch();
 
     const addInput = () => {
+        const currentForm = form;
+        currentForm.img.length < 3 && currentForm.img.push("a");
+        setForm(currentForm);
         setCounter([...counter, "a"]);
     };
 
     const removeInput = () => {
+        const currentForm = form;
+        const newForm = currentForm.img.slice(0, form.img.length - 1);
+        const state = { img: newForm };
+        setForm(state);
+
         const newCounter = counter.slice(0, counter.length - 1);
         setCounter(newCounter);
     };
 
     const handleImages = (e) => {
         const currentForm = form;
+        form.img[0] === "a" && form.img.splice(0, 1);
+        form.img.includes("a") && form.img.splice(form.img.indexOf("a"), 1);
         currentForm.img.push(e.currentTarget.files[0]);
         setForm(currentForm);
-        // setFile(e.currentTarget.files[0]);
+        setFile(e.currentTarget.files[0]);
     };
 
     const uploadImg = () => {
@@ -50,7 +61,7 @@ const UploadImage = ({ userDetail }) => {
                 justifyContent="center"
                 spacing={2}
             >
-                {counter.length < 3 && (
+                {form.img.length < 3 && (
                     <Button
                         onClick={addInput}
                         sx={{
@@ -65,7 +76,7 @@ const UploadImage = ({ userDetail }) => {
                         Añadir
                     </Button>
                 )}
-                {counter.length > 1 && (
+                {form.img.length > 1 && (
                     <Button
                         onClick={removeInput}
                         sx={{
@@ -88,8 +99,9 @@ const UploadImage = ({ userDetail }) => {
                     gap: "2rem",
                 }}
             >
-                {counter.map((el) => (
+                {form.img.map((el) => (
                     <Box
+                        key={shortid.generate()}
                         sx={{
                             width: "15vw",
                             height: "15vh",
@@ -102,27 +114,29 @@ const UploadImage = ({ userDetail }) => {
                             "&:hover": { borderColor: "#575754" },
                         }}
                     >
-                        (
-                        <>
-                            <label for="file-images">
-                                <AddPhotoAlternateIcon
-                                    sx={{
-                                        fontSize: "4rem",
-                                        color: "gray",
-                                        cursor: "pointer",
-                                        "&:hover": { color: "#575754" },
-                                    }}
-                                />
-                            </label>
-                            <TextField
-                                id="file-images"
-                                type="file"
-                                onChange={(e) => handleImages(e)}
-                                sx={{ display: "none" }}
-                                multiple
-                            ></TextField>
-                        </>
-                        )
+                        {el === "a" ? (
+                            <>
+                                <label for="file-images">
+                                    <AddPhotoAlternateIcon
+                                        sx={{
+                                            fontSize: "4rem",
+                                            color: "gray",
+                                            cursor: "pointer",
+                                            "&:hover": { color: "#575754" },
+                                        }}
+                                    />
+                                </label>
+                                <TextField
+                                    id="file-images"
+                                    type="file"
+                                    onChange={(e) => handleImages(e)}
+                                    sx={{ display: "none" }}
+                                    multiple
+                                ></TextField>
+                            </>
+                        ) : (
+                            <PreviewImage file={el} />
+                        )}
                     </Box>
                 ))}
             </Grid>
