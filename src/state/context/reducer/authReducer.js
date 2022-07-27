@@ -12,6 +12,7 @@ export const INITIAL_STATE = {
 };
 
 export const authReducer = (state = INITIAL_STATE, action) => {
+    console.log(action.type);
     switch (action.type) {
         case actions.AUTH_RESET:
             return {

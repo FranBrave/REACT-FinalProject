@@ -6,6 +6,7 @@ import { ModalContext } from "../../../../../../state/context/modalContext";
 import { toggleAuthModal } from "../../../../../../state/context/actions/modalActions";
 import { useSelector } from "react-redux";
 import UploadImage from "../../../uploadImage/UploadImage";
+import CloseIcon from "@mui/icons-material/Close";
 
 const ImagesModal = () => {
     const classes = useStyles();
@@ -20,7 +21,10 @@ const ImagesModal = () => {
         <Modal open={modalState.image} sx={classes.backdrop}>
             <Fade in={modalState.image}>
                 <Box sx={classes.modal}>
-                    <Button onClick={handleCloseModal}>Close</Button>
+                    <CloseIcon
+                        onClick={handleCloseModal}
+                        sx={{ cursor: "pointer" }}
+                    />
                     {userDetail && (
                         <UploadImage
                             handleCloseModal={handleCloseModal}

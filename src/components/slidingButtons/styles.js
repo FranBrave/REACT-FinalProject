@@ -6,7 +6,7 @@ export const Switch = styled.div`
     height: 60px;
     width: ${(props) => (props.home ? "300px" : "600px")};
     background-color: #e4e4e4;
-    border-radius: 20px;
+    border-radius: 2rem;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3),
         0 1px rgba(255, 255, 255, 0.1);
 `;
@@ -25,7 +25,7 @@ export const SwitchSelection = styled.span`
     height: 60px;
     color: #fff;
     background: #ffcb47;
-    border-radius: 20px;
+    border-radius: 2rem;
     transition: left 0.25s ease-out;
 `;
 
