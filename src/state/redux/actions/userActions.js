@@ -76,9 +76,9 @@ export const setReduxUsersList = () => {
 export const setReduxUserEdit = (data, userId) => {
     return (dispatch) => {
         try {
-            return editUserDetail(data, userId).then((res) =>
-                dispatch(actionUserEdit(res))
-            );
+            return editUserDetail(data, userId).then((res) => {
+                dispatch(actionUserEdit(res));
+            });
         } catch (error) {
             dispatch(actionUserError(error.response.data));
         }

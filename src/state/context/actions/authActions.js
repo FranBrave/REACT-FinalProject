@@ -55,7 +55,7 @@ export const authUserProvider = async (body, dispatch) => {
             localStorage.setItem("userId", userId);
             localStorage.setItem("token", userToken);
 
-            dispatch(actionLoginDone(response));
+            dispatch(actionLoginDone({ userId, userToken }));
             return;
         }
 

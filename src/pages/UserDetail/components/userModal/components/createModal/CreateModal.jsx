@@ -6,6 +6,7 @@ import { ModalContext } from "../../../../../../state/context/modalContext";
 import { toggleAuthModal } from "../../../../../../state/context/actions/modalActions";
 import TravelCreation from "../../../travelCreation/TravelCreation";
 import { useSelector } from "react-redux";
+import CloseIcon from "@mui/icons-material/Close";
 
 const CreateModal = () => {
     const classes = useStyles();
@@ -20,7 +21,10 @@ const CreateModal = () => {
         <Modal open={modalState.create} sx={classes.backdrop}>
             <Fade in={modalState.create}>
                 <Box sx={classes.modal}>
-                    <Button onClick={handleCloseModal}>Close</Button>
+                    <CloseIcon
+                        onClick={handleCloseModal}
+                        sx={{ cursor: "pointer" }}
+                    />
                     {userDetail && (
                         <TravelCreation
                             userId={userDetail._id}

@@ -53,6 +53,7 @@ const UserInfo = ({ userDetail, username }) => {
     };
 
     const submitAvatar = (e) => {
+        console.log("avatar");
         const data = {
             img: e.currentTarget.files[0],
         };
@@ -113,7 +114,6 @@ const UserInfo = ({ userDetail, username }) => {
                                 />
                             </Box>
                         </Stack>
-
                         <Grid
                             container
                             spacing={0}
@@ -161,7 +161,7 @@ const UserInfo = ({ userDetail, username }) => {
                                     justifyContent="center"
                                     gap="5px"
                                 >
-                                    <LocationOnIcon sx={{ color: "red" }} />
+                                    <LocationOnIcon sx={{ color: "gray" }} />
                                     {userDetail.location}
                                 </Stack>
                                 <Stack
@@ -171,22 +171,32 @@ const UserInfo = ({ userDetail, username }) => {
                                     justifyContent="center"
                                     gap="5px"
                                 >
-                                    <AccessTimeIcon sx={{ color: "blue" }} />
-                                    {userDetail.age} years
+                                    <AccessTimeIcon sx={{ color: "gray" }} />
+                                    {userDetail.age} años
                                 </Stack>
+                            </Grid>
+                            <Grid
+                                container
+                                spacing={0}
+                                direction="row"
+                                alignItems="center"
+                                justifyContent="start"
+                                gap="1rem"
+                            >
                                 {isSameUser && (
                                     <Button
                                         sx={{
                                             p: "0.5rem 4rem",
-                                            backgroundColor: "#8AA1B1",
-                                            color: "white",
+                                            color: "black",
+                                            borderRadius: "2rem",
+                                            border: "2px solid black",
                                             "&:hover": {
-                                                backgroundColor: "#9ac2c9",
+                                                backgroundColor: "#F1F1F1",
                                             },
                                         }}
                                         onClick={handleEditModal}
                                     >
-                                        Edit
+                                        Editar
                                     </Button>
                                 )}
                                 {isSameUser && (
@@ -194,29 +204,33 @@ const UserInfo = ({ userDetail, username }) => {
                                         sx={{
                                             p: "0.5rem 4rem",
                                             backgroundColor: "#ffcb47",
-                                            color: "white",
+                                            color: "black",
+                                            borderRadius: "2rem",
+                                            border: "2px solid #ffcb47",
                                             "&:hover": {
                                                 backgroundColor: "#F0A370",
                                             },
                                         }}
                                         onClick={handleCreateModal}
                                     >
-                                        Create travel
+                                        Crear viaje
                                     </Button>
                                 )}
                                 {isSameUser && (
                                     <Button
                                         sx={{
-                                            p: "0.5rem 2rem",
-                                            backgroundColor: "#D7FFAB",
+                                            p: "0.5rem 4rem",
                                             color: "black",
+                                            borderRadius: "2rem",
+                                            backgroundColor: "#C0EEFC",
+                                            border: "2px solid #C0EEFC",
                                             "&:hover": {
-                                                backgroundColor: "#96ADC8",
+                                                backgroundColor: "#D8F2F9",
                                             },
                                         }}
                                         onClick={handleImageModal}
                                     >
-                                        Upload Images
+                                        Subir imágenes
                                     </Button>
                                 )}
                             </Grid>

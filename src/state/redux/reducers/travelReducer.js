@@ -39,7 +39,7 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
                     usersWantJoin: action.payload,
                 },
                 error: "",
-            };  
+            };
         case action.TRAVEL_FOLLOW_LIST:
             return {
                 ...state,
@@ -47,20 +47,18 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
                     ...state.travelDetail,
                     userFollow: action.payload,
                 },
-                error:"",
+                error: "",
             };
-        case action.TRAVEL_JOIN_LIST:
+        case action.TRAVEL_JOINED_LIST:
             return {
                 ...state,
                 travelDetail: {
                     ...state.travelDetail,
-                    usersJoined: action.payload
+                    usersJoined: action.payload,
                 },
-                error:"",
+                error: "",
             };
         default:
             return state;
     }
-
-        
 };
