@@ -4,7 +4,8 @@ import {
     postTravel,
     postUserToWantJoinList,
     postUserFollow,
-    postUserJoined
+    postUserJoined,
+    deleteUserWantJoin
 } from "../services/travelServices";
 import { actionUserCreateTravel } from "../actions/userActions";
 
@@ -17,6 +18,7 @@ export const PUSH_TRAVEL = "PUSH_TRAVEL";
 export const TRAVEL_WANT_LIST = "TRAVEL_WANT_LIST";
 export const TRAVEL_FOLLOW_LIST = "TRAVEL_FOLLOW_LIST"
 export const TRAVEL_JOINED_LIST = "TRAVEL_JOINED_LIST"
+export const TRAVEL_WANT_LIST_DELETE = "TRAVEL_WANT_LIST_DELETE";
 
 const actionTravelDetail = (travelDetail) => ({
     type: TRAVEL_DETAIL,
@@ -51,7 +53,12 @@ const actionPushUserToFollowList = (user) => ({
 const actionPushUserJoinedList = (user) => ({
     type: TRAVEL_JOINED_LIST,
     paylod:user,
-})
+});
+
+const actionDeleteUserWantJoin = (user) => ({
+    type: TRAVEL_WANT_LIST_DELETE,
+    payload: user,
+});
 
 
 /**
@@ -138,6 +145,21 @@ export const setReduxUserJoined = (data, userJoined) => {
                 dispatch(actionPushUserJoinedList(array));
             });
         } catch (error) {
+            dispatch(actionTravelError(error.response.data));
+        }
+    };
+};
+
+export const setReduxUserWantJoinDelete = (data, usersWantList) => {
+    return (dispatch) => {
+        try {
+            deleteUserWantJoin(data).then((res) =>{
+                const array = usersWantList;
+                array.delete(res);
+                dispatch(actionDeleteUserWantJoin(array));
+            })
+        } catch (error) {
+            console.log(error.response.data)
             dispatch(actionTravelError(error.response.data));
         }
     };

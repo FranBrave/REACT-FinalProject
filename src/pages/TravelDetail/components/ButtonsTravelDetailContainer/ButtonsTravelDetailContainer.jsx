@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Typography, Grid } from "@mui/material";
-import { useParams } from "react-router-dom";
 import { useUserLoggedDetail } from "../../../../customHook/useUserLoggedDetail";
 import { useDispatch } from "react-redux";
 import { setReduxUserFollow, setReduxUserWantJoin } from "../../../../state/redux/actions/travelActions";

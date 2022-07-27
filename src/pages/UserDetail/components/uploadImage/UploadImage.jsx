@@ -1,7 +1,8 @@
-import { Button, Grid, Stack, TextField } from "@mui/material";
+import { Button, Grid, Stack, TextField, Box,  } from "@mui/material";
 import React, { useState } from "react";
 import { setReduxUploadImg } from "../../../../state/redux/actions/userActions";
 import { useDispatch } from "react-redux/es/exports";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 const UploadImage = ({ userDetail }) => {
     const [form, setForm] = useState({ img: [] });
@@ -17,7 +18,7 @@ const UploadImage = ({ userDetail }) => {
         setCounter(newCounter);
     };
 
-    const handleImage = (e) => {
+    const handleImages = (e) => {
         const currentForm = form;
         currentForm.img.push(e.currentTarget.files[0]);
         setForm(currentForm);
@@ -71,15 +72,77 @@ const UploadImage = ({ userDetail }) => {
                 )}
             </Stack>
             {counter.map((el) => (
-                <TextField
-                    type="file"
-                    onChange={(e) => handleImage(e)}
-                    multiple
-                ></TextField>
-            ))}
-            <Button onClick={uploadImg}>Upload</Button>
-        </Grid>
-    );
-};
+                <Box
+
+sx={{
+
+    width: "15vw",
+
+    height: "15vh",
+
+    display: "flex",
+
+    alignItems: "center",
+
+    justifyContent: "center",
+
+    border: "2px solid gray",
+
+    borderRadius: "1rem",
+
+    cursor: "pointer",
+
+    "&:hover": { borderColor: "#575754" },
+
+}}
+
+>
+
+(
+
+<>
+
+    <label for="file-images">
+
+        <AddPhotoAlternateIcon
+
+            sx={{
+
+                fontSize: "4rem",
+
+                color: "gray",
+
+                cursor: "pointer",
+
+                "&:hover": { color: "#575754" },
+
+            }}
+
+        />
+
+    </label>
+
+    <TextField
+        id="file-images"
+
+        type="file"
+
+        onChange={(e) => handleImages(e)}
+
+        sx={{ display: "none" }}
+
+        multiple
+
+    ></TextField>
+     
+
+</>
+    
+)
+</Box>
+            ))};
+</Grid>
+);
+        };
 
 export default UploadImage;

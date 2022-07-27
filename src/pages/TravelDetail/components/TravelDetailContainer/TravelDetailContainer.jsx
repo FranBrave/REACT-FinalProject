@@ -35,6 +35,8 @@ const TravelDetailContainer = () => {
     setimgPrincipal(image);
   };
 
+  console.log(travel)
+
   return (
     <>
       {travel ? (
@@ -77,11 +79,12 @@ const TravelDetailContainer = () => {
             </Grid>
             <Grid xs={4}>
               {travel.images.map((image) => {
-                if (image !== imgPrincipal) {
+                {
                   return (
                     <Box
                       onClick={() => actualizarImgPrincipal(image)}
                       component="img"
+                      //border = {image !== imgPrincipal ? "100px solid red" : "none"}
                       sx={{
                         height: {
                           lg: "20vh",
@@ -94,6 +97,8 @@ const TravelDetailContainer = () => {
                         border: "1px solid grey",
                         mx: { lg: "3vw", xs: "50vw" },
                         mt: { lg: "4vw", xs: "2vw" },
+
+                       
                       }}
                       src={image}
                     />
