@@ -53,6 +53,7 @@ const UserInfo = ({ userDetail, username }) => {
     };
 
     const submitAvatar = (e) => {
+        console.log("avatar");
         const data = {
             img: e.currentTarget.files[0],
         };
@@ -113,7 +114,6 @@ const UserInfo = ({ userDetail, username }) => {
                                 />
                             </Box>
                         </Stack>
-
                         <Grid
                             container
                             spacing={0}
@@ -172,7 +172,7 @@ const UserInfo = ({ userDetail, username }) => {
                                     gap="5px"
                                 >
                                     <AccessTimeIcon sx={{ color: "gray" }} />
-                                    {userDetail.age} years
+                                    {userDetail.age} años
                                 </Stack>
                             </Grid>
                             <Grid
@@ -187,15 +187,16 @@ const UserInfo = ({ userDetail, username }) => {
                                     <Button
                                         sx={{
                                             p: "0.5rem 4rem",
-                                            backgroundColor: "#8AA1B1",
-                                            color: "white",
+                                            color: "black",
+                                            borderRadius: "2rem",
+                                            border: "2px solid black",
                                             "&:hover": {
-                                                backgroundColor: "#9ac2c9",
+                                                backgroundColor: "#F1F1F1",
                                             },
                                         }}
                                         onClick={handleEditModal}
                                     >
-                                        Edit
+                                        Editar
                                     </Button>
                                 )}
                                 {isSameUser && (
@@ -203,29 +204,31 @@ const UserInfo = ({ userDetail, username }) => {
                                         sx={{
                                             p: "0.5rem 4rem",
                                             backgroundColor: "#ffcb47",
-                                            color: "white",
+                                            color: "black",
+                                            borderRadius: "2rem",
                                             "&:hover": {
                                                 backgroundColor: "#F0A370",
                                             },
                                         }}
                                         onClick={handleCreateModal}
                                     >
-                                        Create travel
+                                        Crear viaje
                                     </Button>
                                 )}
                                 {isSameUser && (
                                     <Button
                                         sx={{
-                                            p: "0.5rem 2rem",
-                                            backgroundColor: "#D7FFAB",
+                                            p: "0.5rem 4rem",
                                             color: "black",
+                                            borderRadius: "2rem",
+                                            backgroundColor: "#C0EEFC",
                                             "&:hover": {
-                                                backgroundColor: "#96ADC8",
+                                                backgroundColor: "#D8F2F9",
                                             },
                                         }}
                                         onClick={handleImageModal}
                                     >
-                                        Upload Images
+                                        Subir imágenes
                                     </Button>
                                 )}
                             </Grid>

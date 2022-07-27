@@ -105,7 +105,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
         <>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <Typography sx={{ textAlign: "center" }}>
-                    Creation travel form
+                    Crea tu viaje
                 </Typography>
                 <Grid
                     container
@@ -120,7 +120,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                         name="title"
                         type="text"
                         placeholder="travel's title"
-                        label="Title"
+                        label="Titulo"
                         onChange={handleChangeForm}
                         sx={{
                             width: "40vw",
@@ -130,7 +130,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                         name="description"
                         type="text"
                         placeholder="travel's description"
-                        label="Description"
+                        label="Descripción"
                         onChange={handleChangeForm}
                         sx={{
                             width: "40vw",
@@ -140,7 +140,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                         name="budget"
                         type="number"
                         placeholder="travel's budget"
-                        label="Budget"
+                        label="Presupuesto"
                         onChange={(e) =>
                             setForm({
                                 ...form,
@@ -162,7 +162,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                         <DatePicker
                             openTo="year"
                             views={["year", "month", "day"]}
-                            label="From"
+                            label="Desde"
                             name="dateFrom"
                             value={form.dateFrom}
                             onChange={(e) =>
@@ -175,7 +175,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                         <DatePicker
                             openTo="year"
                             views={["year", "month", "day"]}
-                            label="To"
+                            label="Hasta"
                             name="dateTo"
                             value={form.dateTo}
                             onChange={(e) =>
@@ -193,7 +193,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                                 textAlign: "left",
                             }}
                         >
-                            City Name
+                            Nombre de la ciudad
                         </InputLabel>
                         <Select
                             labelId="cityName-label"
@@ -207,7 +207,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                             }}
                         >
                             <MenuItem value="">
-                                <em>None</em>
+                                <em>Ninguno</em>
                             </MenuItem>
                             {cities &&
                                 cities.map((city) => (
@@ -226,7 +226,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                             spacing={2}
                             sx={{ padding: "0 1rem 1rem 1rem" }}
                         >
-                            <InputLabel id="tags-label">Tags</InputLabel>
+                            <InputLabel id="tags-label">Etiquetas</InputLabel>
                             {form.tags.length > 0 &&
                                 form.tags.map((tag) => (
                                     <InputLabel
@@ -275,7 +275,7 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                                 }}
                             >
                                 <MenuItem value="">
-                                    <em>None</em>
+                                    <em>Ninguno</em>
                                 </MenuItem>
                                 {tags &&
                                     tags.map((tag) => (
@@ -294,12 +294,13 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                                     backgroundColor: "#b9d8c2",
                                     lineHeight: "1rem",
                                     color: "white",
+                                    borderRadius: "2rem",
                                     "&:hover": {
                                         backgroundColor: "#9ac2c9",
                                     },
                                 }}
                             >
-                                Add Tag
+                                Añadir
                             </Button>
                         </Stack>
                     </Stack>
@@ -310,21 +311,22 @@ const TravelCreation = ({ userId, handleCloseModal }) => {
                             p: "0.5rem 4rem",
                             backgroundColor: "#ffcb47",
                             color: "white",
+                            borderRadius: "2rem",
                             "&:hover": {
                                 backgroundColor: "#F0A370",
                             },
                         }}
                     >
-                        Create Travel
+                        Crear viaje
                     </Button>
                     {error && (
                         <Alert variant="filled" severity="error">
-                            All the fields are required!
+                            Todos los campos son requeridos!
                         </Alert>
                     )}
                     {alertDisplay && (
                         <Alert variant="filled" severity="success">
-                            Travel successfully created!
+                            Viaje creado correctamente!
                         </Alert>
                     )}
                 </Grid>

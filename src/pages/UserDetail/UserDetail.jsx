@@ -8,6 +8,7 @@ import GalleryImages from "./components/galleryImages/GalleryImages";
 import UserModal from "./components/userModal/UserModal";
 
 const values = ["Travels Created", "Travels Joined", "Travels Following"];
+const valueESP = ["Viajes creados", "Viajes unidos", "Viajes siguiendo"];
 
 const UserDetail = () => {
     const { username } = useParams();
@@ -16,7 +17,7 @@ const UserDetail = () => {
     const [selectedComp, setSelectedComp] = useState(values[0]);
 
     const switchInfo = (value) => {
-        setSelectedComp(value);
+        setSelectedComp(values[valueESP.indexOf(value)]);
     };
 
     return (
@@ -39,8 +40,8 @@ const UserDetail = () => {
                 >
                     <UserInfo userDetail={userDetail} username={username} />
                     <SlidingButtons
-                        values={values}
-                        defaultSelected="Travels Created"
+                        values={valueESP}
+                        defaultSelected="Viajes creados"
                         switchInfo={switchInfo}
                     />
                     <GalleryImages

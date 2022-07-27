@@ -6,6 +6,7 @@ import { ModalContext } from "../../../../../../state/context/modalContext";
 import { toggleAuthModal } from "../../../../../../state/context/actions/modalActions";
 import EditForm from "../../../editForm/EditForm";
 import { useSelector } from "react-redux";
+import CloseIcon from "@mui/icons-material/Close";
 
 const EditModal = () => {
     const classes = useStyles();
@@ -20,7 +21,10 @@ const EditModal = () => {
         <Modal open={modalState.edit} sx={classes.backdrop}>
             <Fade in={modalState.edit}>
                 <Box sx={classes.modal}>
-                    <Button onClick={handleCloseModal}>Close</Button>
+                    <CloseIcon
+                        onClick={handleCloseModal}
+                        sx={{ cursor: "pointer" }}
+                    />
                     {userDetail && (
                         <EditForm
                             userId={userDetail._id}

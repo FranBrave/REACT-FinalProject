@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { setReduxUploadImg } from "../../../../state/redux/actions/userActions";
 import { useDispatch } from "react-redux/es/exports";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import PreviewImage from "./utils/PreviewImage";
 
 const UploadImage = ({ userDetail }) => {
     const [form, setForm] = useState({ img: [] });
     const [counter, setCounter] = useState(["a"]);
+    const [file, setFile] = useState();
     const dispatch = useDispatch();
 
     const addInput = () => {
@@ -18,10 +20,11 @@ const UploadImage = ({ userDetail }) => {
         setCounter(newCounter);
     };
 
-    const handleImage = (e) => {
+    const handleImages = (e) => {
         const currentForm = form;
         currentForm.img.push(e.currentTarget.files[0]);
         setForm(currentForm);
+        // setFile(e.currentTarget.files[0]);
     };
 
     const uploadImg = () => {
@@ -38,48 +41,51 @@ const UploadImage = ({ userDetail }) => {
             alignItems="center"
             justifyContent="center"
             spacing={1}
+            sx={{ gap: "2rem" }}
         >
             <Stack
                 container
                 direction="row"
                 alignItems="center"
                 justifyContent="center"
-                spacing={1}
+                spacing={2}
             >
                 {counter.length < 3 && (
                     <Button
                         onClick={addInput}
                         sx={{
-                            backgroundColor: "greenyellow",
-                            color: "white",
-                            "&:hover": { backgroundColor: "green" },
+                            color: "black",
+                            borderColor: "#88F29B",
+                            background: "#88F29B",
+                            padding: "0.3rem 2rem",
+                            borderRadius: "2rem",
+                            "&:hover": { backgroundColor: "#6CBE7A" },
                         }}
                     >
-                        Add
+                        Añadir
                     </Button>
                 )}
                 {counter.length > 1 && (
                     <Button
                         onClick={removeInput}
                         sx={{
-                            backgroundColor: "red",
+                            backgroundColor: "#F53708",
                             color: "white",
-                            "&:hover": { backgroundColor: "orangered" },
+                            padding: "0.3rem 2rem",
+                            borderRadius: "2rem",
+                            "&:hover": { backgroundColor: "#DA3209" },
                         }}
                     >
-                        Remove
+                        Eliminar
                     </Button>
                 )}
             </Stack>
             <Grid
                 sx={{
-                    width: "15vw",
-                    height: "15vh",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     gap: "2rem",
-                    width: "70vw",
                 }}
             >
                 {counter.map((el) => (
@@ -90,24 +96,50 @@ const UploadImage = ({ userDetail }) => {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            border: "2px solid black",
+                            border: "2px solid gray",
                             borderRadius: "1rem",
+                            cursor: "pointer",
+                            "&:hover": { borderColor: "#575754" },
                         }}
                     >
-                        <label for="file-input">
-                            <AddPhotoAlternateIcon />
-                        </label>
-                        <TextField
-                            type="file"
-                            onChange={(e) => handleImage(e)}
-                            sx={{ display: "none" }}
-                            multiple
-                        ></TextField>
+                        (
+                        <>
+                            <label for="file-images">
+                                <AddPhotoAlternateIcon
+                                    sx={{
+                                        fontSize: "4rem",
+                                        color: "gray",
+                                        cursor: "pointer",
+                                        "&:hover": { color: "#575754" },
+                                    }}
+                                />
+                            </label>
+                            <TextField
+                                id="file-images"
+                                type="file"
+                                onChange={(e) => handleImages(e)}
+                                sx={{ display: "none" }}
+                                multiple
+                            ></TextField>
+                        </>
+                        )
                     </Box>
                 ))}
             </Grid>
-
-            <Button onClick={uploadImg}>Upload</Button>
+            <Button
+                onClick={uploadImg}
+                sx={{
+                    p: "0.5rem 4rem",
+                    backgroundColor: "#ffcb47",
+                    color: "white",
+                    borderRadius: "2rem",
+                    "&:hover": {
+                        backgroundColor: "#F0A370",
+                    },
+                }}
+            >
+                Subir imagenes
+            </Button>
         </Grid>
     );
 };
