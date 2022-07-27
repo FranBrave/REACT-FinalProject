@@ -22,7 +22,6 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    console.log(1);
     logoutUserProvider(authDispatch);
   };
 

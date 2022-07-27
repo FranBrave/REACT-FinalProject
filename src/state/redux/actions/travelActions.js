@@ -5,6 +5,7 @@ import {
     postUserToWantJoinList,
     postUserFollow,
     postUserJoined,
+    deleteUserWantJoin
 } from "../services/travelServices";
 import { actionUserCreateTravel } from "../actions/userActions";
 
@@ -13,8 +14,9 @@ export const TRAVELS_LIST = "TRAVELS_LIST";
 export const TRAVEL_ERROR = "TRAVEL_ERROR";
 export const PUSH_TRAVEL = "PUSH_TRAVEL";
 export const TRAVEL_WANT_LIST = "TRAVEL_WANT_LIST";
-export const TRAVEL_FOLLOW_LIST = "TRAVEL_FOLLOW_LIST";
-export const TRAVEL_JOINED_LIST = "TRAVEL_JOINED_LIST";
+export const TRAVEL_FOLLOW_LIST = "TRAVEL_FOLLOW_LIST"
+export const TRAVEL_JOINED_LIST = "TRAVEL_JOINED_LIST"
+export const TRAVEL_WANT_LIST_DELETE = "TRAVEL_WANT_LIST_DELETE";
 
 const actionTravelDetail = (travelDetail) => ({
     type: TRAVEL_DETAIL,
@@ -48,8 +50,14 @@ const actionPushUserToFollowList = (user) => ({
 
 const actionPushUserJoinedList = (user) => ({
     type: TRAVEL_JOINED_LIST,
-    paylod: user,
+    paylod:user,
 });
+
+const actionDeleteUserWantJoin = (user) => ({
+    type: TRAVEL_WANT_LIST_DELETE,
+    payload: user,
+});
+
 
 /**
  * Function to set the redux state of the travel detail
@@ -57,6 +65,7 @@ const actionPushUserJoinedList = (user) => ({
  * @returns Dispatch the action to redux store in order to set the detail travel info
  */
 export const setReduxTravelDetail = (travelId) => {
+    console.log(travelId)
     return (dispatch) => {
         try {
             getTravelDetail(travelId).then((res) =>
@@ -136,6 +145,20 @@ export const setReduxUserJoined = (data, userJoined) => {
                 dispatch(actionPushUserJoinedList(array));
             });
         } catch (error) {
+            dispatch(actionTravelError(error.response.data));
+        }
+    };
+};
+
+export const setReduxUserWantJoinDelete = (data, usersWantList) => {
+    return (dispatch) => {
+        try {
+            deleteUserWantJoin(data).then((res) =>{
+               
+                dispatch(actionDeleteUserWantJoin(res.usersWantJoin));
+            })
+        } catch (error) {
+            console.log(error.response.data)
             dispatch(actionTravelError(error.response.data));
         }
     };

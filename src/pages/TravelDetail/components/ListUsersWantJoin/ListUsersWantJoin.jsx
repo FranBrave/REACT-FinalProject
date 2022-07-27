@@ -1,74 +1,91 @@
 import {
-    FormControl,
-    InputLabel,
-    Box,
-    Select,
-    MenuItem,
-    Typography,
-    Button,
-    Stack,
-    Grid,
+  FormControl,
+  InputLabel,
+  Box,
+  Select,
+  MenuItem,
+  Typography,
+  Button,
+  Grid,
+  Stack,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setReduxUserJoined } from "../../../../state/redux/actions/travelActions";
+import { setReduxUserJoined, setReduxUserWantJoinDelete } from "../../../../state/redux/actions/travelActions";
+
+const INITIAL_STATE = "";
 
 const ListUsersWantJoin = ({ travel }) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    // Use State con el usuario seleccionado
-    const acceptUser = () => {
-        const data = {
-            // username: userSelected,
-            travelId: travel.id,
-        };
+  const [userSelected, setUserSelected] = useState(INITIAL_STATE);
 
-        dispatch(setReduxUserJoined(data, travel.usersJoined));
+  const handleChange = (event) =>{setUserSelected(event.target.value)};
 
-        // DenieUser(username);
-    };
 
-    const denieUser = () => {
-        const data = {
-            // userName: userSelected,
-            travelID: travel.id,
-        };
+  const acceptUser = () => {
 
-        // dispatch()
-    };
+    const data = {
+      username: userSelected,
+      travelId: travel.id,
+      };
 
-    return (
-        <Box>
-            {travel ? (
-                <Grid sx={{ direction: "column" }}>
-                    <FormControl fullWidth>
-                        <InputLabel> Users Want Join</InputLabel>
-                        <Select label="User">
-                            {travel.usersWantJoin.map((user) => {
-                                return (
-                                    <MenuItem value={user.username}>
-                                        {user.username}
-                                    </MenuItem>
-                                );
-                            })}
-                        </Select>
-                    </FormControl>
-                    {
-                        <Stack sx={{ direction: "row" }}>
-                            <Link to={`/User/`}>
-                                <Button>Ver Perfil</Button>
-                            </Link>
-                            <Button onClick={acceptUser}>Aceptar</Button>
-                            <Button onClick={denieUser}>Denegar</Button>
-                        </Stack>
-                    }
-                </Grid>
-            ) : (
-                <Typography>Loading</Typography>
-            )}
-        </Box>
-    );
+    dispatch(setReduxUserJoined(data, travel.usersJoined));
+
+    denieUser();
+
+  };
+
+  const denieUser = () => {
+    
+    const data = {
+      userName: userSelected,
+      travelId: travel.id,
+      };
+
+
+    dispatch(setReduxUserWantJoinDelete(data, travel.usersWantJoin));
+
+
+  };
+
+  console.log(travel)
+  return (
+    <Box>
+      {travel ? (
+        <Grid sx={{ direction: "column" }}>
+          <FormControl fullWidth>
+            <InputLabel> Users Want Join</InputLabel>
+            <Select label="User"
+                value={userSelected} onChange={handleChange}>
+            {travel.usersWantJoin.map((user) => {
+              return (
+                
+                  <MenuItem value={user.username}>
+                    {user.username}
+                  </MenuItem>
+                
+              );
+            })}
+            ;
+            </Select>
+          </FormControl>
+          {userSelected && (
+            <Stack sx={{ direction: "row" }}>
+              <Link to={`/User/${userSelected}`}>
+                <Button>Ver Perfil</Button>
+              </Link>
+              <Button onClick={acceptUser}>Aceptar</Button>
+              <Button onClick={denieUser}>Denegar</Button>
+            </Stack>
+          )}
+        </Grid>
+      ) : (
+        <Typography>Loading</Typography>
+      )}
+    </Box>
+  );
 };
 
 export default ListUsersWantJoin;
