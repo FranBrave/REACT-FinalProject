@@ -57,7 +57,7 @@ const TravelSearcher = ({ searchTravel }) => {
                         filter: "brightness(0.9)",
 
                         width: {
-                          lg: "15vw",
+                          lg: "20vw",
                           sm: "30vw",
                           xs: "95vw",
                         },
@@ -143,7 +143,7 @@ const TravelSearcher = ({ searchTravel }) => {
                         },
                       }}
                     >
-                      {travel.description.slice(0, 50).concat("...")}
+                      {travel.description.slice(0, 30).concat("...")}
                     </Typography>
                     <Typography
                       className="travel-card__data"
