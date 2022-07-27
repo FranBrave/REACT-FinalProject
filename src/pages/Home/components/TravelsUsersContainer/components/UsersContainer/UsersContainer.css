@@ -1,5 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
+
+.user-card {
+    flex: 0 0 auto;
+}
+
+
+.user {
+    display: flex;
+    margin: 0 auto;
+    padding: 0 1rem;
+    max-width: 70%;
+}
 
 .user-card__budget {
     border: solid 1px;
@@ -25,6 +36,14 @@
     background-color: rgba(148, 134, 134, 0.162);
 }
 
+
+.user-card1 {
+    transition: all 400ms ease;
+}
+
+.user-card1:hover {
+    transform: translateY(-3%);
+}
 
 
 

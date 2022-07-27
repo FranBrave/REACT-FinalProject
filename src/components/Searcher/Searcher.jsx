@@ -4,6 +4,7 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { setReduxTravelsList } from "../../state/redux/actions/travelActions";
 import { useDispatch, useSelector } from "react-redux";
 import { setReduxSearchList } from "../../state/redux/actions/searchActions";
+import background from "../../assets/backgroundmap.png";
 
 const Searcher = () => {
   const { travelsList } = useSelector((state) => state.travel);
@@ -28,33 +29,37 @@ const Searcher = () => {
     }
   };
   return (
-    <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
-      <Typography
-        fontWeight={700}
-        sx={{
-          fontSize: { lg: "30px", xs: "20px" },
-        }}
-        mb="50px"
-        textAlign="center"
-      >
-        ¿A qué lugar te gustaría ir?
-      </Typography>
-      <Box position="relative" mb="72px">
+    <Stack
+      alignItems="center"
+      mt="37px"
+      justifyContent="center"
+      sx={{
+        backgroundImage: `url(${background})`,
+        minWidth: "50%",
+        minHeight: "50vh",
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundAttachment: "scroll",
+        listStyle: "none",
+      }}
+    >
+      <Box position="relative" mb="30px">
         <TextField
           sx={{
+            label: "none",
             input: {
-              fontWeight: "700",
+              fontWeight: "900",
               border: "none",
               borderRadius: "4px",
             },
             width: { lg: "800px", xs: "350px" },
             backgroundColor: "#ffff",
-            borderRadius: "40px",
+            borderRadius: "4px",
           }}
-          height="76px"
+          height="80px"
           value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
-          placeholder="Busca un viaje"
+          placeholder="¿A qué lugar te gustaría ir?"
           type="text"
         />
         <Button
