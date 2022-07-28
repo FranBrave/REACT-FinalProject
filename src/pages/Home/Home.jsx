@@ -7,7 +7,6 @@ const values = ["Travels", "Users"];
 const valuesESP = ["Viajes", "Usuarios"];
 
 const Home = () => {
-  console.log(1);
   const [selectedComp, setSelectedComp] = useState(values[0]);
 
   const switchInfo = (value) => {
@@ -23,6 +22,7 @@ const Home = () => {
         alignItems="center"
         justifyContent="start"
         gap="1rem"
+        marginBottom="5rem"
       >
         <SlidingButtons
           values={valuesESP}

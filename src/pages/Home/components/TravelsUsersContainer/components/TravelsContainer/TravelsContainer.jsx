@@ -40,6 +40,8 @@ const TravelsContainer = () => {
             borderBottom: 1,
             borderColor: "divider",
             color: "orange",
+            fontWeight: 900,
+            fontWeight: "bold",
           }}
         >
           <TabList
@@ -50,6 +52,7 @@ const TravelsContainer = () => {
             variant="scrollable"
             scrollButtons="auto"
             allowScrollButtonsMobile
+            fontWeight="900"
           >
             <Tab className="tab" label="Playa" value="1" />
             <Tab className="tab" label="Nacional" value="2" />

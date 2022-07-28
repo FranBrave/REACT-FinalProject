@@ -31,9 +31,11 @@ const Header = () => {
       direction="row"
       alignItems="center"
       justifyContent="space-around"
-      gap="1rem"
       borderBottom="solid 1px gray"
-      marginBottom="5rem"
+      mb="5rem"
+      pb="2rem"
+      pt="2rem"
+      backgroundColor="floralwhite"
     >
       <Stack>
         <Link className="logo" to="/">
@@ -42,8 +44,8 @@ const Header = () => {
             src={Logo}
             alt="logo"
             style={{
-              width: "90px",
-              height: "90px",
+              width: "300px",
+              height: "104px",
               margin: "10px",
             }}
           />
@@ -54,6 +56,8 @@ const Header = () => {
           <Typography
             className="username"
             sx={{
+              pr: "8.5rem",
+              color: "black",
               fontSize: { lg: "30px", xs: "20px" },
             }}
           >
