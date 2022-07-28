@@ -26,7 +26,7 @@ const TravelDetailContainer = () => {
   const dispatch = useDispatch();
 
   
-  console.log(userAuth.userId)
+  console.log(travelDetail)
   
   // useEffect(() => {
   //   const userDetail = useUserLoggedDetail();

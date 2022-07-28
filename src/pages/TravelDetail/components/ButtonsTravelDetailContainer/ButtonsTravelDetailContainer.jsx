@@ -18,19 +18,23 @@ const ButtonsTravelDetailContainer = ({ travel }) => {
       travelId: travel.id,
     };
 
-    dispatch(setReduxUserWantJoin(data, travel.usersWantJoin));
+    dispatch(setReduxUserWantJoin(data));
   };
 
 
-  const Filtrar = () => {
-    if (userLogged) {
-      for (const i = 0; i < travel.usersFollowing.length; i++) {
-        if (!travel.usersFollowing[i]._id === userLogged._id) {
-          return true;
-        } else return false;
-      }
+  const filtrar = (list) => {
+    if (list.length === 0) {return true}
+    if(list.length > 0){
+      let value = false;
+      for (let i = 0; i < list.length; i++) {
+        if (!list[i]._id === userLogged._id) {
+          value = true;
+          break;
+        } 
     }
-  };
+    console.log(value)
+    return value;
+    }};
 
   const addUserToFollowList = () => {
     const data = {
@@ -41,18 +45,19 @@ const ButtonsTravelDetailContainer = ({ travel }) => {
     dispatch(setReduxUserFollow(data, travel.usersFollowing));
   };
 
+  console.log(travel,2)
+
   return (
     <Grid container spacing={4}>
       <Grid xs={2}>
-        {!travel.usersWantJoin.includes(userLogged) &&
-          !travel.usersJoined.includes(userLogged) && (
+            {userLogged && filtrar(travel.usersWantJoin) && (
             <Button variant="contained" onClick={addUserToWantJoinList}>
               <Typography>Join</Typography>
             </Button>
           )}
       </Grid>
       <Grid xs={2}>
-        {Filtrar() && (
+        {userLogged && filtrar(travel.usersFollowing) && (
           <Button variant="contained" onClick={addUserToFollowList}>
             <Typography>Follow</Typography>
           </Button>
