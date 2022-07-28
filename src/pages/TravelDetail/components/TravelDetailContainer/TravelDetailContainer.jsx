@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Box,
   CircularProgress,
@@ -14,6 +14,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ListUsersWantJoin from "../ListUsersWantJoin/ListUsersWantJoin";
 import { useDispatch, useSelector } from "react-redux";
 import { setReduxTravelDetail } from "../../../../state/redux/actions/travelActions";
+import { AuthContext } from "../../../../state/context/authContext";
 
 const TravelDetailContainer = () => {
   const { id } = useParams();
@@ -21,8 +22,18 @@ const TravelDetailContainer = () => {
 
   const { travelDetail } = useSelector((state) => state.travel);
   const [imgPrincipal, setimgPrincipal] = useState();
+  const { userAuth, authDispatch } = useContext(AuthContext);
   const dispatch = useDispatch();
 
+  
+  console.log(travelDetail)
+  
+  // useEffect(() => {
+  //   const userDetail = useUserLoggedDetail();
+  //   setUserAuth(userDetail);
+  // },[])
+
+  
 
 
   useEffect(() => {
@@ -37,7 +48,8 @@ const TravelDetailContainer = () => {
     setimgPrincipal(image);
   };
 
-
+  console.log(travelDetail)
+  
   return (
     <>
       {travelDetail ? (
@@ -202,7 +214,12 @@ const TravelDetailContainer = () => {
             }}
           >
             <ButtonsTravelDetailContainer travel={travelDetail} />
-            <ListUsersWantJoin travel={travelDetail} />
+            <>
+            { userAuth &&
+              userAuth.userId === travelDetail.userOwnerId 
+              && travelDetail.usersWantJoin.length > 0 && <ListUsersWantJoin travel={travelDetail} /> 
+            }
+            </>
           </Grid>
         </Grid>
       ) : (
