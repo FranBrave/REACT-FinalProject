@@ -40,16 +40,16 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
                 },
                 error: "",
             };
-        case action.TRAVEL_FOLLOW_LIST:
+        case actions.TRAVEL_FOLLOW_LIST:
             return {
                 ...state,
                 travelDetail: {
                     ...state.travelDetail,
-                    userFollow: action.payload,
+                    usersFollowing: action.payload,
                 },
                 error: "",
             };
-        case action.TRAVEL_JOINED_LIST:
+        case actions.TRAVEL_JOINED_LIST:
             return {
                 ...state,
                 travelDetail: {
@@ -59,12 +59,12 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
                 error: "",
             };
 
-        case action.TRAVEL_WANT_LIST_DELETE:
+        case actions.TRAVEL_WANT_LIST_DELETE:  
             return{
                 ...state,
                 travelDetail: {
                     ...state.travelDetail,
-                    usersWantJoin:action.payload
+                    usersWantJoin: action.payload
                 },
                 error:"",
             };

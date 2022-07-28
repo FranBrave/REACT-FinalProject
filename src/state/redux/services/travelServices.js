@@ -6,7 +6,6 @@ export const getTravelDetail = async (travelId) => {
     const response = await axios.get(
         `${environment.API_URL}/travel/detail/${travelId}`
     );
-        console.log(response,1)
     return response.data;
 };
 
@@ -37,7 +36,7 @@ export const postUserToWantJoinList = async (data) => {
 
 export const postUserFollow = async (data) => {
     const response = await axios.post(
-        `${environment.API_URL}/user/follow`,
+        `${environment.API_URL}/travel/follow`,
         data
     );
 

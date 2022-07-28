@@ -53,9 +53,9 @@ const actionPushUserJoinedList = (user) => ({
     paylod:user,
 });
 
-const actionDeleteUserWantJoin = (user) => ({
+const actionDeleteUserWantJoin = (data) => ({
     type: TRAVEL_WANT_LIST_DELETE,
-    payload: user,
+    payload: data,
 });
 
 
@@ -65,7 +65,6 @@ const actionDeleteUserWantJoin = (user) => ({
  * @returns Dispatch the action to redux store in order to set the detail travel info
  */
 export const setReduxTravelDetail = (travelId) => {
-    console.log(travelId)
     return (dispatch) => {
         try {
             getTravelDetail(travelId).then((res) =>
@@ -107,13 +106,11 @@ export const setReduxAddTravel = (data) => {
     };
 };
 
-export const setReduxUserWantJoin = (data, usersWantList) => {
+export const setReduxUserWantJoin = (data) => {
     return (dispatch) => {
         try {
             postUserToWantJoinList(data).then((res) => {
-                const array = usersWantList;
-                array.push(res);
-                dispatch(actionPushUserToWantList(array));
+                dispatch(actionPushUserToWantList(res.usersWantJoin));
             });
         } catch (error) {
             dispatch(actionTravelError(error.response.data));
@@ -136,7 +133,6 @@ export const setReduxUserFollow = (data, userFollow) => {
 };
 
 export const setReduxUserJoined = (data, userJoined) => {
-    console.log(data);
     return (dispatch) => {
         try {
             postUserJoined(data).then((res) => {
@@ -150,11 +146,10 @@ export const setReduxUserJoined = (data, userJoined) => {
     };
 };
 
-export const setReduxUserWantJoinDelete = (data, usersWantList) => {
+export const setReduxUserWantJoinDelete = (data) => {
     return (dispatch) => {
         try {
             deleteUserWantJoin(data).then((res) =>{
-               
                 dispatch(actionDeleteUserWantJoin(res.usersWantJoin));
             })
         } catch (error) {
