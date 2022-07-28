@@ -136,7 +136,7 @@ export const setReduxUserFollow = (data, userFollow) => {
 };
 
 export const setReduxUserJoined = (data, userJoined) => {
-    console.log(data);
+  
     return (dispatch) => {
         try {
             postUserJoined(data).then((res) => {

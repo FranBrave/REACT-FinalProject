@@ -50,7 +50,7 @@ const ListUsersWantJoin = ({ travel }) => {
 
   };
 
-  console.log(travel)
+
   return (
     <Box>
       {travel ? (
