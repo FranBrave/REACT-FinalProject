@@ -3,68 +3,87 @@ import { Button, Typography, Grid } from "@mui/material";
 import { useUserLoggedDetail } from "../../../../customHook/useUserLoggedDetail";
 import { useDispatch } from "react-redux";
 import {
-  setReduxUserFollow,
-  setReduxUserWantJoin,
+    setReduxUserFollow,
+    setReduxUserWantJoin,
 } from "../../../../state/redux/actions/travelActions";
 
 const ButtonsTravelDetailContainer = ({ travel }) => {
-  //travel id
-  const userLogged = useUserLoggedDetail();
-  const dispatch = useDispatch();
+    //travel id
+    const userLogged = useUserLoggedDetail();
+    const dispatch = useDispatch();
 
-  const addUserToWantJoinList = () => {
-    const data = {
-      userName: userLogged.username,
-      travelId: travel.id,
+    const addUserToWantJoinList = () => {
+        console.log(1);
+        const data = {
+            userName: userLogged.username,
+            travelId: travel.id,
+        };
+
+        dispatch(setReduxUserWantJoin(data));
     };
 
-    dispatch(setReduxUserWantJoin(data));
-  };
+    const addUserToFollowList = () => {
+        console.log(1);
+        const data = {
+            userName: userLogged.username,
+            travelId: travel.id,
+        };
 
-
-  const filtrar = (list) => {
-    if (list.length === 0) {return true}
-    if(list.length > 0){
-      let value = false;
-      for (let i = 0; i < list.length; i++) {
-        if (!list[i]._id === userLogged._id) {
-          value = true;
-          break;
-        } 
-    }
-    console.log(value)
-    return value;
-    }};
-
-  const addUserToFollowList = () => {
-    const data = {
-      userName: userLogged.username,
-      travelId: travel.id,
+        dispatch(setReduxUserFollow(data, travel.usersFollowing));
     };
 
-    dispatch(setReduxUserFollow(data, travel.usersFollowing));
-  };
+    const filtrar = (list) => {
+        if (list.length === 0) {
+            return true;
+        }
 
-  console.log(travel,2)
+        if (list.length > 0) {
+            let value = false;
 
-  return (
-    <Grid container spacing={4}>
-      <Grid xs={2}>
-            {userLogged && filtrar(travel.usersWantJoin) && (
-            <Button variant="contained" onClick={addUserToWantJoinList}>
-              <Typography>Join</Typography>
-            </Button>
-          )}
-      </Grid>
-      <Grid xs={2}>
-        {userLogged && filtrar(travel.usersFollowing) && (
-          <Button variant="contained" onClick={addUserToFollowList}>
-            <Typography>Follow</Typography>
-          </Button>
-        )}
-      </Grid>
-    </Grid>
-  );
+            for (let i = 0; i < list.length; i++) {
+                if (!list[i]._id === userLogged._id) {
+                    value = true;
+
+                    break;
+                }
+            }
+
+            console.log(value);
+
+            return value;
+        }
+    };
+
+    console.log(travel);
+
+    return (
+        <Grid container spacing={4}>
+            <Grid xs={2}>
+                {userLogged &&
+                    userLogged._id !== travel.userOwnerId &&
+                    filtrar(travel.usersWantJoin) && (
+                        <Button
+                            variant="contained"
+                            onClick={addUserToWantJoinList}
+                        >
+                            <Typography>Join</Typography>
+                        </Button>
+                    )}
+            </Grid>
+            <Grid xs={2}>
+                {userLogged &&
+                    userLogged._id !== travel.userOwnerId &&
+                    filtrar(travel.usersFollowing) && (
+                        <Button
+                            variant="contained"
+                            onClick={addUserToFollowList}
+                        >
+                            <Typography>Follow</Typography>
+                        </Button>
+                    )}
+            </Grid>
+        </Grid>
+    );
 };
 
 export default ButtonsTravelDetailContainer;

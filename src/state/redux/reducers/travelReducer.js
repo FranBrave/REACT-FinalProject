@@ -58,17 +58,16 @@ export const travelReducer = (state = INITIAL_STATE, action) => {
                 },
                 error: "",
             };
-
-        case actions.TRAVEL_WANT_LIST_DELETE:  
-            return{
+        case actions.TRAVEL_WANT_LIST_DELETE:
+            return {
                 ...state,
                 travelDetail: {
                     ...state.travelDetail,
-                    usersWantJoin: action.payload
+                    usersWantJoin: action.payload,
                 },
-                error:"",
+                error: "",
             };
-            
+
         default:
             return state;
     }
