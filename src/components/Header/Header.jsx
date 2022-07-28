@@ -18,12 +18,16 @@ const Header = () => {
     const userLogged = useUserLoggedDetail();
 
     const handleAuthModal = () => {
-        toggleAuthModal(modalState.auth, modalDispatch);
+        console.log(1);
+        toggleAuthModal(false, modalDispatch);
     };
 
     const handleLogout = () => {
         logoutUserProvider(authDispatch);
+        toggleAuthModal(true, modalDispatch);
     };
+
+    console.log(modalState.auth);
 
     return (
         <Grid
