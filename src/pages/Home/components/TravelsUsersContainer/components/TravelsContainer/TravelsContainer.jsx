@@ -6,6 +6,7 @@ import TravelList from "./components/TravelList/TravelList";
 import TravelSearcher from "./components/TravelSearcher/TravelSearcher";
 import { TabPanel, TabContext, TabList } from "@mui/lab";
 import Searcher from "../../../../../../components/Searcher/Searcher";
+import "./TravelsContainer.css";
 
 const TravelsContainer = () => {
   const { travelsList } = useSelector((state) => state.travel);
@@ -31,25 +32,33 @@ const TravelsContainer = () => {
       <TravelSearcher searchTravel={searchTravel} />
       <TabContext value={value}>
         <Box
+          className="tabs-box"
           sx={{
+            textColor: "none",
+            display: "flex",
+            justifyContent: "center",
             borderBottom: 1,
             borderColor: "divider",
             color: "orange",
+            fontWeight: 900,
+            fontWeight: "bold",
           }}
-          centered
         >
           <TabList
+            className="tab-list"
+            indicatorColor="none"
             value={value}
             onChange={handleChange}
             variant="scrollable"
             scrollButtons="auto"
             allowScrollButtonsMobile
+            fontWeight="900"
           >
-            <Tab label="Playa" value="1" />
-            <Tab label="Nacional" value="2" />
-            <Tab label="Ciudad" value="3" />
-            <Tab label="Internacional" value="4" />
-            <Tab label="Naturaleza" value="5" />
+            <Tab className="tab" label="Playa" value="1" />
+            <Tab className="tab" label="Nacional" value="2" />
+            <Tab className="tab" label="Ciudad" value="3" />
+            <Tab className="tab" label="Internacional" value="4" />
+            <Tab className="tab" label="Naturaleza" value="5" />
           </TabList>
         </Box>
 

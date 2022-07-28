@@ -1,11 +1,11 @@
 import axios from "axios";
 import { environment } from "../../../environment/environment";
 
+
 export const getTravelDetail = async (travelId) => {
     const response = await axios.get(
         `${environment.API_URL}/travel/detail/${travelId}`
     );
-
     return response.data;
 };
 
@@ -36,7 +36,7 @@ export const postUserToWantJoinList = async (data) => {
 
 export const postUserFollow = async (data) => {
     const response = await axios.post(
-        `${environment.API_URL}/user/follow`,
+        `${environment.API_URL}/travel/follow`,
         data
     );
 
@@ -50,4 +50,22 @@ export const postUserJoined = async (data) => {
     );
     
     return response.data;
+};
+
+export const deleteUserWantJoin = async (data) => {
+
+    const deleteMethod = {
+        method: 'DELETE', 
+        headers: {'Content-type': 'application/json; charset=UTF-8' },
+         body:JSON.stringify(data)
+        }
+
+    const response = await fetch(
+        `${environment.API_URL}/user/wantJoin/`,
+        deleteMethod
+        );
+        
+        const info = await response.json()
+
+        return info
 };

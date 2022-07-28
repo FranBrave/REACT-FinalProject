@@ -1,7 +1,7 @@
 import { Link, Typography, Box, Grid } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import EuroIcon from "@mui/icons-material/Euro";
 import React from "react";
-import shortid from "shortid";
 
 const TravelSearcher = ({ searchTravel }) => {
   return (
@@ -13,7 +13,7 @@ const TravelSearcher = ({ searchTravel }) => {
               container
               alignItems="center"
               justifyContent="center"
-              color="#ffcb47"
+              color="black"
               fontWeight=""
               sx={{
                 fontSize: { lg: "33px", xs: "29px" },
@@ -24,122 +24,149 @@ const TravelSearcher = ({ searchTravel }) => {
               pb="10px"
               textTransform="none"
             >
-              Resultados:
+              Resultados
             </Typography>
           </Box>
-
-          <Grid
-            container
-            spacing={0}
-            alignItems="center"
-            justifyContent="center"
-            gap="0.6rem"
-            sx={{ margin: { xs: "3.9px" } }}
-          >
-            {searchTravel.map((travel) => (
-              <Link key={travel.id} href={`/travel/${travel.id}`}>
-                <Grid sx={{ border: "1px solid grey", m: "5px" }}>
+          <Box className="travel">
+            <Grid
+              container
+              spacing={0}
+              alignItems="center"
+              justifyContent="center"
+              gap="0.6rem"
+            >
+              {searchTravel.map((travel) => (
+                <Link key={travel.id} href={`/travel/${travel.id}`}>
                   <Grid
-                    className="travel-card"
+                    className="travel-card1"
                     sx={{
-                      background: `url(${travel.images[0]})`,
-                      backgroundSize: "cover",
-                      filter: "brightness(0.9)",
-                      width: {
-                        lg: "20vw",
-                        sm: "30vw",
-                        xs: "95vw",
-                      },
-                      height: {
-                        lg: "30vh",
-                        sm: "30vw",
-                        xs: "70vh",
-                      },
+                      border: "1px solid none",
+                      m: "5px",
+                      borderRadius: "10px",
+                      boxShadow: " 0px 18px 30px -10px rgba(0, 0, 0, 0.2)",
                     }}
-                    loading="lazy"
                   >
+                    <Grid
+                      className="travel-card__image"
+                      position="relative"
+                      sx={{
+                        background: `url(${travel.images[0]})`,
+                        borderTopLeftRadius: "10px",
+                        borderTopRightRadius: "10px",
+                        backgroundSize: "cover",
+                        filter: "brightness(0.9)",
+
+                        width: {
+                          lg: "20vw",
+                          sm: "30vw",
+                          xs: "95vw",
+                        },
+                        height: {
+                          lg: "20vh",
+                          sm: "30vw",
+                          xs: "70vh",
+                        },
+                      }}
+                      loading="lazy"
+                    >
+                      <Typography
+                        className="travel-card__location"
+                        sx={{
+                          ml: "10px",
+                          pt: "5px",
+                          fontWeight: "900",
+                          color: "#2b2d42",
+                          textTransform: "capitalize",
+                          fontSize: {
+                            lg: "33px",
+                            xs: "29px",
+                          },
+                        }}
+                      >
+                        <LocationOnIcon />
+                        {travel.cityName}
+                      </Typography>
+
+                      <Typography
+                        className="travel-card__budget"
+                        sx={{
+                          color: "black",
+                          fontWeight: "900",
+                          m: "10px",
+
+                          fontSize: {
+                            lg: "15px",
+                            xs: "13px",
+                          },
+                        }}
+                      >
+                        <EuroIcon
+                          sx={{
+                            mt: "1px",
+                            pr: "5px",
+                            color: "#ffcb47",
+                          }}
+                        />{" "}
+                        <Typography
+                          sx={{ mt: "2px", mr: "px", fontWeight: 900 }}
+                        >
+                          {travel.budget}{" "}
+                        </Typography>
+                      </Typography>
+                    </Grid>
                     <Typography
                       sx={{
                         ml: "10px",
-                        pt: "5px",
-                        fontWeight: "900",
-                        color: "#2b2d42",
-                        textTransform: "capitalize",
+                        mt: "10px",
+                        textTransform: "none",
+                        color: "#ffcb47",
+                        fontWeight: "bold",
                         fontSize: {
-                          lg: "33px",
-                          xs: "29px",
+                          lg: "25px",
+                          xs: "20px",
                         },
                       }}
                     >
-                      <LocationOnIcon />
-                      {travel.cityName}
+                      {travel.title}
                     </Typography>
                     <Typography
                       sx={{
-                        color: "black",
-                        fontWeight: "900",
-                        margin: "10px",
-                        fontSize: {
-                          lg: "15px",
-                          xs: "13px",
-                        },
+                        ml: "10px",
+                        mt: "10px",
+                        pb: "10px",
                         textTransform: "capitalize",
+                        color: "gray",
+                        fontWeight: "bold",
+                        fontSize: {
+                          lg: "16px",
+                          xs: "12px",
+                        },
                       }}
                     >
-                      Presupuesto: {travel.budget}€
+                      {travel.description.slice(0, 30).concat("...")}
+                    </Typography>
+                    <Typography
+                      className="travel-card__data"
+                      sx={{
+                        m: "10px",
+                        pb: "10px",
+
+                        color: "gray",
+                        fontWeight: "bold",
+                        fontSize: {
+                          lg: "15px",
+                          xs: "10px",
+                        },
+                      }}
+                    >
+                      {travel.dataFrom.slice(0, 10).replace(/-/g, "/")} -
+                      {travel.dataTo.slice(0, 10).replace(/-/g, "/")}
                     </Typography>
                   </Grid>
-                  <Typography
-                    sx={{
-                      ml: "10px",
-                      mt: "10px",
-                      textTransform: "capitalize",
-                      color: "orange",
-                      fontWeight: "bold",
-                      fontSize: {
-                        lg: "35px",
-                        xs: "28px",
-                      },
-                    }}
-                  >
-                    {travel.title}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      ml: "10px",
-                      mt: "10px",
-                      pb: "10px",
-                      textTransform: "capitalize",
-                      color: "gray",
-                      fontWeight: "bold",
-                      fontSize: {
-                        lg: "16px",
-                        xs: "12px",
-                      },
-                    }}
-                  >
-                    {travel.description.slice(0, 50).concat("...")}
-                  </Typography>
-                  <Typography
-                    className="travel-card__data"
-                    sx={{
-                      ml: "10px",
-                      mt: "10px",
-                      color: "gray",
-                      fontWeight: "bold",
-                      fontSize: {
-                        lg: "15px",
-                        xs: "10px",
-                      },
-                    }}
-                  >
-                    {travel.dataFrom.slice(0, 10).replace(/-/g, "/")} -
-                    {travel.dataTo.slice(0, 10).replace(/-/g, "/")}
-                  </Typography>
-                </Grid>
-              </Link>
-            ))}
-          </Grid>
+                </Link>
+              ))}
+            </Grid>
+          </Box>
         </>
       )}
     </>

@@ -1,3 +1,4 @@
-main {
-    font-family: Roboto, Helvetica, sans-serif;
+p,
+button {
+    font-weight: 900 !important;
 }
