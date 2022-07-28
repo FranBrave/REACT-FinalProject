@@ -10,5 +10,3 @@ export const useUserDetailById = (userId) => {
 
     return userDetail;
 };
-
-
