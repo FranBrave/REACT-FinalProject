@@ -42,7 +42,7 @@ const AuthForm = () => {
     }, [userAuth]);
 
     const modalHandle = () => {
-        toggleAuthModal(modalState.auth, modalDispatch);
+        toggleAuthModal(true, modalDispatch);
     };
 
     const errorHandle = () => {
