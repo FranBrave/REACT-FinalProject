@@ -67,10 +67,41 @@ const ListUsersWantJoin = ({ travel }) => {
                     {userSelected && (
                         <Stack sx={{ direction: "row" }}>
                             <Link to={`/User/${userSelected}`}>
-                                <Button>Ver Perfil</Button>
+                                <Button sx={{
+            bgcolor: "#fabada6e",
+            color: "#000",
+            textTransform: "none",
+            width: { lg: "175px", xs: "45px" },
+            fontSize: { lg: "20px", xs: "0px" },
+            height: { lg: "56px", xs: "40px" },
+            right: "0",
+            m: "5px",
+          }}>Ver Perfil</Button>
                             </Link>
-                            <Button onClick={acceptUser}>Aceptar</Button>
-                            <Button onClick={denieUser}>Denegar</Button>
+                            <Button 
+                            onClick={acceptUser}
+                            sx={{
+            bgcolor: "#3bb945e7",
+            color: "#000",
+            textTransform: "none",
+            width: { lg: "175px", xs: "45px" },
+            fontSize: { lg: "20px", xs: "0px" },
+            height: { lg: "56px", xs: "40px" },
+            right: "0",
+            m: "5px",
+          }}
+                            >Aceptar</Button>
+                            <Button onClick={denieUser}
+                            sx={{
+            bgcolor: "#F0A370",
+            color: "#000",
+            textTransform: "none",
+            width: { lg: "175px", xs: "45px" },
+            fontSize: { lg: "20px", xs: "0px" },
+            height: { lg: "56px", xs: "40px" },
+            right: "0",
+            m: "5px",
+          }}>Denegar</Button>
                         </Stack>
                     )}
                 </Grid>

@@ -57,8 +57,13 @@ const ButtonsTravelDetailContainer = ({ travel }) => {
     console.log(travel);
 
     return (
-        <Grid container spacing={4}>
-            <Grid xs={2}>
+        <Grid container>
+            <Grid container
+                                spacing={0}
+                                direction="row"
+                                alignItems="center"
+                                justifyContent="start"
+                                gap="1rem">
                 {userLogged &&
                     userLogged._id !== travel.userOwnerId &&
                     filtrar(travel.usersWantJoin) && (
@@ -69,8 +74,7 @@ const ButtonsTravelDetailContainer = ({ travel }) => {
                             <Typography>Join</Typography>
                         </Button>
                     )}
-            </Grid>
-            <Grid xs={2}>
+            
                 {userLogged &&
                     userLogged._id !== travel.userOwnerId &&
                     filtrar(travel.usersFollowing) && (
